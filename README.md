@@ -13,35 +13,10 @@ and Students to manage their daily academic activities.
 - Frontend: React.js (v18+)
 - Backend: Node.js + Express.js
 - Database: MongoDB + Mongoose
-- Authentication: JWT (JSON Web Token)
-- Password Encryption: bcryptjs
 - Styling: Tailwind CSS
-- HTTP Requests: Axios
+- framer motion
 - State Management: Context API
 
----
-
-## Project Structure
-
-madrasa-app/
-├── client/                  React Frontend
-│   ├── public/
-│   └── src/
-│       ├── components/      Reusable UI components
-│       ├── pages/           All pages
-│       │   ├── public/      Home, About, Courses etc
-│       │   ├── teacher/     Teacher dashboard pages
-│       │   └── student/     Student dashboard pages
-│       ├── context/         Auth context, global state
-│       ├── routes/          Protected route logic
-│       └── utils/           Helper functions, axios config
-│
-└── server/                  Node + Express Backend
-    ├── config/              DB connection, env config
-    ├── controllers/         Business logic
-    ├── middleware/           Auth middleware, role check
-    ├── models/              MongoDB schemas
-    └── routes/              API route definitions
 
 ---
 
@@ -77,10 +52,6 @@ madrasa-app/
 
 ---
 
-## API Base URL
-
-Development:  http://localhost:5000/api
-Production:   https://your-domain.com/api
 
 ---
 
@@ -113,8 +84,6 @@ Public Website:
 
 Server:
 express           Web framework
-mongoose          MongoDB ODM
-bcryptjs          Password hashing
 dotenv            Environment variables
 cors              Cross-origin requests
 nodemon           Dev auto-restart
