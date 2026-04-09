@@ -139,17 +139,18 @@ const About = () => {
           </div>
         </div>
 
+
         {/* Wave */}
-        <div className="absolute bottom-0 left-0 right-0 z-10">
-          <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+        <div className="absolute bottom-0 left-0 right-0 z-10 leading-none translate-y-px">
+          <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" className="w-full block" preserveAspectRatio="none" style={{ display: "block", marginBottom: "-1px" }}>
             <path d="M0 60L60 50C120 40 240 20 360 15C480 10 600 20 720 25C840 30 960 30 1080 25C1200 20 1320 10 1380 5L1440 0V60H0Z"
-              fill="hsl(var(--background))" />
+              fill="#ffffff" />
           </svg>
         </div>
       </section>
 
       {/* ── STATS ── */}
-      <section className="py-16 bg-background">
+      <section className="py-16 bg-white -mt-px">
         <div className="container mx-auto px-4">
           <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             {stats.map((s, i) => (
@@ -277,30 +278,23 @@ const About = () => {
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-teal-800 via-teal-700 to-emerald-800" />
-        <div className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 20%, white 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
-          }}
-        />
-        <div className="relative z-10 container mx-auto px-4 text-center max-w-2xl">
-          <h2 className="font-heading text-3xl md:text-5xl font-bold text-white mb-5 leading-tight">
+      <section className="py-24 bg-white border-t border-teal-100">
+        <div className="container mx-auto px-4 text-center max-w-2xl">
+          <h2 className="font-heading text-3xl md:text-5xl font-bold text-foreground mb-5 leading-tight">
             Join Our Community
           </h2>
-          <p className="text-white/75 text-lg mb-10 leading-relaxed">
+          <p className="text-muted-foreground text-lg mb-10 leading-relaxed">
             Be part of a legacy of Islamic education. Apply today or support our mission through a donation.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Button asChild size="lg"
-              className="bg-amber-500 hover:bg-amber-400 text-white font-bold text-lg px-10 rounded-full shadow-2xl hover:scale-105 transition-all duration-200">
+              className="bg-teal-700 hover:bg-teal-600 text-white font-bold text-lg px-10 rounded-full shadow-lg hover:scale-105 transition-all duration-200">
               <Link to="/contact" className="flex items-center gap-2">
                 {t("hero.apply")} <ArrowRight className="w-5 h-5" />
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline"
-              className="border-white/40 text-white hover:bg-white/10 rounded-full px-10 backdrop-blur-sm hover:scale-105 transition-all duration-200">
+            <Button asChild size="lg"
+              className="bg-amber-500 hover:bg-amber-400 text-white font-bold text-lg px-10 rounded-full shadow-lg hover:scale-105 transition-all duration-200">
               <Link to="/donation">{t("hero.donate")}</Link>
             </Button>
           </div>

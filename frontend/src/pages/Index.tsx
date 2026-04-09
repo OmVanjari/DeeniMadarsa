@@ -294,26 +294,19 @@ const Index = () => {
       </section>
 
       {/* ── DONATION CTA ── */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-teal-800 via-teal-700 to-emerald-800" />
-        <div className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 20%, white 1px, transparent 1px)`,
-            backgroundSize: "60px 60px"
-          }}
-        />
-        <div className="relative z-10 container mx-auto px-4 text-center max-w-2xl">
-          <div className="w-16 h-16 rounded-full bg-white/10 border border-white/20 flex items-center justify-center mx-auto mb-6">
-            <Heart className="w-8 h-8 text-amber-300 animate-float" />
+      <section className="py-24 bg-white border-t border-teal-100">
+        <div className="container mx-auto px-4 text-center max-w-2xl">
+          <div className="w-16 h-16 rounded-full bg-teal-50 border border-teal-100 flex items-center justify-center mx-auto mb-6">
+            <Heart className="w-8 h-8 text-teal-600 animate-float" />
           </div>
-          <h2 className="font-heading text-3xl md:text-5xl font-bold text-white mb-5 leading-tight">
+          <h2 className="font-heading text-3xl md:text-5xl font-bold text-foreground mb-5 leading-tight">
             {t("donation.subtitle")}
           </h2>
-          <p className="text-white/75 text-lg mb-10 leading-relaxed">
+          <p className="text-muted-foreground text-lg mb-10 leading-relaxed">
             {t("donation.text")}
           </p>
           <Button asChild size="lg"
-            className="bg-amber-500 hover:bg-amber-400 text-white font-bold text-lg px-12 py-4 rounded-full shadow-2xl shadow-amber-900/40 transition-all duration-200 hover:scale-105">
+            className="bg-teal-700 hover:bg-teal-600 text-white font-bold text-lg px-12 py-4 rounded-full shadow-lg transition-all duration-200 hover:scale-105">
             <Link to="/donation">{t("donation.button")}</Link>
           </Button>
         </div>
