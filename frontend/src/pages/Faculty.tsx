@@ -33,6 +33,7 @@ const Faculty = () => {
 
   return (
     <Layout>
+<<<<<<< HEAD
       <section className="hero-gradient py-24 text-center overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
@@ -95,6 +96,36 @@ const Faculty = () => {
               </div>
             ))}
           </div>
+=======
+      <section className="py-24 relative overflow-hidden bg-background">
+        <div className="absolute inset-0 bg-gradient-to-b from-accent/5 to-background z-0"></div>
+        <div className="container mx-auto px-4 relative z-10 text-center">
+          <h1 className="font-heading text-5xl md:text-6xl font-bold text-foreground drop-shadow-sm fade-up">{t("faculty.title")}</h1>
+          <p className="text-muted-foreground text-xl mt-4 max-w-2xl mx-auto fade-up fade-up-delay-1">{t("faculty.subtitle")}</p>
+        </div>
+      </section>
+
+      <section className="pb-24 pt-8 bg-background relative z-10">
+        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl">
+          {teachers.map((tc, i) => (
+            <div key={tc.nameKey} className={`group relative bg-card/80 backdrop-blur-xl rounded-3xl p-8 text-center shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.2)] border border-border/50 hover:border-accent/50 transition-all duration-500 hover:-translate-y-3 z-10 fade-up fade-up-delay-${i + 1}`}>
+              
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl -z-10"></div>
+              
+              <div className="relative w-44 h-44 mx-auto rounded-full overflow-hidden border-[6px] border-background shadow-2xl mb-8 group-hover:scale-105 transition-transform duration-500 ease-out">
+                <img src={tc.img} alt={t(tc.nameKey)} className="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-2 transition-transform duration-700 ease-out" loading="lazy" />
+              </div>
+              
+              <h3 className="font-heading text-2xl font-extrabold text-foreground tracking-tight group-hover:text-accent transition-colors duration-300">{t(tc.nameKey)}</h3>
+              
+              <div className="mt-3 mb-4 inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-accent/10 text-accent font-semibold text-sm">
+                {t(tc.titleKey)}
+              </div>
+              
+              <p className="text-muted-foreground text-sm leading-relaxed max-w-[240px] mx-auto group-hover:text-foreground/80 transition-colors duration-300">{t(tc.qualKey)}</p>
+            </div>
+          ))}
+>>>>>>> 428d857 (FOOTER)
         </div>
       </section>
     </Layout>
