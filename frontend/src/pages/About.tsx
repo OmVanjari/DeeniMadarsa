@@ -278,25 +278,31 @@ const About = () => {
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-24 bg-white border-t border-teal-100">
-        <div className="container mx-auto px-4 text-center max-w-2xl">
-          <h2 className="font-heading text-3xl md:text-5xl font-bold text-foreground mb-5 leading-tight">
-            Join Our Community
-          </h2>
-          <p className="text-muted-foreground text-lg mb-10 leading-relaxed">
-            Be part of a legacy of Islamic education. Apply today or support our mission through a donation.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Button asChild size="lg"
-              className="bg-teal-700 hover:bg-teal-600 text-white font-bold text-lg px-10 rounded-full shadow-lg hover:scale-105 transition-all duration-200">
-              <Link to="/contact" className="flex items-center gap-2">
-                {t("hero.apply")} <ArrowRight className="w-5 h-5" />
-              </Link>
-            </Button>
-            <Button asChild size="lg"
-              className="bg-amber-500 hover:bg-amber-400 text-white font-bold text-lg px-10 rounded-full shadow-lg hover:scale-105 transition-all duration-200">
-              <Link to="/donation">{t("hero.donate")}</Link>
-            </Button>
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto bg-gradient-to-br from-teal-800 to-emerald-900 rounded-3xl p-10 md:p-14 text-center shadow-2xl relative overflow-hidden">
+            <div className="absolute inset-0 opacity-5"
+              style={{ backgroundImage: `repeating-linear-gradient(45deg, white 0, white 1px, transparent 0, transparent 50%)`, backgroundSize: "30px 30px" }} />
+            <div className="relative z-10">
+              <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
+                Join Our Community
+              </h2>
+              <p className="text-white/75 text-base mb-8 max-w-xl mx-auto leading-relaxed">
+                Be part of a legacy of Islamic education. Apply today or support our mission through a donation.
+              </p>
+              <div className="flex flex-wrap gap-4 justify-center">
+                <Button asChild size="lg"
+                  className="bg-yellow-500 hover:bg-yellow-400 text-white font-bold px-10 rounded-full shadow-xl hover:scale-105 transition-all duration-200">
+                  <Link to="/contact" className="flex items-center gap-2">
+                    {t("hero.apply")} <ArrowRight className="w-5 h-5" />
+                  </Link>
+                </Button>
+                <Button asChild size="lg"
+                  className="bg-transparent border-2 border-white/60 text-white hover:bg-white/15 rounded-full px-10 hover:scale-105 transition-all duration-200">
+                  <Link to="/donation">{t("hero.donate")}</Link>
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -1,127 +1,96 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, Youtube } from "lucide-react";
-import { motion } from "framer-motion";
 
 const Footer = () => {
   const { t } = useLanguage();
 
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 15 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-  };
-
   return (
-    <footer className="bg-white border-t border-gray-100 relative z-10">
-      <div className="container mx-auto px-4 py-4 md:py-6">
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
+    <footer className="bg-white border-t-4 border-teal-700 relative z-10">
+      <div className="container mx-auto px-4 py-10 md:py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
           {/* Brand & Contact */}
-          <motion.div variants={itemVariants} className="lg:col-span-2">
-            <h3 className="font-heading text-lg font-bold mb-4 text-gray-900">
-              {t("footer.contact")}
-            </h3>
+          <div className="lg:col-span-2">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="font-heading text-2xl text-teal-700">☪</span>
+              <span className="font-heading text-xl font-bold text-gray-900">Al-Noor Madarsa</span>
+            </div>
+            <p className="text-gray-500 text-sm mb-5 leading-relaxed max-w-xs">
+              Providing quality Islamic and moral education since 1998.
+            </p>
             <div className="space-y-3 text-sm text-gray-600">
-              <a href="#" className="flex items-center gap-3 w-fit hover:text-black transition-colors group">
-                <span className="p-2 bg-gray-50 rounded-lg text-gray-400 group-hover:bg-gray-100 group-hover:text-black transition-all">
+              <a href="tel:+919876543210" className="flex items-center gap-3 w-fit hover:text-teal-700 transition-colors group">
+                <span className="p-2 bg-teal-50 rounded-lg text-teal-500 group-hover:bg-teal-100 transition-all">
                   <Phone className="w-4 h-4" />
                 </span>
                 {t("footer.phone")}
               </a>
-              <a href="#" className="flex items-center gap-3 w-fit hover:text-black transition-colors group">
-                <span className="p-2 bg-gray-50 rounded-lg text-gray-400 group-hover:bg-gray-100 group-hover:text-black transition-all">
+              <a href="mailto:info@alnoormadarsa.com" className="flex items-center gap-3 w-fit hover:text-teal-700 transition-colors group">
+                <span className="p-2 bg-teal-50 rounded-lg text-teal-500 group-hover:bg-teal-100 transition-all">
                   <Mail className="w-4 h-4" />
                 </span>
                 {t("footer.email")}
               </a>
-              <div className="flex items-start gap-3 w-fit hover:text-black transition-colors group cursor-default">
-                <span className="p-2 bg-gray-50 rounded-lg text-gray-400 group-hover:bg-gray-100 group-hover:text-black transition-all mt-0.5">
+              <div className="flex items-start gap-3">
+                <span className="p-2 bg-teal-50 rounded-lg text-teal-500 mt-0.5 shrink-0">
                   <MapPin className="w-4 h-4" />
                 </span>
-                <span className="leading-relaxed max-w-sm">{t("footer.address")}</span>
+                <span className="leading-relaxed">{t("footer.address")}</span>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Quick Links */}
-          <motion.div variants={itemVariants}>
-            <h3 className="font-heading text-lg font-bold mb-4 text-gray-900">
-              {t("footer.quicklinks")}
-            </h3>
-            <nav className="grid grid-cols-1 gap-2.5 text-sm text-gray-600">
+          <div>
+            <h3 className="font-heading text-base font-bold mb-4 text-gray-900">{t("footer.quicklinks")}</h3>
+            <nav className="flex flex-col gap-2.5 text-sm text-gray-500">
               {[
-                { to: "/", label: t("nav.home") },
-                { to: "/about", label: t("nav.about") },
-                { to: "/courses", label: t("nav.courses") },
-                { to: "/faculty", label: t("nav.faculty") },
+                { to: "/",         label: t("nav.home") },
+                { to: "/about",    label: t("nav.about") },
+                { to: "/courses",  label: t("nav.courses") },
+                { to: "/faculty",  label: t("nav.faculty") },
                 { to: "/donation", label: t("nav.donation") },
-                { to: "/contact", label: t("nav.contact") },
+                { to: "/contact",  label: t("nav.contact") },
               ].map(({ to, label }) => (
-                <Link
-                  key={to}
-                  to={to}
-                  className="w-fit flex items-center gap-2 hover:text-black hover:translate-x-1 transition-all duration-300"
-                >
-                  <span className="w-1 h-1 rounded-full bg-gray-300" />
+                <Link key={to} to={to}
+                  className="w-fit flex items-center gap-2 hover:text-teal-700 hover:translate-x-1 transition-all duration-200">
+                  <span className="w-1 h-1 rounded-full bg-teal-300" />
                   {label}
                 </Link>
               ))}
             </nav>
-          </motion.div>
+          </div>
 
           {/* Follow Us */}
-          <motion.div variants={itemVariants}>
-            <h3 className="font-heading text-lg font-bold mb-4 text-gray-900">
-              {t("footer.followus")}
-            </h3>
+          <div>
+            <h3 className="font-heading text-base font-bold mb-4 text-gray-900">{t("footer.followus")}</h3>
             <div className="flex flex-wrap gap-2.5">
               {[
-                { name: "Facebook", icon: <Facebook className="w-4 h-4" /> },
-                { name: "Twitter", icon: <Twitter className="w-4 h-4" /> },
+                { name: "Facebook",  icon: <Facebook  className="w-4 h-4" /> },
+                { name: "Twitter",   icon: <Twitter   className="w-4 h-4" /> },
                 { name: "Instagram", icon: <Instagram className="w-4 h-4" /> },
-                { name: "YouTube", icon: <Youtube className="w-4 h-4" /> },
-              ].map((platform) => (
-                <button
-                  key={platform.name}
-                  className="p-2.5 border border-gray-100 bg-gray-50/50 rounded-xl text-gray-500 hover:bg-black hover:text-white hover:border-black transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/10"
-                  aria-label={platform.name}
-                >
-                  {platform.icon}
+                { name: "YouTube",   icon: <Youtube   className="w-4 h-4" /> },
+              ].map((p) => (
+                <button key={p.name} aria-label={p.name}
+                  className="p-2.5 bg-teal-50 border border-teal-100 rounded-xl text-teal-600 hover:bg-teal-700 hover:text-white hover:border-teal-700 transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
+                  {p.icon}
                 </button>
               ))}
             </div>
-          </motion.div>
-        </motion.div>
-
-        {/* Bottom Bar */}
-        <motion.div
-          className="mt-6 pt-4 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          <p>{t("footer.copyright")}</p>
-          <div className="flex items-center gap-6">
-            <span className="hover:text-black cursor-pointer transition-colors">Privacy Policy</span>
-            <span className="w-1 h-1 rounded-full bg-gray-200" />
-            <span className="hover:text-black cursor-pointer transition-colors">Terms of Service</span>
           </div>
-        </motion.div>
+
+        </div>
+
+        {/* Bottom bar */}
+        <div className="mt-10 pt-5 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-gray-400">
+          <p>{t("footer.copyright")}</p>
+          <div className="flex items-center gap-4">
+            <span className="hover:text-teal-700 cursor-pointer transition-colors">Privacy Policy</span>
+            <span className="w-1 h-1 rounded-full bg-gray-200" />
+            <span className="hover:text-teal-700 cursor-pointer transition-colors">Terms of Service</span>
+          </div>
+        </div>
       </div>
     </footer>
   );
