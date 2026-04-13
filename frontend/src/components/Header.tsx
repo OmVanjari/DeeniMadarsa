@@ -25,9 +25,11 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-primary shadow-lg">
-      <div className="container mx-auto px-4 flex items-center justify-between h-16">
-        <Link to="/" className="font-heading text-xl font-bold text-primary-foreground tracking-wide leading-tight">
-          ☪ Darul Uloom Junediya Ajmatia
+      <div className="container mx-auto px-4 flex items-center justify-between h-14">
+        <Link to="/" className="flex items-center gap-3 font-heading text-lg font-bold text-primary-foreground tracking-wide leading-tight">
+          <img src="/schoollogo.png" alt="Logo" className="w-9 h-9 object-contain" />
+          <span className="hidden sm:block">Darul Uloom Junediya Ajmatia</span>
+          <span className="sm:hidden">DUJA</span>
         </Link>
 
         {/* Desktop Nav */}

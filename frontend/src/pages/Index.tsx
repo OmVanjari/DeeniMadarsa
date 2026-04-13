@@ -16,7 +16,7 @@ const slides = [
   {
     id: 1,
     img: "/WhatsApp Image 2026-04-13 at 10.32.40 AM.jpeg",
-    badge: "Est. 1998",
+    badge: "Est. 2004",
     titleKey: "hero.welcome",
     subtitleKey: "hero.subtitle",
   },
@@ -222,19 +222,15 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             {/* Visual side */}
-            <div className="relative">
-              <div className="w-full aspect-square max-w-sm mx-auto rounded-3xl bg-gradient-to-br from-teal-600 to-emerald-800 flex items-center justify-center shadow-2xl shadow-teal-900/30">
-                <span className="font-heading text-white/20 select-none" style={{ fontSize: "10rem", lineHeight: 1 }}>☪</span>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="font-heading text-white text-5xl font-bold text-center px-8 leading-tight drop-shadow-lg">
-                    Al-Noor<br />Madarsa
-                  </span>
-                </div>
+            <div className="relative max-w-sm mx-auto">
+              <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-xl shadow-teal-900/20">
+                <img src="/building.jpeg" alt="Darul Uloom Junediya Ajmatia" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-teal-900/50 to-transparent" />
               </div>
               {/* Floating badge */}
-              <div className="absolute -bottom-4 -right-4 bg-yellow-600 text-white rounded-2xl px-5 py-3 shadow-lg">
-                <div className="font-heading text-2xl font-bold">1998</div>
-                <div className="text-xs opacity-90">Est.</div>
+              <div className="absolute -bottom-3 -right-3 bg-yellow-600 text-white rounded-xl px-4 py-2 shadow-lg">
+                <div className="font-heading text-xl font-bold">2004</div>
+                <div className="text-xs opacity-90">Est. 1 March</div>
               </div>
             </div>
             {/* Text side */}
