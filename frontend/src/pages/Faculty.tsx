@@ -10,43 +10,40 @@ const Faculty = () => {
   const { t } = useLanguage();
 
   const teachers = [
-    { name: "سید جان حسن اجمالی",      titleKey: "faculty.manager.title",   qualKey: "faculty.manager.qual",    img: teacher1 },
-    { name: "حافظ تبریز (جانک)",        titleKey: "faculty.principal.title",  qualKey: "faculty.principal.qual",  img: teacher2 },
-    { name: "حافظ قاری جابر حسن",       titleKey: "faculty.teacher.title",    qualKey: "faculty.jabir.qual",      img: teacher3 },
-    { name: "حافظ قاری عثمان خان",      titleKey: "faculty.teacher.title",    qualKey: "faculty.usman.qual",      img: teacher1 },
-    { name: "حافظ عبداللہ خان",         titleKey: "faculty.teacher.title",    qualKey: "faculty.abdullah.qual",   img: teacher2 },
-    { name: "ماسٹر محمد نظام الدین",    titleKey: "faculty.teacher.title",    qualKey: "faculty.nizamuddin.qual", img: teacher3 },
-    { name: "ماسٹر جمشید خان",          titleKey: "faculty.teacher.title",    qualKey: "faculty.jamshed.qual",    img: teacher1 },
-    { name: "ماسٹر پون احمد",           titleKey: "faculty.teacher.title",    qualKey: "faculty.pawan.qual",      img: teacher2 },
+    { nameKey: "faculty.member.manager", titleKey: "faculty.manager.title",   qualKey: "faculty.manager.qual",    img: teacher1 },
+    { nameKey: "faculty.member.tabrez",  titleKey: "faculty.principal.title",  qualKey: "faculty.principal.qual",  img: teacher2 },
+    { nameKey: "faculty.member.jabir",   titleKey: "faculty.teacher.title",    qualKey: "faculty.jabir.qual",      img: teacher3 },
+    { nameKey: "faculty.member.usman",   titleKey: "faculty.teacher.title",    qualKey: "faculty.usman.qual",      img: teacher1 },
+    { nameKey: "faculty.member.abdullah",titleKey: "faculty.teacher.title",    qualKey: "faculty.abdullah.qual",   img: teacher2 },
+    { nameKey: "faculty.member.nizam",   titleKey: "faculty.teacher.title",    qualKey: "faculty.nizamuddin.qual", img: teacher3 },
+    { nameKey: "faculty.member.jamshed", titleKey: "faculty.teacher.title",    qualKey: "faculty.jamshed.qual",    img: teacher1 },
+    { nameKey: "faculty.member.pawan",   titleKey: "faculty.teacher.title",    qualKey: "faculty.pawan.qual",      img: teacher2 },
   ];
 
   return (
     <Layout>
       {/* ── HERO ── */}
-      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[60vh] sm:h-[75vh] lg:h-[85vh] min-h-[420px] flex items-center justify-center overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0">
           <img src="/WhatsApp Image 2026-04-13 at 10.32.41 AM.jpeg" alt="Faculty hero" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-teal-900/70" />
         </div>
-        <div className="relative z-10 container mx-auto px-4 text-center py-16 sm:py-20 md:py-24">
-          <span className="inline-block bg-amber-500/90 text-white text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-4 sm:mb-6">
-            {t("faculty.ourteam")}
-          </span>
-          <h1 className="font-heading text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-4 sm:mb-5 leading-tight">
+        <div className="relative z-10 container mx-auto px-3 sm:px-4 text-center py-12 sm:py-16 md:py-20 lg:py-24">
+          <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 sm:mb-4 lg:mb-5 leading-tight">
             {t("faculty.title")}
           </h1>
-          <p className="text-white/75 text-base sm:text-lg max-w-xl mx-auto mb-6 sm:mb-8">
+          <p className="text-white/75 text-sm sm:text-base md:text-lg max-w-xl mx-auto mb-4 sm:mb-6 lg:mb-8">
             {t("faculty.subtitle")}
           </p>
-          <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 lg:gap-4 justify-center">
             <Button asChild size="lg"
-              className="w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-white font-semibold rounded-full px-8 shadow-xl hover:scale-105 transition-all duration-200">
+              className="w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-white font-semibold rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base shadow-xl hover:scale-105 transition-all duration-200">
               <Link to="/contact">{t("hero.apply")}</Link>
             </Button>
             <Button asChild size="lg"
-              className="w-full sm:w-auto bg-transparent border-2 border-white/60 text-white hover:bg-white/15 rounded-full px-8 hover:scale-105 transition-all duration-200">
-              <Link to="/about">{t("about.preview.readmore")}</Link>
+              className="w-full sm:w-auto bg-transparent border-2 border-white/60 text-white hover:bg-white/15 rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base hover:scale-105 transition-all duration-200">
+              <Link to="/courses">{t("nav.courses")}</Link>
             </Button>
           </div>
         </div>
@@ -58,22 +55,22 @@ const Faculty = () => {
       </section>
 
       {/* ── FACULTY GRID ── */}
-      <section className="py-12 sm:py-20 bg-white -mt-px">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-10 sm:mb-14">
+      <section className="py-6 sm:py-8 lg:py-10 bg-white -mt-px">
+        <div className="container mx-auto px-3 sm:px-4">
+          <div className="text-center mb-8 sm:mb-10 lg:mb-14">
             <span className="text-xs font-bold uppercase tracking-widest text-teal-600 mb-2 block">{t("faculty.experienced")}</span>
-            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">{t("faculty.title")}</h2>
+            <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">{t("faculty.title")}</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 sm:gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 max-w-5xl mx-auto">
             {teachers.map((teacher) => (
-              <div key={teacher.name}
-                className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-teal-100/60 hover:-translate-y-2 transition-all duration-300">
+              <div key={teacher.nameKey}
+                className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg border border-teal-100/60 hover:-translate-y-1 transition-all duration-300">
                 <div className="h-1.5 bg-gradient-to-r from-teal-500 to-emerald-600" />
-                <div className="p-5 sm:p-6 text-center">
-                  <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto rounded-full overflow-hidden border-4 border-teal-100 shadow-lg mb-4 group-hover:border-teal-400 transition-colors duration-300">
-                    <img src={teacher.img} alt={teacher.name} className="w-full h-full object-cover" loading="lazy" />
+                <div className="p-4 sm:p-5 lg:p-6 text-center">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto rounded-full overflow-hidden border-4 border-teal-100 shadow-lg mb-3 sm:mb-4 group-hover:border-teal-400 transition-colors duration-300">
+                    <img src={teacher.img} alt={t(teacher.nameKey)} className="w-full h-full object-cover" loading="lazy" />
                   </div>
-                  <h3 className="font-heading text-sm sm:text-base font-bold text-foreground">{teacher.name}</h3>
+                  <h3 className="font-heading text-sm sm:text-base font-bold text-foreground">{t(teacher.nameKey)}</h3>
                   <p className="text-teal-600 text-xs font-medium mt-1">{t(teacher.titleKey)}</p>
                   <p className="text-muted-foreground text-xs mt-1">{t(teacher.qualKey)}</p>
                 </div>

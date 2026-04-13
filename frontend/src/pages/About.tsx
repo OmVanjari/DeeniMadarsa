@@ -87,7 +87,7 @@ const About = () => {
     <Layout>
 
       {/* ── HERO ── */}
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[65vh] sm:h-[75vh] lg:h-[85vh] min-h-[420px] flex items-center justify-center overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0">
           <img src="/WhatsApp Image 2026-04-13 at 10.32.40 AM.jpeg" alt="About hero" className="w-full h-full object-cover" />
@@ -95,24 +95,24 @@ const About = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 container mx-auto px-4 grid md:grid-cols-2 gap-8 md:gap-10 items-center py-16 sm:py-20 md:py-24">
+        <div className="relative z-10 container mx-auto px-3 sm:px-4 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 items-center py-12 sm:py-16 md:py-20 lg:py-24">
           <div>
-            <span className="inline-block bg-amber-500/90 text-white text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-4 sm:mb-6 animate-fade-in">
+            <span className="inline-block bg-amber-500/90 text-white text-xs font-bold uppercase tracking-widest px-3 sm:px-4 py-1 sm:py-1.5 rounded-full mb-3 sm:mb-4 lg:mb-6 animate-fade-in">
               {t("about.est")}
             </span>
-            <h1 className="font-heading text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-4 sm:mb-5 leading-tight animate-fade-up">
+            <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 sm:mb-4 lg:mb-5 leading-tight animate-fade-up">
               {t("about.title")}
             </h1>
-            <p className="text-white/75 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8 animate-fade-up" style={{ animationDelay: "0.15s" }}>
+            <p className="text-white/75 text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6 lg:mb-8 animate-fade-up" style={{ animationDelay: "0.15s" }}>
               {t("about.preview.text")}
             </p>
-            <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 animate-fade-up" style={{ animationDelay: "0.3s" }}>
+            <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 lg:gap-4 animate-fade-up" style={{ animationDelay: "0.3s" }}>
               <Button asChild size="lg"
-                className="w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-white font-semibold rounded-full px-8 shadow-xl hover:scale-105 transition-all duration-200">
+                className="w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-white font-semibold rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base shadow-xl hover:scale-105 transition-all duration-200">
                 <Link to="/contact">{t("hero.apply")}</Link>
               </Button>
               <Button asChild size="lg"
-                className="w-full sm:w-auto bg-transparent border-2 border-white/60 text-white hover:bg-white/15 rounded-full px-8 hover:scale-105 transition-all duration-200 shadow-none">
+                className="w-full sm:w-auto bg-transparent border-2 border-white/60 text-white hover:bg-white/15 rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base hover:scale-105 transition-all duration-200 shadow-none">
                 <Link to="/donation">{t("hero.donate")}</Link>
               </Button>
             </div>
@@ -120,7 +120,7 @@ const About = () => {
 
           {/* Hero visual card */}
           <div className="hidden md:flex justify-center">
-            <div className="relative w-72 h-72">
+            <div className="relative w-48 sm:w-56 md:w-64 lg:w-72 h-48 sm:h-56 md:h-64 lg:h-72">
               {/* Rotated background frame */}
               <div className="absolute inset-0 rounded-3xl bg-white/10 backdrop-blur-sm border border-white/20 rotate-6" />
               {/* Main image card */}
@@ -131,8 +131,8 @@ const About = () => {
                   className="w-full h-full object-cover"
                 />
                 {/* Label overlay at bottom */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-teal-900/90 to-transparent px-4 py-4">
-                  <p className="font-heading text-white text-sm font-bold text-center">Darul Uloom Junediya Ajmatia</p>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-teal-900/90 to-transparent px-3 sm:px-4 py-3 sm:py-4">
+                  <p className="font-heading text-white text-xs sm:text-sm font-bold text-center break-words">Darul Uloom Junediya Ajmatia</p>
                   <p className="text-white/70 text-xs text-center">Mehnd, Ghazipur — Est. 2004</p>
                 </div>
               </div>
@@ -150,7 +150,7 @@ const About = () => {
       </section>
 
       {/* ── STATS ── */}
-      <section className="py-12 sm:py-16 bg-white -mt-px">
+      <section className="py-8 sm:py-10 bg-white -mt-px">
         <div className="container mx-auto px-4">
           <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-4xl mx-auto">
             {stats.map((s, i) => (
@@ -161,35 +161,35 @@ const About = () => {
       </section>
 
       {/* ── HISTORY ── */}
-      <section className="py-12 sm:py-20 bg-gradient-to-b from-background to-teal-50/40">
-        <div className="container mx-auto px-4 max-w-3xl text-center">
-          <span className="text-xs font-bold uppercase tracking-widest text-teal-600 mb-3 block">{t("about.ourstory")}</span>
-          <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4 sm:mb-6">{t("about.history.title")}</h2>
-          <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">{t("about.history.text")}</p>
+      <section className="py-6 sm:py-8 lg:py-10 bg-gradient-to-b from-background to-teal-50/40">
+        <div className="container mx-auto px-3 sm:px-4 max-w-3xl text-center">
+          <span className="text-xs font-bold uppercase tracking-widest text-teal-600 mb-2 sm:mb-3 block">{t("about.ourstory")}</span>
+          <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-3 sm:mb-4 lg:mb-6">{t("about.history.title")}</h2>
+          <p className="text-muted-foreground text-sm sm:text-base lg:text-lg leading-relaxed">{t("about.history.text")}</p>
         </div>
       </section>
 
       {/* ── TIMELINE ── */}
-      <section className="py-12 sm:py-20 bg-teal-50/40">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="text-center mb-10 sm:mb-14">
+      <section className="py-6 sm:py-8 lg:py-10 bg-teal-50/40">
+        <div className="container mx-auto px-3 sm:px-4 max-w-4xl">
+          <div className="text-center mb-8 sm:mb-10 lg:mb-14">
             <span className="text-xs font-bold uppercase tracking-widest text-amber-600 mb-2 block">{t("about.milestones")}</span>
-            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">{t("about.ourjourney")}</h2>
+            <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">{t("about.ourjourney")}</h2>
           </div>
           <div className="relative">
             {/* Center line — desktop only */}
             <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-teal-200 hidden md:block" />
             <div className="flex flex-col gap-6 sm:gap-10">
               {timeline.map((item, i) => (
-                <div key={i} className={`relative flex items-center gap-6 ${item.side === "right" ? "md:flex-row-reverse" : "md:flex-row"} flex-col md:flex-row`}>
+                <div key={i} className={`relative flex items-center gap-4 sm:gap-6 ${item.side === "right" ? "md:flex-row-reverse" : "md:flex-row"} flex-col md:flex-row`}>
                   <div className="md:w-[calc(50%-2rem)] w-full">
-                    <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-md border border-teal-100/60 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                      <span className="inline-block bg-teal-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">{item.year}</span>
-                      <p className="text-muted-foreground text-sm leading-relaxed">{t(item.textKey)}</p>
+                    <div className="bg-white rounded-2xl p-4 sm:p-5 lg:p-6 shadow-md border border-teal-100/60 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                      <span className="inline-block bg-teal-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-2 sm:mb-3">{item.year}</span>
+                      <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">{t(item.textKey)}</p>
                     </div>
                   </div>
                   {/* Dot */}
-                  <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-amber-500 border-4 border-white shadow-md z-10" />
+                  <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-4 h-4 md:w-5 md:h-5 rounded-full bg-amber-500 border-4 border-white shadow-md z-10" />
                   {/* Spacer */}
                   <div className="md:w-[calc(50%-2rem)] hidden md:block" />
                 </div>
@@ -200,33 +200,33 @@ const About = () => {
       </section>
 
       {/* ── MISSION & VISION ── */}
-      <section className="py-12 sm:py-20 bg-background">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <div className="text-center mb-10 sm:mb-14">
+      <section className="py-6 sm:py-8 lg:py-10 bg-background">
+        <div className="container mx-auto px-3 sm:px-4 max-w-5xl">
+          <div className="text-center mb-8 sm:mb-10 lg:mb-14">
             <span className="text-xs font-bold uppercase tracking-widest text-teal-600 mb-2 block">{t("about.purpose")}</span>
-            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">{t("about.missionvision")}</h2>
+            <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">{t("about.missionvision")}</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
             {/* Mission */}
             <div className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-teal-100/60 hover:-translate-y-2 transition-all duration-300">
               <div className="h-1.5 bg-gradient-to-r from-teal-500 to-teal-700" />
-              <div className="p-6 sm:p-8">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center mb-4 sm:mb-5 shadow-md">
-                  <Target className="w-6 h-6 text-white" />
+              <div className="p-4 sm:p-5 lg:p-8">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center mb-3 sm:mb-4 lg:mb-5 shadow-md">
+                  <Target className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
-                <h3 className="font-heading text-xl sm:text-2xl font-bold text-foreground mb-3 sm:mb-4">{t("about.mission.title")}</h3>
-                <p className="text-muted-foreground leading-relaxed">{t("about.mission.text")}</p>
+                <h3 className="font-heading text-base sm:text-lg lg:text-2xl font-bold text-foreground mb-2 sm:mb-3 lg:mb-4">{t("about.mission.title")}</h3>
+                <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">{t("about.mission.text")}</p>
               </div>
             </div>
             {/* Vision */}
             <div className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-teal-100/60 hover:-translate-y-2 transition-all duration-300">
               <div className="h-1.5 bg-gradient-to-r from-emerald-500 to-emerald-700" />
-              <div className="p-6 sm:p-8">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center mb-4 sm:mb-5 shadow-md">
-                  <Eye className="w-6 h-6 text-white" />
+              <div className="p-4 sm:p-5 lg:p-8">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center mb-3 sm:mb-4 lg:mb-5 shadow-md">
+                  <Eye className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
-                <h3 className="font-heading text-xl sm:text-2xl font-bold text-foreground mb-3 sm:mb-4">{t("about.vision.title")}</h3>
-                <p className="text-muted-foreground leading-relaxed">{t("about.vision.text")}</p>
+                <h3 className="font-heading text-base sm:text-lg lg:text-2xl font-bold text-foreground mb-2 sm:mb-3 lg:mb-4">{t("about.vision.title")}</h3>
+                <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">{t("about.vision.text")}</p>
               </div>
             </div>
           </div>
@@ -234,21 +234,21 @@ const About = () => {
       </section>
 
       {/* ── CORE VALUES ── */}
-      <section className="py-12 sm:py-20 bg-teal-50/40">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <div className="text-center mb-10 sm:mb-14">
+      <section className="py-6 sm:py-8 lg:py-10 bg-teal-50/40">
+        <div className="container mx-auto px-3 sm:px-4 max-w-5xl">
+          <div className="text-center mb-8 sm:mb-10 lg:mb-14">
             <span className="text-xs font-bold uppercase tracking-widest text-amber-600 mb-2 block">{t("about.whatdrivesus")}</span>
-            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">{t("about.corevalues")}</h2>
+            <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">{t("about.corevalues")}</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
             {values.map((v, i) => (
               <div key={i}
-                className="bg-white rounded-2xl p-5 sm:p-6 text-center shadow-md hover:shadow-xl border border-teal-100/60 hover:-translate-y-2 transition-all duration-300 group">
-                <div className="w-12 h-12 rounded-2xl bg-teal-50 border border-teal-100 flex items-center justify-center mx-auto mb-4 group-hover:bg-teal-600 transition-colors duration-300">
-                  <v.icon className="w-6 h-6 text-teal-600 group-hover:text-white transition-colors duration-300" />
+                className="bg-white rounded-2xl p-4 sm:p-5 lg:p-6 text-center shadow-md hover:shadow-xl border border-teal-100/60 hover:-translate-y-2 transition-all duration-300 group">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 rounded-2xl bg-teal-50 border border-teal-100 flex items-center justify-center mx-auto mb-2 sm:mb-3 lg:mb-4 group-hover:bg-teal-600 transition-colors duration-300">
+                  <v.icon className="w-5 h-5 sm:w-5.5 sm:h-5.5 lg:w-6 lg:h-6 text-teal-600 group-hover:text-white transition-colors duration-300" />
                 </div>
-                <h4 className="font-heading text-base font-bold text-foreground mb-2">{t(v.titleKey)}</h4>
-                <p className="text-muted-foreground text-xs leading-relaxed">{t(v.descKey)}</p>
+                <h4 className="font-heading text-sm sm:text-base font-bold text-foreground mb-1.5 sm:mb-2">{t(v.titleKey)}</h4>
+                <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">{t(v.descKey)}</p>
               </div>
             ))}
           </div>
@@ -256,20 +256,20 @@ const About = () => {
       </section>
 
       {/* ── FOUNDER'S MESSAGE ── */}
-      <section className="py-12 sm:py-20 bg-background">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <div className="text-center mb-8 sm:mb-10">
+      <section className="py-6 sm:py-8 lg:py-10 bg-background">
+        <div className="container mx-auto px-3 sm:px-4 max-w-3xl">
+          <div className="text-center mb-6 sm:mb-8 lg:mb-10">
             <span className="text-xs font-bold uppercase tracking-widest text-teal-600 mb-2 block">{t("about.wordswisdom")}</span>
-            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">{t("about.founder.title")}</h2>
+            <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">{t("about.founder.title")}</h2>
           </div>
-          <div className="bg-gradient-to-br from-teal-800 to-emerald-900 rounded-3xl p-6 sm:p-10 relative overflow-hidden shadow-2xl">
-            <div className="absolute top-6 left-8 opacity-20">
-              <Quote className="w-14 h-14 sm:w-20 sm:h-20 text-white" />
+          <div className="bg-gradient-to-br from-teal-800 to-emerald-900 rounded-3xl p-5 sm:p-7 lg:p-10 relative overflow-hidden shadow-2xl">
+            <div className="absolute top-4 sm:top-6 left-4 sm:left-8 opacity-20">
+              <Quote className="w-10 h-10 sm:w-14 sm:h-14 lg:w-20 lg:h-20 text-white" />
             </div>
-            <div className="absolute bottom-6 right-8 opacity-10 rotate-180">
-              <Quote className="w-14 h-14 sm:w-20 sm:h-20 text-white" />
+            <div className="absolute bottom-4 sm:bottom-6 right-4 sm:right-8 opacity-10 rotate-180">
+              <Quote className="w-10 h-10 sm:w-14 sm:h-14 lg:w-20 lg:h-20 text-white" />
             </div>
-            <p className="relative z-10 font-heading text-lg sm:text-xl md:text-2xl text-white/90 italic leading-relaxed text-center">
+            <p className="relative z-10 font-heading text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 italic leading-relaxed text-center">
               {t("about.founder.text")}
             </p>
           </div>
@@ -277,27 +277,27 @@ const About = () => {
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-12 sm:py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto bg-gradient-to-br from-teal-800 to-emerald-900 rounded-3xl p-6 sm:p-10 md:p-14 text-center shadow-2xl relative overflow-hidden">
+      <section className="py-6 sm:py-8 lg:py-10 bg-white">
+        <div className="container mx-auto px-3 sm:px-4">
+          <div className="max-w-3xl mx-auto bg-gradient-to-br from-teal-800 to-emerald-900 rounded-3xl p-5 sm:p-7 lg:p-10 xl:p-14 text-center shadow-2xl relative overflow-hidden">
             <div className="absolute inset-0 opacity-5"
               style={{ backgroundImage: `repeating-linear-gradient(45deg, white 0, white 1px, transparent 0, transparent 50%)`, backgroundSize: "30px 30px" }} />
             <div className="relative z-10">
-              <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4 leading-tight">
+              <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 sm:mb-3 lg:mb-4 leading-tight">
                 {t("about.joincommunity")}
               </h2>
-              <p className="text-white/75 text-sm sm:text-base mb-6 sm:mb-8 max-w-xl mx-auto leading-relaxed">
+              <p className="text-white/75 text-xs sm:text-sm lg:text-base mb-4 sm:mb-6 lg:mb-8 max-w-xl mx-auto leading-relaxed">
                 {t("about.jointext")}
               </p>
-              <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 lg:gap-4 justify-center">
                 <Button asChild size="lg"
-                  className="w-full sm:w-auto bg-yellow-500 hover:bg-yellow-400 text-white font-bold px-10 rounded-full shadow-xl hover:scale-105 transition-all duration-200">
+                  className="w-full sm:w-auto bg-yellow-500 hover:bg-yellow-400 text-white font-bold px-6 sm:px-8 lg:px-10 py-2 sm:py-3 text-sm sm:text-base rounded-full shadow-xl hover:scale-105 transition-all duration-200">
                   <Link to="/contact" className="flex items-center justify-center gap-2">
-                    {t("hero.apply")} <ArrowRight className="w-5 h-5" />
+                    {t("hero.apply")} <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                   </Link>
                 </Button>
                 <Button asChild size="lg"
-                  className="w-full sm:w-auto bg-transparent border-2 border-white/60 text-white hover:bg-white/15 rounded-full px-10 hover:scale-105 transition-all duration-200">
+                  className="w-full sm:w-auto bg-transparent border-2 border-white/60 text-white hover:bg-white/15 px-6 sm:px-8 lg:px-10 py-2 sm:py-3 text-sm sm:text-base rounded-full hover:scale-105 transition-all duration-200">
                   <Link to="/donation">{t("hero.donate")}</Link>
                 </Button>
               </div>
