@@ -7,30 +7,30 @@ const Footer = () => {
 
   return (
     <footer className="relative z-10 bg-gradient-to-br from-teal-900 via-teal-800 to-emerald-900">
-      <div className="container mx-auto px-4 py-10 md:py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="container mx-auto px-4 py-8 sm:py-10 md:py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
 
           {/* Brand & Contact */}
-          <div className="lg:col-span-2">
+          <div className="sm:col-span-2 lg:col-span-2">
             <div className="flex items-center gap-2 mb-3">
-              <img src="/schoollogo.png" alt="Logo" className="w-10 h-10 object-contain rounded-full bg-white/10 p-0.5" />
-              <span className="font-heading text-lg font-bold text-white leading-tight">Darul Uloom Junediya Ajmatia</span>
+              <img src="/schoollogo.png" alt="Logo" className="w-9 h-9 sm:w-10 sm:h-10 object-contain rounded-full bg-white/10 p-0.5 shrink-0" />
+              <span className="font-heading text-base sm:text-lg font-bold text-white leading-tight">Darul Uloom Junediya Ajmatia</span>
             </div>
-            <p className="text-teal-200 text-sm mb-5 leading-relaxed max-w-xs">
+            <p className="text-teal-200 text-sm mb-4 sm:mb-5 leading-relaxed max-w-xs">
               Providing quality Islamic and modern education since 2004 — Mehnd, Ghazipur, Uttar Pradesh.
             </p>
             <div className="space-y-3 text-sm text-teal-100">
               <a href="tel:+919876543210" className="flex items-center gap-3 w-fit hover:text-white transition-colors group">
-                <span className="p-2 bg-teal-700/60 rounded-lg text-teal-300 group-hover:bg-teal-600 group-hover:text-white transition-all">
+                <span className="p-2 bg-teal-700/60 rounded-lg text-teal-300 group-hover:bg-teal-600 group-hover:text-white transition-all shrink-0">
                   <Phone className="w-4 h-4" />
                 </span>
                 {t("footer.phone")}
               </a>
               <a href="mailto:info@darululoomajmatia.com" className="flex items-center gap-3 w-fit hover:text-white transition-colors group">
-                <span className="p-2 bg-teal-700/60 rounded-lg text-teal-300 group-hover:bg-teal-600 group-hover:text-white transition-all">
+                <span className="p-2 bg-teal-700/60 rounded-lg text-teal-300 group-hover:bg-teal-600 group-hover:text-white transition-all shrink-0">
                   <Mail className="w-4 h-4" />
                 </span>
-                {t("footer.email")}
+                <span className="break-all">{t("footer.email")}</span>
               </a>
               <div className="flex items-start gap-3">
                 <span className="p-2 bg-teal-700/60 rounded-lg text-teal-300 mt-0.5 shrink-0">
@@ -43,8 +43,8 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-heading text-base font-bold mb-4 text-white">{t("footer.quicklinks")}</h3>
-            <nav className="flex flex-col gap-2.5 text-sm text-teal-200">
+            <h3 className="font-heading text-base font-bold mb-3 sm:mb-4 text-white">{t("footer.quicklinks")}</h3>
+            <nav className="flex flex-col gap-2 sm:gap-2.5 text-sm text-teal-200">
               {[
                 { to: "/",         label: t("nav.home") },
                 { to: "/about",    label: t("nav.about") },
@@ -64,8 +64,8 @@ const Footer = () => {
 
           {/* Follow Us */}
           <div>
-            <h3 className="font-heading text-base font-bold mb-4 text-white">{t("footer.followus")}</h3>
-            <div className="flex flex-wrap gap-2.5">
+            <h3 className="font-heading text-base font-bold mb-3 sm:mb-4 text-white">{t("footer.followus")}</h3>
+            <div className="flex flex-wrap gap-2 sm:gap-2.5">
               {[
                 { name: "Facebook",  icon: <Facebook  className="w-4 h-4" /> },
                 { name: "Twitter",   icon: <Twitter   className="w-4 h-4" /> },
@@ -83,8 +83,8 @@ const Footer = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-10 pt-5 border-t border-teal-700/60 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-teal-300">
-          <p>{t("footer.copyright")}</p>
+        <div className="mt-8 sm:mt-10 pt-4 sm:pt-5 border-t border-teal-700/60 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-teal-300">
+          <p className="text-center sm:text-left">{t("footer.copyright")}</p>
           <div className="flex items-center gap-4">
             <span className="hover:text-white cursor-pointer transition-colors">Privacy Policy</span>
             <span className="w-1 h-1 rounded-full bg-teal-600" />

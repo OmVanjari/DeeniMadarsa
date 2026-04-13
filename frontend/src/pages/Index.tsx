@@ -11,39 +11,19 @@ import teacher1 from "@/assets/teacher1.jpg";
 import teacher2 from "@/assets/teacher2.jpg";
 import teacher3 from "@/assets/teacher3.jpg";
 
-// Slider slides using real images
 const slides = [
-  {
-    id: 1,
-    img: "/WhatsApp Image 2026-04-13 at 10.32.40 AM.jpeg",
-    badge: "Est. 2004",
-    titleKey: "hero.welcome",
-    subtitleKey: "hero.subtitle",
-  },
-  {
-    id: 2,
-    img: "/WhatsApp Image 2026-04-13 at 10.32.40 AM (1).jpeg",
-    badge: "25+ Years",
-    titleKey: "courses.title",
-    subtitleKey: "courses.subtitle",
-  },
-  {
-    id: 3,
-    img: "/WhatsApp Image 2026-04-13 at 10.32.41 AM.jpeg",
-    badge: "500+ Students",
-    titleKey: "donation.subtitle",
-    subtitleKey: "donation.message",
-  },
+  { id: 1, img: "/WhatsApp Image 2026-04-13 at 10.32.40 AM.jpeg",    badge: "Est. 2004",      titleKey: "hero.welcome",      subtitleKey: "hero.subtitle" },
+  { id: 2, img: "/WhatsApp Image 2026-04-13 at 10.32.40 AM (1).jpeg", badge: "20+ سال",        titleKey: "courses.title",     subtitleKey: "courses.subtitle" },
+  { id: 3, img: "/WhatsApp Image 2026-04-13 at 10.32.41 AM.jpeg",    badge: "500+ طلباء",     titleKey: "donation.subtitle", subtitleKey: "donation.message" },
 ];
 
 const stats = [
-  { icon: Users,          end: 500, suffix: "+", labelKey: "about.achievements.students",  color: "from-teal-500 to-teal-700" },
-  { icon: Award,          end: 200, suffix: "+", labelKey: "about.achievements.graduates", color: "from-emerald-500 to-emerald-700" },
-  { icon: Clock,          end: 25,  suffix: "+", labelKey: "about.achievements.years",     color: "from-yellow-600 to-yellow-700" },
-  { icon: Star,           end: 50,  suffix: "+", labelKey: "about.achievements.scholars",  color: "from-cyan-500 to-cyan-700" },
+  { icon: Users,  end: 500, suffix: "+", labelKey: "about.achievements.students",  color: "from-teal-500 to-teal-700" },
+  { icon: Award,  end: 200, suffix: "+", labelKey: "about.achievements.graduates", color: "from-emerald-500 to-emerald-700" },
+  { icon: Clock,  end: 20,  suffix: "+", labelKey: "about.achievements.years",     color: "from-yellow-600 to-yellow-700" },
+  { icon: Star,   end: 14,  suffix: "",  labelKey: "about.achievements.scholars",  color: "from-cyan-500 to-cyan-700" },
 ];
 
-// Count-up hook
 function useCountUp(end: number, duration = 1800, active = false) {
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -67,14 +47,12 @@ const StatCard = ({ icon: Icon, end, suffix, labelKey, color, active, delay }: {
   const { t } = useLanguage();
   const count = useCountUp(end, 1800, active);
   return (
-    <div className="group bg-white rounded-2xl p-6 text-center shadow-md hover:shadow-xl border border-teal-100/60 hover:-translate-y-2 transition-all duration-300"
+    <div className="group bg-white rounded-2xl p-4 sm:p-6 text-center shadow-md hover:shadow-xl border border-teal-100/60 hover:-translate-y-2 transition-all duration-300"
       style={{ transitionDelay: `${delay}ms` }}>
-      <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${color} flex items-center justify-center mx-auto mb-4 shadow-md group-hover:scale-110 transition-transform duration-300`}>
-        <Icon className="w-7 h-7 text-white" />
+      <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br ${color} flex items-center justify-center mx-auto mb-3 shadow-md group-hover:scale-110 transition-transform duration-300`}>
+        <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
       </div>
-      <div className="font-heading text-3xl font-bold text-teal-700 tabular-nums">
-        {count}{suffix}
-      </div>
+      <div className="font-heading text-2xl sm:text-3xl font-bold text-teal-700 tabular-nums">{count}{suffix}</div>
       <div className="text-xs text-muted-foreground mt-1 leading-snug">{t(labelKey)}</div>
     </div>
   );
@@ -125,91 +103,101 @@ const Index = () => {
 
   const slide = slides[current];
 
+  const news = [
+    {
+      tag: "📌 " + (t("nav.home") === "ہوم" ? "پن کیا گیا" : "Pinned"),
+      date: "10 اپریل 2026",
+      title: t("nav.home") === "ہوم"
+        ? "2026-27 تعلیمی سال کے لیے داخلے کھلے ہیں"
+        : "New Admissions Open for 2026–27 Academic Year",
+      desc: t("nav.home") === "ہوم"
+        ? "دارالعلوم جنیدیہ اجماتیہ میں حفظ القرآن، ناظرہ قرآن اور کلاس 1 تا 8 کے لیے داخلے شروع ہو گئے ہیں۔ نشستیں محدود ہیں۔"
+        : "Darul Uloom Junediya Ajmatia is now accepting applications for Hifz, Nazra and Class 1–8. Limited seats — apply early.",
+      color: "from-teal-500 to-emerald-600",
+      wide: true,
+    },
+    {
+      tag: "🎉 " + (t("nav.home") === "ہوم" ? "تقریب" : "Event"),
+      date: "5 اپریل 2026",
+      title: t("nav.home") === "ہوم" ? "سالانہ قرآن تلاوت مقابلہ" : "Annual Quran Recitation Competition",
+      desc: t("nav.home") === "ہوم"
+        ? "تمام طلباء اور کمیونٹی کے لیے سالانہ قرآن تلاوت مقابلے میں شرکت کریں۔"
+        : "Join our yearly Quran recitation event open to all students and community members.",
+      color: "from-emerald-500 to-emerald-700",
+      wide: false,
+    },
+    {
+      tag: "📢 " + (t("nav.home") === "ہوم" ? "اطلاع" : "Notice"),
+      date: "28 مارچ 2026",
+      title: t("nav.home") === "ہوم" ? "عید کی تعطیلات کا شیڈول" : "Eid Holiday Schedule",
+      desc: t("nav.home") === "ہوم"
+        ? "مدرسہ 18 تا 22 اپریل عید کی تعطیلات کی وجہ سے بند رہے گا۔ کلاسیں 23 اپریل سے شروع ہوں گی۔"
+        : "Madarsa closed April 18–22 for Eid. Classes resume April 23.",
+      color: "from-yellow-500 to-yellow-700",
+      wide: false,
+    },
+  ];
+
   return (
     <Layout>
-      {/* ── IMAGE SLIDER HERO ── */}
-      <section className="relative h-[90vh] min-h-[560px] overflow-hidden">
-        {/* Slides */}
+      {/* ── SLIDER HERO ── */}
+      <section className="relative h-[75vh] sm:h-[85vh] min-h-[480px] overflow-hidden">
         {slides.map((s, i) => (
-          <div
-            key={s.id}
-            className={`absolute inset-0 transition-opacity duration-700 ${i === current ? "opacity-100" : "opacity-0"}`}
-          >
-            <img
-              src={s.img}
-              alt={`slide-${s.id}`}
-              className="w-full h-full object-cover"
-            />
-            {/* Dark overlay for text readability */}
+          <div key={s.id} className={`absolute inset-0 transition-opacity duration-700 ${i === current ? "opacity-100" : "opacity-0"}`}>
+            <img src={s.img} alt={`slide-${s.id}`} className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-black/55" />
           </div>
         ))}
-
-        {/* Content */}
-        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
-          <span
-            key={`badge-${current}`}
-            className="inline-block bg-yellow-600/90 text-white text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6 animate-fade-in"
-          >
+        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4 sm:px-8">
+          <span key={`badge-${current}`}
+            className="inline-block bg-yellow-600/90 text-white text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-4 sm:mb-6 animate-fade-in">
             {slide.badge}
           </span>
-          <h1
-            key={`title-${current}`}
-            className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-5 max-w-4xl leading-tight animate-fade-up"
-          >
+          <h1 key={`title-${current}`}
+            className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 max-w-4xl leading-tight animate-fade-up">
             {t(slide.titleKey)}
           </h1>
-          <p
-            key={`sub-${current}`}
-            className="text-white/80 text-lg md:text-xl max-w-2xl mb-10 animate-fade-up"
-            style={{ animationDelay: "0.15s" }}
-          >
+          <p key={`sub-${current}`}
+            className="text-white/80 text-base sm:text-lg md:text-xl max-w-2xl mb-8 animate-fade-up px-2"
+            style={{ animationDelay: "0.15s" }}>
             {t(slide.subtitleKey)}
           </p>
-          <div className="flex flex-wrap gap-4 justify-center animate-fade-up" style={{ animationDelay: "0.3s" }}>
+          <div className="flex flex-wrap gap-3 justify-center animate-fade-up" style={{ animationDelay: "0.3s" }}>
             <Button asChild size="lg"
-              className="bg-yellow-600 hover:bg-yellow-500 text-white font-semibold text-base px-8 py-3 rounded-full shadow-xl transition-all duration-200 hover:scale-105 hover:shadow-yellow-600/40">
+              className="bg-yellow-600 hover:bg-yellow-500 text-white font-semibold text-sm sm:text-base px-6 sm:px-8 py-3 rounded-full shadow-xl transition-all duration-200 hover:scale-105">
               <Link to="/contact">{t("hero.apply")}</Link>
             </Button>
             <Button asChild size="lg"
-              className="bg-transparent border-2 border-white/60 text-white hover:bg-white/15 font-semibold text-base px-8 py-3 rounded-full transition-all duration-200 hover:scale-105">
+              className="bg-transparent border-2 border-white/60 text-white hover:bg-white/15 font-semibold text-sm sm:text-base px-6 sm:px-8 py-3 rounded-full transition-all duration-200 hover:scale-105">
               <Link to="/donation">{t("hero.donate")}</Link>
             </Button>
           </div>
         </div>
-
-        {/* Prev / Next arrows */}
         <button onClick={prev}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/25 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white transition-all duration-200 hover:scale-110">
-          <ChevronLeft className="w-5 h-5" />
+          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/10 hover:bg-white/25 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white transition-all duration-200 hover:scale-110">
+          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
         <button onClick={next}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/25 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white transition-all duration-200 hover:scale-110">
-          <ChevronRight className="w-5 h-5" />
+          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/10 hover:bg-white/25 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white transition-all duration-200 hover:scale-110">
+          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
-
-        {/* Dot indicators */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
           {slides.map((_, i) => (
             <button key={i} onClick={() => goTo(i)}
-              className={`rounded-full transition-all duration-300 ${i === current ? "w-8 h-2.5 bg-yellow-500" : "w-2.5 h-2.5 bg-white/40 hover:bg-white/70"}`}
-            />
+              className={`rounded-full transition-all duration-300 ${i === current ? "w-8 h-2.5 bg-yellow-500" : "w-2.5 h-2.5 bg-white/40 hover:bg-white/70"}`} />
           ))}
         </div>
-
-        {/* Bottom wave */}
         <div className="absolute bottom-0 left-0 right-0 z-10">
           <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-            <path d="M0 60L60 50C120 40 240 20 360 15C480 10 600 20 720 25C840 30 960 30 1080 25C1200 20 1320 10 1380 5L1440 0V60H0Z"
-              fill="hsl(var(--background))" />
+            <path d="M0 60L60 50C120 40 240 20 360 15C480 10 600 20 720 25C840 30 960 30 1080 25C1200 20 1320 10 1380 5L1440 0V60H0Z" fill="hsl(var(--background))" />
           </svg>
         </div>
       </section>
 
-      {/* ── STATS STRIP ── */}
-      <section className="py-14 bg-background">
+      {/* ── STATS ── */}
+      <section className="py-10 sm:py-14 bg-background">
         <div className="container mx-auto px-4">
-          <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+          <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-4xl mx-auto">
             {stats.map((s, i) => (
               <StatCard key={i} icon={s.icon} end={s.end} suffix={s.suffix} labelKey={s.labelKey} color={s.color} active={statsVisible} delay={i * 100} />
             ))}
@@ -218,33 +206,32 @@ const Index = () => {
       </section>
 
       {/* ── ABOUT PREVIEW ── */}
-      <section className="py-20 bg-gradient-to-b from-background to-teal-50/40">
+      <section className="py-16 sm:py-20 bg-gradient-to-b from-background to-teal-50/40">
         <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            {/* Visual side */}
-            <div className="relative max-w-sm mx-auto">
+          <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 sm:gap-12 items-center">
+            <div className="relative max-w-xs sm:max-w-sm mx-auto w-full">
               <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-xl shadow-teal-900/20">
                 <img src="/building.jpeg" alt="Darul Uloom Junediya Ajmatia" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-teal-900/50 to-transparent" />
               </div>
-              {/* Floating badge */}
               <div className="absolute -bottom-3 -right-3 bg-yellow-600 text-white rounded-xl px-4 py-2 shadow-lg">
                 <div className="font-heading text-xl font-bold">2004</div>
                 <div className="text-xs opacity-90">Est. 1 March</div>
               </div>
             </div>
-            {/* Text side */}
             <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-teal-600 mb-3 block">Who We Are</span>
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-5 leading-tight">
+              <span className="text-xs font-bold uppercase tracking-widest text-teal-600 mb-3 block">
+                {t("nav.home") === "ہوم" ? "ہمارے بارے میں" : "Who We Are"}
+              </span>
+              <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-5 leading-tight">
                 {t("about.preview.title")}
               </h2>
-              <p className="text-muted-foreground text-base leading-relaxed mb-6">
+              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-6">
                 {t("about.preview.text")}
               </p>
-              <div className="flex items-center gap-3 p-4 bg-teal-50 border border-teal-100 rounded-xl mb-6">
-                <Quote className="w-8 h-8 text-teal-400 shrink-0" />
-                <p className="text-sm text-teal-800 italic">{t("about.founder.text")}</p>
+              <div className="flex items-start gap-3 p-4 bg-teal-50 border border-teal-100 rounded-xl mb-6">
+                <Quote className="w-7 h-7 text-teal-400 shrink-0 mt-0.5" />
+                <p className="text-sm text-teal-800 italic leading-relaxed">{t("about.founder.text")}</p>
               </div>
               <Button asChild className="bg-teal-700 hover:bg-teal-600 text-white rounded-full px-7 group">
                 <Link to="/about" className="flex items-center gap-2">
@@ -258,24 +245,26 @@ const Index = () => {
       </section>
 
       {/* ── COURSES ── */}
-      <section className="py-20 bg-teal-50/40">
+      <section className="py-16 sm:py-20 bg-teal-50/40">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-14">
-            <span className="text-xs font-bold uppercase tracking-widest text-amber-600 mb-2 block">What We Offer</span>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-2">{t("courses.title")}</h2>
-            <p className="text-muted-foreground">{t("courses.subtitle")}</p>
+          <div className="text-center mb-10 sm:mb-14">
+            <span className="text-xs font-bold uppercase tracking-widest text-amber-600 mb-2 block">
+              {t("nav.home") === "ہوم" ? "ہم کیا پیش کرتے ہیں" : "What We Offer"}
+            </span>
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-2">{t("courses.title")}</h2>
+            <p className="text-muted-foreground text-sm sm:text-base">{t("courses.subtitle")}</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {courses.map((c, i) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
+            {courses.map((c) => (
               <Link to="/courses" key={c.nameKey}
-                className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-teal-100/60 cursor-pointer">
-                <div className={`h-2 bg-gradient-to-r ${c.color}`} />
-                <div className="p-7">
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${c.color} flex items-center justify-center mb-5 shadow-md`}>
-                    <c.icon className="w-6 h-6 text-white" />
+                className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-teal-100/60">
+                <div className={`h-1.5 bg-gradient-to-r ${c.color}`} />
+                <div className="p-5 sm:p-7">
+                  <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br ${c.color} flex items-center justify-center mb-4 shadow-md`}>
+                    <c.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                   </div>
-                  <h3 className="font-heading text-xl font-bold text-foreground mb-3">{t(c.nameKey)}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-5">{t(c.descKey)}</p>
+                  <h3 className="font-heading text-lg sm:text-xl font-bold text-foreground mb-2">{t(c.nameKey)}</h3>
+                  <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-4">{t(c.descKey)}</p>
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-semibold text-amber-600 bg-amber-50 px-3 py-1 rounded-full border border-amber-100">
                       {t(c.durationKey)}
@@ -286,7 +275,7 @@ const Index = () => {
               </Link>
             ))}
           </div>
-          <div className="text-center mt-10">
+          <div className="text-center mt-8 sm:mt-10">
             <Button asChild className="bg-transparent border-2 border-teal-600 text-teal-700 hover:bg-teal-50 rounded-full px-8">
               <Link to="/courses">{t("courses.title")} →</Link>
             </Button>
@@ -294,63 +283,47 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── ANNOUNCEMENTS / NEWS ── */}
-      <section className="py-20 bg-teal-50/40">
+      {/* ── ANNOUNCEMENTS ── */}
+      <section className="py-16 sm:py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-14">
-            <span className="text-xs font-bold uppercase tracking-widest text-amber-600 mb-2 block">Latest Updates</span>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-2">Announcements & News</h2>
-            <p className="text-muted-foreground">Stay updated with the latest from Al-Noor Madarsa</p>
+          <div className="text-center mb-10 sm:mb-14">
+            <span className="text-xs font-bold uppercase tracking-widest text-amber-600 mb-2 block">
+              {t("nav.home") === "ہوم" ? "تازہ ترین اپڈیٹس" : "Latest Updates"}
+            </span>
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-2">
+              {t("nav.home") === "ہوم" ? "اعلانات اور خبریں" : "Announcements & News"}
+            </h2>
+            <p className="text-muted-foreground text-sm sm:text-base">
+              {t("nav.home") === "ہوم" ? "دارالعلوم جنیدیہ اجماتیہ کی تازہ ترین خبریں" : "Stay updated with the latest from Darul Uloom Junediya Ajmatia"}
+            </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {/* Pinned announcement */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 max-w-5xl mx-auto">
+            {/* Pinned wide card */}
             <div className="md:col-span-2 group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-teal-100/60 hover:-translate-y-1 transition-all duration-300">
-              <div className="h-1.5 bg-gradient-to-r from-teal-500 to-emerald-600" />
-              <div className="p-7">
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="bg-teal-600 text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">📌 Pinned</span>
-                  <span className="text-xs text-muted-foreground">April 10, 2026</span>
+              <div className={`h-1.5 bg-gradient-to-r ${news[0].color}`} />
+              <div className="p-5 sm:p-7">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="bg-teal-600 text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">{news[0].tag}</span>
+                  <span className="text-xs text-muted-foreground">{news[0].date}</span>
                 </div>
-                <h3 className="font-heading text-xl font-bold text-foreground mb-3">
-                  New Admissions Open for 2026–27 Academic Year
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-5">
-                  Al-Noor Madarsa is now accepting applications for Hifz-ul-Quran, Nazra Quran, and Alim courses for the upcoming academic year. Limited seats available — apply early to secure your place.
-                </p>
-                <Link to="/contact"
-                  className="inline-flex items-center gap-2 text-teal-700 font-semibold text-sm hover:gap-3 transition-all duration-200">
-                  Apply Now <ArrowRight className="w-4 h-4" />
+                <h3 className="font-heading text-lg sm:text-xl font-bold text-foreground mb-3">{news[0].title}</h3>
+                <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-4">{news[0].desc}</p>
+                <Link to="/contact" className="inline-flex items-center gap-2 text-teal-700 font-semibold text-sm hover:gap-3 transition-all duration-200">
+                  {t("hero.apply")} <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>
-
-            {/* Side news cards */}
-            <div className="flex flex-col gap-6">
-              {[
-                {
-                  tag: "🎉 Event",
-                  date: "April 5, 2026",
-                  title: "Annual Quran Recitation Competition",
-                  desc: "Join us for our yearly Quran recitation event open to all students and community members.",
-                  color: "from-emerald-500 to-emerald-700",
-                },
-                {
-                  tag: "📢 Notice",
-                  date: "March 28, 2026",
-                  title: "Eid Holiday Schedule",
-                  desc: "Madarsa will remain closed from April 18–22 for Eid celebrations. Classes resume April 23.",
-                  color: "from-yellow-500 to-yellow-700",
-                },
-              ].map((item, i) => (
+            {/* Side cards */}
+            <div className="flex flex-col gap-5 sm:gap-6">
+              {news.slice(1).map((item, i) => (
                 <div key={i} className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-teal-100/60 hover:-translate-y-1 transition-all duration-300">
                   <div className={`h-1.5 bg-gradient-to-r ${item.color}`} />
-                  <div className="p-5">
-                    <div className="flex items-center gap-2 mb-3">
+                  <div className="p-4 sm:p-5">
+                    <div className="flex items-center gap-2 mb-2">
                       <span className="text-xs font-bold text-teal-700 bg-teal-50 px-2 py-0.5 rounded-full">{item.tag}</span>
                       <span className="text-[10px] text-muted-foreground">{item.date}</span>
                     </div>
-                    <h4 className="font-heading text-base font-bold text-foreground mb-2">{item.title}</h4>
+                    <h4 className="font-heading text-sm sm:text-base font-bold text-foreground mb-1">{item.title}</h4>
                     <p className="text-muted-foreground text-xs leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
@@ -361,24 +334,26 @@ const Index = () => {
       </section>
 
       {/* ── FACULTY ── */}
-      <section className="py-20 bg-background">
+      <section className="py-16 sm:py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-14">
-            <span className="text-xs font-bold uppercase tracking-widest text-teal-600 mb-2 block">Meet The Team</span>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-2">{t("faculty.title")}</h2>
-            <p className="text-muted-foreground">{t("faculty.subtitle")}</p>
+          <div className="text-center mb-10 sm:mb-14">
+            <span className="text-xs font-bold uppercase tracking-widest text-teal-600 mb-2 block">
+              {t("nav.home") === "ہوم" ? "ہماری ٹیم" : "Meet The Team"}
+            </span>
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-2">{t("faculty.title")}</h2>
+            <p className="text-muted-foreground text-sm sm:text-base">{t("faculty.subtitle")}</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
             {teachers.map((tc) => (
               <div key={tc.nameKey}
                 className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-teal-100/60 text-center">
                 <div className="h-1.5 bg-gradient-to-r from-teal-500 to-emerald-600" />
-                <div className="p-8">
-                  <div className="w-28 h-28 mx-auto rounded-full overflow-hidden border-4 border-teal-100 shadow-lg mb-5 group-hover:border-teal-400 transition-colors duration-300">
+                <div className="p-6 sm:p-8">
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 mx-auto rounded-full overflow-hidden border-4 border-teal-100 shadow-lg mb-4 group-hover:border-teal-400 transition-colors duration-300">
                     <img src={tc.img} alt={t(tc.nameKey)} className="w-full h-full object-cover" loading="lazy" />
                   </div>
-                  <h3 className="font-heading text-xl font-bold text-foreground">{t(tc.nameKey)}</h3>
-                  <p className="text-teal-600 text-sm font-medium mt-1">{t(tc.titleKey)}</p>
+                  <h3 className="font-heading text-lg sm:text-xl font-bold text-foreground">{t(tc.nameKey)}</h3>
+                  <p className="text-teal-600 text-xs sm:text-sm font-medium mt-1">{t(tc.titleKey)}</p>
                   <p className="text-muted-foreground text-xs mt-1">{t(tc.qualKey)}</p>
                 </div>
               </div>
@@ -388,23 +363,23 @@ const Index = () => {
       </section>
 
       {/* ── DONATION CTA ── */}
-      <section className="py-16 bg-white">
+      <section className="py-12 sm:py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto bg-gradient-to-br from-teal-800 to-emerald-900 rounded-3xl p-10 md:p-14 text-center shadow-2xl relative overflow-hidden">
+          <div className="max-w-3xl mx-auto bg-gradient-to-br from-teal-800 to-emerald-900 rounded-3xl p-8 sm:p-10 md:p-14 text-center shadow-2xl relative overflow-hidden">
             <div className="absolute inset-0 opacity-5"
               style={{ backgroundImage: `repeating-linear-gradient(45deg, white 0, white 1px, transparent 0, transparent 50%)`, backgroundSize: "30px 30px" }} />
             <div className="relative z-10">
-              <div className="w-14 h-14 rounded-full bg-white/15 flex items-center justify-center mx-auto mb-5">
-                <Heart className="w-7 h-7 text-yellow-400 animate-float" />
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/15 flex items-center justify-center mx-auto mb-4 sm:mb-5">
+                <Heart className="w-6 h-6 sm:w-7 sm:h-7 text-yellow-400 animate-float" />
               </div>
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
+              <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
                 {t("donation.subtitle")}
               </h2>
-              <p className="text-white/75 text-base mb-8 max-w-xl mx-auto leading-relaxed">
+              <p className="text-white/75 text-sm sm:text-base mb-6 sm:mb-8 max-w-xl mx-auto leading-relaxed">
                 {t("donation.text")}
               </p>
               <Button asChild size="lg"
-                className="bg-yellow-500 hover:bg-yellow-400 text-white font-bold text-base px-10 rounded-full shadow-xl transition-all duration-200 hover:scale-105">
+                className="bg-yellow-500 hover:bg-yellow-400 text-white font-bold text-sm sm:text-base px-8 sm:px-10 rounded-full shadow-xl transition-all duration-200 hover:scale-105">
                 <Link to="/donation">{t("donation.button")}</Link>
               </Button>
             </div>

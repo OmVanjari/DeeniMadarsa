@@ -48,23 +48,23 @@ const Courses = () => {
           <div className="absolute inset-0 bg-teal-900/70" />
         </div>
 
-        <div className="relative z-10 container mx-auto px-4 text-center py-24">
-          <span className="inline-block bg-yellow-600/90 text-white text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
+        <div className="relative z-10 container mx-auto px-4 text-center py-16 sm:py-20 md:py-24">
+          <span className="inline-block bg-yellow-600/90 text-white text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-4 sm:mb-6">
             Islamic Education
           </span>
-          <h1 className="font-heading text-4xl md:text-6xl font-bold text-white mb-5 leading-tight">
+          <h1 className="font-heading text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-4 sm:mb-5 leading-tight">
             {t("courses.title")}
           </h1>
-          <p className="text-white/75 text-lg max-w-xl mx-auto mb-8">
+          <p className="text-white/75 text-base sm:text-lg max-w-xl mx-auto mb-6 sm:mb-8">
             {t("courses.subtitle")}
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center">
             <Button asChild size="lg"
-              className="bg-yellow-600 hover:bg-yellow-500 text-white font-semibold rounded-full px-8 shadow-xl hover:scale-105 transition-all duration-200">
+              className="w-full sm:w-auto bg-yellow-600 hover:bg-yellow-500 text-white font-semibold rounded-full px-8 shadow-xl hover:scale-105 transition-all duration-200">
               <Link to="/contact">{t("hero.apply")}</Link>
             </Button>
             <Button asChild size="lg"
-              className="bg-transparent border-2 border-white/60 text-white hover:bg-white/15 rounded-full px-8 hover:scale-105 transition-all duration-200">
+              className="w-full sm:w-auto bg-transparent border-2 border-white/60 text-white hover:bg-white/15 rounded-full px-8 hover:scale-105 transition-all duration-200">
               <Link to="/about">{t("about.preview.readmore")}</Link>
             </Button>
           </div>
@@ -79,28 +79,28 @@ const Courses = () => {
       </section>
 
       {/* ── COURSES GRID ── */}
-      <section className="py-20 bg-white -mt-px">
+      <section className="py-12 sm:py-20 bg-white -mt-px">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10 sm:mb-14">
             <span className="text-xs font-bold uppercase tracking-widest text-teal-600 mb-2 block">What We Offer</span>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-2">{t("courses.title")}</h2>
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-2">{t("courses.title")}</h2>
             <p className="text-muted-foreground">{t("courses.subtitle")}</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
             {courses.map((course) => (
               <div key={course.nameKey}
                 className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-teal-100/60 hover:-translate-y-2 transition-all duration-300">
                 <div className={`h-1.5 bg-gradient-to-r ${course.color}`} />
-                <div className="p-7">
-                  <div className={`w-13 h-13 w-12 h-12 rounded-xl bg-gradient-to-br ${course.color} flex items-center justify-center mb-5 shadow-md`}>
+                <div className="p-5 sm:p-7">
+                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${course.color} flex items-center justify-center mb-4 sm:mb-5 shadow-md`}>
                     <course.icon className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="font-heading text-xl font-bold text-foreground mb-3">{t(course.nameKey)}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-5">{t(course.descKey)}</p>
+                  <h3 className="font-heading text-lg sm:text-xl font-bold text-foreground mb-2 sm:mb-3">{t(course.nameKey)}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-4 sm:mb-5">{t(course.descKey)}</p>
 
                   {/* Meta row */}
-                  <div className="flex items-center gap-4 text-xs text-muted-foreground mb-5">
+                  <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs text-muted-foreground mb-4 sm:mb-5">
                     <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-teal-500" />{t(course.durationKey)}</span>
                     <span className="flex items-center gap-1"><Users className="w-3.5 h-3.5 text-teal-500" />{course.students}</span>
                     <span className="flex items-center gap-1"><Star className="w-3.5 h-3.5 text-yellow-500" />{course.level}</span>
@@ -120,27 +120,27 @@ const Courses = () => {
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-16 bg-white">
+      <section className="py-12 sm:py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto bg-gradient-to-br from-teal-800 to-emerald-900 rounded-3xl p-10 md:p-14 text-center shadow-2xl relative overflow-hidden">
+          <div className="max-w-3xl mx-auto bg-gradient-to-br from-teal-800 to-emerald-900 rounded-3xl p-6 sm:p-10 md:p-14 text-center shadow-2xl relative overflow-hidden">
             <div className="absolute inset-0 opacity-5"
               style={{ backgroundImage: `repeating-linear-gradient(45deg, white 0, white 1px, transparent 0, transparent 50%)`, backgroundSize: "30px 30px" }} />
             <div className="relative z-10">
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">
+              <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
                 Ready to Begin Your Journey?
               </h2>
-              <p className="text-white/75 text-base mb-8 max-w-xl mx-auto leading-relaxed">
+              <p className="text-white/75 text-sm sm:text-base mb-6 sm:mb-8 max-w-xl mx-auto leading-relaxed">
                 Enroll today and take the first step towards comprehensive Islamic education.
               </p>
-              <div className="flex flex-wrap gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center">
                 <Button asChild size="lg"
-                  className="bg-yellow-500 hover:bg-yellow-400 text-white font-bold rounded-full px-10 shadow-xl hover:scale-105 transition-all duration-200">
-                  <Link to="/contact" className="flex items-center gap-2">
+                  className="w-full sm:w-auto bg-yellow-500 hover:bg-yellow-400 text-white font-bold rounded-full px-10 shadow-xl hover:scale-105 transition-all duration-200">
+                  <Link to="/contact" className="flex items-center justify-center gap-2">
                     {t("hero.apply")} <ArrowRight className="w-5 h-5" />
                   </Link>
                 </Button>
                 <Button asChild size="lg"
-                  className="bg-transparent border-2 border-white/60 text-white hover:bg-white/15 rounded-full px-10 hover:scale-105 transition-all duration-200">
+                  className="w-full sm:w-auto bg-transparent border-2 border-white/60 text-white hover:bg-white/15 rounded-full px-10 hover:scale-105 transition-all duration-200">
                   <Link to="/donation">{t("hero.donate")}</Link>
                 </Button>
               </div>

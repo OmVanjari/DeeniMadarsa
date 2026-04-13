@@ -26,10 +26,10 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-primary shadow-lg">
       <div className="container mx-auto px-4 flex items-center justify-between h-14">
-        <Link to="/" className="flex items-center gap-3 font-heading text-lg font-bold text-primary-foreground tracking-wide leading-tight">
-          <img src="/schoollogo.png" alt="Logo" className="w-9 h-9 object-contain" />
-          <span className="hidden sm:block">Darul Uloom Junediya Ajmatia</span>
-          <span className="sm:hidden">DUJA</span>
+        <Link to="/" className="flex items-center gap-2 sm:gap-3 font-heading text-base sm:text-lg font-bold text-primary-foreground tracking-wide leading-tight min-w-0">
+          <img src="/schoollogo.png" alt="Logo" className="w-8 h-8 sm:w-9 sm:h-9 object-contain shrink-0" />
+          <span className="hidden sm:block truncate">Darul Uloom Junediya Ajmatia</span>
+          <span className="sm:hidden text-sm font-bold">DUJA</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -70,7 +70,8 @@ const Header = () => {
         {/* Mobile Toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden text-primary-foreground p-2"
+          className="md:hidden text-primary-foreground p-2 shrink-0"
+          aria-label="Toggle menu"
         >
           {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -95,7 +96,7 @@ const Header = () => {
               </Link>
             ))}
             <div className="flex items-center gap-2 pt-2 border-t border-primary-foreground/10 mt-2">
-              <Globe className="w-4 h-4 text-primary-foreground/70" />
+              <Globe className="w-4 h-4 text-primary-foreground/70 shrink-0" />
               {languages.map((l) => (
                 <button
                   key={l.code}

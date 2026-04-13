@@ -26,14 +26,14 @@ const Contact = () => {
           <img src="/WhatsApp Image 2026-04-13 at 10.32.40 AM (1).jpeg" alt="Contact hero" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-teal-900/80" />
         </div>
-        <div className="relative z-10 container mx-auto px-4 text-center py-24">
-          <span className="inline-block bg-yellow-600/90 text-white text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
+        <div className="relative z-10 container mx-auto px-4 text-center py-16 sm:py-20 md:py-24">
+          <span className="inline-block bg-yellow-600/90 text-white text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-4 sm:mb-6">
             Get In Touch
           </span>
-          <h1 className="font-heading text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">
+          <h1 className="font-heading text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-3 sm:mb-4 leading-tight">
             {t("contact.title")}
           </h1>
-          <p className="text-white/75 text-lg max-w-xl mx-auto">
+          <p className="text-white/75 text-base sm:text-lg max-w-xl mx-auto">
             {t("contact.subtitle")}
           </p>
         </div>
@@ -46,15 +46,15 @@ const Contact = () => {
       </section>
 
       {/* ── CONTACT CONTENT ── */}
-      <section className="py-20 bg-white -mt-px">
+      <section className="py-12 sm:py-20 bg-white -mt-px">
         <div className="container mx-auto px-4 max-w-5xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12">
 
             {/* Form */}
             <div className="bg-white rounded-2xl shadow-md border border-teal-100/60 overflow-hidden">
               <div className="h-1.5 bg-gradient-to-r from-teal-500 to-emerald-600" />
-              <div className="p-8">
-                <h2 className="font-heading text-2xl font-bold text-foreground mb-6">Send a Message</h2>
+              <div className="p-5 sm:p-8">
+                <h2 className="font-heading text-xl sm:text-2xl font-bold text-foreground mb-5 sm:mb-6">Send a Message</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <Input
                     placeholder={t("contact.form.name")}
@@ -88,23 +88,23 @@ const Contact = () => {
             </div>
 
             {/* Info */}
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-5 sm:gap-6">
               <div className="bg-white rounded-2xl shadow-md border border-teal-100/60 overflow-hidden">
                 <div className="h-1.5 bg-gradient-to-r from-yellow-500 to-yellow-700" />
-                <div className="p-8">
-                  <h3 className="font-heading text-2xl font-bold text-foreground mb-6">{t("contact.info.title")}</h3>
-                  <div className="space-y-5">
+                <div className="p-5 sm:p-8">
+                  <h3 className="font-heading text-xl sm:text-2xl font-bold text-foreground mb-5 sm:mb-6">{t("contact.info.title")}</h3>
+                  <div className="space-y-4 sm:space-y-5">
                     {[
                       { icon: Phone, label: t("footer.phone"),   href: "tel:+919876543210" },
                       { icon: Mail,  label: t("footer.email"),   href: "mailto:info@darululoomajmatia.com" },
                       { icon: MapPin, label: t("footer.address"), href: null },
                     ].map((item, i) => (
-                      <div key={i} className="flex items-start gap-4 group">
-                        <div className="w-10 h-10 rounded-xl bg-teal-50 border border-teal-100 flex items-center justify-center shrink-0 group-hover:bg-teal-600 transition-colors duration-300">
+                      <div key={i} className="flex items-start gap-3 sm:gap-4 group">
+                        <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-teal-50 border border-teal-100 flex items-center justify-center shrink-0 group-hover:bg-teal-600 transition-colors duration-300">
                           <item.icon className="w-4 h-4 text-teal-600 group-hover:text-white transition-colors duration-300" />
                         </div>
                         {item.href ? (
-                          <a href={item.href} className="text-sm text-muted-foreground hover:text-teal-700 transition-colors pt-2">{item.label}</a>
+                          <a href={item.href} className="text-sm text-muted-foreground hover:text-teal-700 transition-colors pt-2 break-all">{item.label}</a>
                         ) : (
                           <p className="text-sm text-muted-foreground pt-2">{item.label}</p>
                         )}
@@ -115,8 +115,8 @@ const Contact = () => {
               </div>
 
               {/* Map placeholder */}
-              <div className="bg-teal-50 border border-teal-100 rounded-2xl p-6 text-center flex-1 flex flex-col items-center justify-center gap-2">
-                <MapPin className="w-8 h-8 text-teal-400" />
+              <div className="bg-teal-50 border border-teal-100 rounded-2xl p-5 sm:p-6 text-center flex-1 flex flex-col items-center justify-center gap-2">
+                <MapPin className="w-7 h-7 sm:w-8 sm:h-8 text-teal-400" />
                 <p className="font-heading text-base font-bold text-teal-800">Junediya, Ghazipur</p>
                 <p className="text-xs text-teal-600">Near Dargah Shah Wali Qadri, Uttar Pradesh</p>
               </div>
