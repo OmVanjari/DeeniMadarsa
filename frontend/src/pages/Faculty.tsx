@@ -10,20 +10,23 @@ const Faculty = () => {
   const { t } = useLanguage();
 
   const teachers = [
-    { nameKey: "faculty.teacher1.name", titleKey: "faculty.teacher1.title", qualKey: "faculty.teacher1.qual", img: teacher1 },
-    { nameKey: "faculty.teacher2.name", titleKey: "faculty.teacher2.title", qualKey: "faculty.teacher2.qual", img: teacher2 },
-    { nameKey: "faculty.teacher3.name", titleKey: "faculty.teacher3.title", qualKey: "faculty.teacher3.qual", img: teacher3 },
+    { name: "Syed Jaan Hasan Ajmali",    title: "Manager (Mohtamim)",  qual: "Head Office",                    img: teacher1 },
+    { name: "Hafiz Tabrez (Jank)",        title: "Principal",           qual: "Subjects: Urdu, Deeniyat",       img: teacher2 },
+    { name: "Hafiz Qari Jabir Hasan",     title: "Teacher",             qual: "Subjects: Urdu, Hindi",          img: teacher3 },
+    { name: "Hafiz Qari Usman Khan",      title: "Teacher",             qual: "Subjects: Urdu, Hindi",          img: teacher1 },
+    { name: "Hafiz Abdullah Khan",        title: "Teacher",             qual: "Subjects: Arabic",               img: teacher2 },
+    { name: "Master Md. Nizamuddin",      title: "Teacher",             qual: "Subjects: Hindi, Math",          img: teacher3 },
+    { name: "Master Jamshed Khan",        title: "Teacher",             qual: "Subjects: Math, G.K.",           img: teacher1 },
+    { name: "Master Pawan Ahmad",         title: "Teacher",             qual: "Subjects: English, Social Sc.",  img: teacher2 },
   ];
 
   return (
     <Layout>
       <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-teal-900 via-teal-800 to-emerald-900" />
-        <div className="absolute inset-0 opacity-5"
-          style={{ backgroundImage: `repeating-linear-gradient(45deg, white 0, white 1px, transparent 0, transparent 50%)`, backgroundSize: "30px 30px" }}
-        />
-        <div className="absolute inset-0 flex items-center justify-end pr-16 pointer-events-none select-none">
-          <span className="font-heading text-white/5" style={{ fontSize: "clamp(180px, 30vw, 420px)", lineHeight: 1 }}>☪</span>
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <img src="/WhatsApp Image 2026-04-13 at 10.32.41 AM.jpeg" alt="Faculty hero" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-teal-900/70" />
         </div>
         <div className="relative z-10 container mx-auto px-4 text-center py-24">
           <span className="inline-block bg-amber-500/90 text-white text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
@@ -59,18 +62,18 @@ const Faculty = () => {
             <span className="text-xs font-bold uppercase tracking-widest text-teal-600 mb-2 block">Experienced & Dedicated</span>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground">{t("faculty.title")}</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {teachers.map((teacher) => (
-              <div key={teacher.nameKey}
+              <div key={teacher.name}
                 className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-teal-100/60 hover:-translate-y-2 transition-all duration-300">
                 <div className="h-1.5 bg-gradient-to-r from-teal-500 to-emerald-600" />
-                <div className="p-8 text-center">
-                  <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-teal-100 shadow-lg mb-5 group-hover:border-teal-400 transition-colors duration-300">
-                    <img src={teacher.img} alt={t(teacher.nameKey)} className="w-full h-full object-cover" loading="lazy" />
+                <div className="p-6 text-center">
+                  <div className="w-24 h-24 mx-auto rounded-full overflow-hidden border-4 border-teal-100 shadow-lg mb-4 group-hover:border-teal-400 transition-colors duration-300">
+                    <img src={teacher.img} alt={teacher.name} className="w-full h-full object-cover" loading="lazy" />
                   </div>
-                  <h3 className="font-heading text-xl font-bold text-foreground">{t(teacher.nameKey)}</h3>
-                  <p className="text-teal-600 text-sm font-medium mt-1">{t(teacher.titleKey)}</p>
-                  <p className="text-muted-foreground text-xs mt-1">{t(teacher.qualKey)}</p>
+                  <h3 className="font-heading text-base font-bold text-foreground">{teacher.name}</h3>
+                  <p className="text-teal-600 text-xs font-medium mt-1">{teacher.title}</p>
+                  <p className="text-muted-foreground text-xs mt-1">{teacher.qual}</p>
                 </div>
               </div>
             ))}

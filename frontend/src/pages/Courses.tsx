@@ -42,12 +42,10 @@ const Courses = () => {
 
       {/* ── HERO ── */}
       <section className="relative min-h-[55vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-teal-900 via-teal-800 to-emerald-900" />
-        <div className="absolute inset-0 opacity-5"
-          style={{ backgroundImage: `repeating-linear-gradient(45deg, white 0, white 1px, transparent 0, transparent 50%)`, backgroundSize: "30px 30px" }}
-        />
-        <div className="absolute inset-0 flex items-center justify-end pr-16 pointer-events-none select-none">
-          <span className="font-heading text-white/5" style={{ fontSize: "clamp(180px, 30vw, 420px)", lineHeight: 1 }}>📖</span>
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <img src="/WhatsApp Image 2026-04-13 at 10.32.40 AM (1).jpeg" alt="Courses hero" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-teal-900/70" />
         </div>
 
         <div className="relative z-10 container mx-auto px-4 text-center py-24">

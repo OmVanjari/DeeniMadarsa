@@ -11,31 +11,28 @@ import teacher1 from "@/assets/teacher1.jpg";
 import teacher2 from "@/assets/teacher2.jpg";
 import teacher3 from "@/assets/teacher3.jpg";
 
-// Slider slides using gradient backgrounds (no broken image deps)
+// Slider slides using real images
 const slides = [
   {
     id: 1,
-    bg: "from-teal-900 via-teal-800 to-emerald-900",
+    img: "/WhatsApp Image 2026-04-13 at 10.32.40 AM.jpeg",
     badge: "Est. 1998",
     titleKey: "hero.welcome",
     subtitleKey: "hero.subtitle",
-    pattern: "☪",
   },
   {
     id: 2,
-    bg: "from-emerald-900 via-teal-800 to-cyan-900",
+    img: "/WhatsApp Image 2026-04-13 at 10.32.40 AM (1).jpeg",
     badge: "25+ Years",
     titleKey: "courses.title",
     subtitleKey: "courses.subtitle",
-    pattern: "📖",
   },
   {
     id: 3,
-    bg: "from-cyan-900 via-teal-900 to-emerald-800",
+    img: "/WhatsApp Image 2026-04-13 at 10.32.41 AM.jpeg",
     badge: "500+ Students",
     titleKey: "donation.subtitle",
     subtitleKey: "donation.message",
-    pattern: "🌙",
   },
 ];
 
@@ -136,24 +133,17 @@ const Index = () => {
         {slides.map((s, i) => (
           <div
             key={s.id}
-            className={`absolute inset-0 bg-gradient-to-br ${s.bg} transition-opacity duration-700 ${i === current ? "opacity-100" : "opacity-0"}`}
+            className={`absolute inset-0 transition-opacity duration-700 ${i === current ? "opacity-100" : "opacity-0"}`}
           >
-            {/* Decorative pattern overlay */}
-            <div className="absolute inset-0 opacity-5"
-              style={{
-                backgroundImage: `repeating-linear-gradient(45deg, white 0, white 1px, transparent 0, transparent 50%)`,
-                backgroundSize: "30px 30px"
-              }}
+            <img
+              src={s.img}
+              alt={`slide-${s.id}`}
+              className="w-full h-full object-cover"
             />
+            {/* Dark overlay for text readability */}
+            <div className="absolute inset-0 bg-black/55" />
           </div>
         ))}
-
-        {/* Floating Arabic ornament */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-          <span className="text-white/5 font-heading" style={{ fontSize: "clamp(200px, 40vw, 500px)", lineHeight: 1 }}>
-            {slide.pattern}
-          </span>
-        </div>
 
         {/* Content */}
         <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">

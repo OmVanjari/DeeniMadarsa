@@ -26,8 +26,8 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-primary shadow-lg">
       <div className="container mx-auto px-4 flex items-center justify-between h-16">
-        <Link to="/" className="font-heading text-2xl font-bold text-primary-foreground tracking-wide">
-          ☪ Al-Noor Madarsa
+        <Link to="/" className="font-heading text-xl font-bold text-primary-foreground tracking-wide leading-tight">
+          ☪ Darul Uloom Junediya Ajmatia
         </Link>
 
         {/* Desktop Nav */}

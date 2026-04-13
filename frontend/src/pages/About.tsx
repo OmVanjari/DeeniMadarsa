@@ -69,11 +69,11 @@ const About = () => {
   ];
 
   const timeline = [
-    { year: "1998", text: "Al-Noor Madarsa founded by Maulana Muhammad Ismail with 15 students.", side: "left" },
-    { year: "2003", text: "First batch of Hafiz graduates — 12 students completed Hifz-ul-Quran.", side: "right" },
-    { year: "2010", text: "Alim Course launched, expanding the curriculum to full Islamic scholarship.", side: "left" },
-    { year: "2018", text: "New campus inaugurated, capacity expanded to 300+ students.", side: "right" },
-    { year: "2024", text: "Crossed 500+ students milestone and 200+ Hafiz graduates.", side: "left" },
+    { year: "2004", text: "Darul Uloom Junediya Ajmatia founded on 1 March 2004 by Hazrat Syed Akmal Ahmad Ajmali Rahmatullah Alaih.", side: "left" },
+    { year: "2006", text: "First batch of students completed primary education. Enrolment grew steadily with community support.", side: "right" },
+    { year: "2010", text: "New building constructed — 14 rooms, 3 large halls, 1 office and 1 library added to the campus.", side: "left" },
+    { year: "2015", text: "Curriculum expanded to Class 1–8 covering Science, Math, English, Hindi, Urdu and Deeniyat.", side: "right" },
+    { year: "2024", text: "Crossed 500+ students milestone with a dedicated team of 7 qualified teachers and staff.", side: "left" },
   ];
 
   const values = [
@@ -88,18 +88,10 @@ const About = () => {
 
       {/* ── HERO ── */}
       <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-teal-900 via-teal-800 to-emerald-900" />
-        {/* Grid pattern */}
-        <div className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: `repeating-linear-gradient(45deg, white 0, white 1px, transparent 0, transparent 50%)`,
-            backgroundSize: "30px 30px",
-          }}
-        />
-        {/* Big decorative symbol */}
-        <div className="absolute inset-0 flex items-center justify-end pr-16 pointer-events-none select-none">
-          <span className="font-heading text-white/5" style={{ fontSize: "clamp(180px, 30vw, 420px)", lineHeight: 1 }}>☪</span>
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <img src="/WhatsApp Image 2026-04-13 at 10.32.40 AM.jpeg" alt="About hero" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-teal-900/70" />
         </div>
 
         {/* Content */}
@@ -129,11 +121,20 @@ const About = () => {
           {/* Hero visual card */}
           <div className="hidden md:flex justify-center">
             <div className="relative w-72 h-72">
+              {/* Rotated background frame */}
               <div className="absolute inset-0 rounded-3xl bg-white/10 backdrop-blur-sm border border-white/20 rotate-6" />
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-teal-600/80 to-emerald-700/80 backdrop-blur-sm border border-white/10 -rotate-3 flex flex-col items-center justify-center gap-4 p-8">
-                <span className="font-heading text-white text-6xl">☪</span>
-                <p className="font-heading text-white text-2xl font-bold text-center">Al-Noor Madarsa</p>
-                <p className="text-white/70 text-sm text-center">Beacon of Islamic Education</p>
+              {/* Main image card */}
+              <div className="absolute inset-0 rounded-3xl overflow-hidden border-2 border-white/20 -rotate-3 shadow-2xl">
+                <img
+                  src="/building.jpeg"
+                  alt="Darul Uloom Junediya Ajmatia Building"
+                  className="w-full h-full object-cover"
+                />
+                {/* Label overlay at bottom */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-teal-900/90 to-transparent px-4 py-4">
+                  <p className="font-heading text-white text-sm font-bold text-center">Darul Uloom Junediya Ajmatia</p>
+                  <p className="text-white/70 text-xs text-center">Mehnd, Ghazipur — Est. 2004</p>
+                </div>
               </div>
             </div>
           </div>
