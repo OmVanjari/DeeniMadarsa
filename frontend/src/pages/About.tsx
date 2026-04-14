@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState } from "react";
 import {
   Award, BookOpen, GraduationCap, Users, Target, Eye,
-  ArrowRight, Quote, CheckCircle2, Landmark, Heart
+  ArrowRight, CheckCircle2, Landmark, Heart
 } from "lucide-react";
 
 // Count-up hook — animates from 0 to `end` when `active` becomes true
@@ -251,27 +251,6 @@ const About = () => {
                 <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">{t(v.descKey)}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── FOUNDER'S MESSAGE ── */}
-      <section className="py-6 sm:py-8 lg:py-10 bg-background">
-        <div className="container mx-auto px-3 sm:px-4 max-w-3xl">
-          <div className="text-center mb-6 sm:mb-8 lg:mb-10">
-            <span className="text-xs font-bold uppercase tracking-widest text-teal-600 mb-2 block">{t("about.wordswisdom")}</span>
-            <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">{t("about.founder.title")}</h2>
-          </div>
-          <div className="bg-gradient-to-br from-teal-800 to-emerald-900 rounded-3xl p-5 sm:p-7 lg:p-10 relative overflow-hidden shadow-2xl">
-            <div className="absolute top-4 sm:top-6 left-4 sm:left-8 opacity-20">
-              <Quote className="w-10 h-10 sm:w-14 sm:h-14 lg:w-20 lg:h-20 text-white" />
-            </div>
-            <div className="absolute bottom-4 sm:bottom-6 right-4 sm:right-8 opacity-10 rotate-180">
-              <Quote className="w-10 h-10 sm:w-14 sm:h-14 lg:w-20 lg:h-20 text-white" />
-            </div>
-            <p className="relative z-10 font-heading text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 italic leading-relaxed text-center">
-              {t("about.founder.text")}
-            </p>
           </div>
         </div>
       </section>

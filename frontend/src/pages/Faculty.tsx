@@ -2,22 +2,19 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import Layout from "@/components/Layout";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import teacher1 from "@/assets/teacher1.jpg";
-import teacher2 from "@/assets/teacher2.jpg";
-import teacher3 from "@/assets/teacher3.jpg";
 
 const Faculty = () => {
   const { t } = useLanguage();
 
   const teachers = [
-    { nameKey: "faculty.member.manager", titleKey: "faculty.manager.title",   qualKey: "faculty.manager.qual",    img: teacher1 },
-    { nameKey: "faculty.member.tabrez",  titleKey: "faculty.principal.title",  qualKey: "faculty.principal.qual",  img: teacher2 },
-    { nameKey: "faculty.member.jabir",   titleKey: "faculty.teacher.title",    qualKey: "faculty.jabir.qual",      img: teacher3 },
-    { nameKey: "faculty.member.usman",   titleKey: "faculty.teacher.title",    qualKey: "faculty.usman.qual",      img: teacher1 },
-    { nameKey: "faculty.member.abdullah",titleKey: "faculty.teacher.title",    qualKey: "faculty.abdullah.qual",   img: teacher2 },
-    { nameKey: "faculty.member.nizam",   titleKey: "faculty.teacher.title",    qualKey: "faculty.nizamuddin.qual", img: teacher3 },
-    { nameKey: "faculty.member.jamshed", titleKey: "faculty.teacher.title",    qualKey: "faculty.jamshed.qual",    img: teacher1 },
-    { nameKey: "faculty.member.pawan",   titleKey: "faculty.teacher.title",    qualKey: "faculty.pawan.qual",      img: teacher2 },
+    { nameKey: "faculty.member.manager", titleKey: "faculty.manager.title",   qualKey: "faculty.manager.qual",    img: "/manager.jpeg" },
+    { nameKey: "faculty.member.tabrez",  titleKey: "faculty.principal.title",  qualKey: "faculty.principal.qual",  img: "/principal.jpeg" },
+    { nameKey: "faculty.member.jabir",   titleKey: "faculty.viceprincipal.title", qualKey: "faculty.jabir.qual",  img: "/vice principal.jpeg" },
+    { nameKey: "faculty.member.usman",   titleKey: "faculty.teacher.title",    qualKey: "faculty.usman.qual",      img: "/founder.jpeg" },
+    { nameKey: "faculty.member.abdullah",titleKey: "faculty.teacher.title",    qualKey: "faculty.abdullah.qual",   img: "/manager.jpeg" },
+    { nameKey: "faculty.member.nizam",   titleKey: "faculty.teacher.title",    qualKey: "faculty.nizamuddin.qual", img: "/principal.jpeg" },
+    { nameKey: "faculty.member.jamshed", titleKey: "faculty.teacher.title",    qualKey: "faculty.jamshed.qual",    img: "/vice principal.jpeg" },
+    { nameKey: "faculty.member.pawan",   titleKey: "faculty.teacher.title",    qualKey: "faculty.pawan.qual",      img: "/founder.jpeg" },
   ];
 
   return (
