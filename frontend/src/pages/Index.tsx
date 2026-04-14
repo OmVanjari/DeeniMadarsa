@@ -4,12 +4,9 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import {
   BookOpen, GraduationCap, Heart, ChevronLeft, ChevronRight,
-  Users, Award, Clock, Star, ArrowRight, Quote
+  Users, Award, Clock, Star, ArrowRight
 } from "lucide-react";
 import Layout from "@/components/Layout";
-import teacher1 from "@/assets/teacher1.jpg";
-import teacher2 from "@/assets/teacher2.jpg";
-import teacher3 from "@/assets/teacher3.jpg";
 
 const slides = [
   { id: 1, img: "/WhatsApp Image 2026-04-13 at 10.32.40 AM (1).jpeg", badge: "20+ سال",        titleKey: "courses.title",     subtitleKey: "courses.subtitle" },
@@ -96,9 +93,9 @@ const Index = () => {
   ];
 
   const teachers = [
-    { nameKey: "faculty.teacher1.name", titleKey: "faculty.teacher1.title", qualKey: "faculty.teacher1.qual", img: teacher1 },
-    { nameKey: "faculty.teacher2.name", titleKey: "faculty.teacher2.title", qualKey: "faculty.teacher2.qual", img: teacher2 },
-    { nameKey: "faculty.teacher3.name", titleKey: "faculty.teacher3.title", qualKey: "faculty.teacher3.qual", img: teacher3 },
+    { nameKey: "faculty.member.manager", titleKey: "faculty.manager.title", qualKey: "faculty.manager.qual", img: "/manager.jpeg" },
+    { nameKey: "faculty.member.tabrez", titleKey: "faculty.principal.title", qualKey: "faculty.principal.qual", img: "/principal.jpeg" },
+    { nameKey: "faculty.member.jabir", titleKey: "faculty.viceprincipal.title", qualKey: "faculty.jabir.qual", img: "/vice principal.jpeg" },
   ];
 
   const slide = slides[current];
@@ -209,10 +206,6 @@ const Index = () => {
               <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-6">
                 {t("about.preview.text")}
               </p>
-              <div className="flex items-start gap-3 p-4 bg-teal-50 border border-teal-100 rounded-xl mb-6">
-                <Quote className="w-7 h-7 text-teal-400 shrink-0 mt-0.5" />
-                <p className="text-sm text-teal-800 italic leading-relaxed">{t("about.founder.text")}</p>
-              </div>
               <Button asChild className="bg-teal-700 hover:bg-teal-600 text-white rounded-full px-7 group">
                 <Link to="/about" className="flex items-center gap-2">
                   {t("about.preview.readmore")}
@@ -323,16 +316,35 @@ const Index = () => {
             <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-2">{t("faculty.title")}</h2>
             <p className="text-muted-foreground text-sm sm:text-base">{t("faculty.subtitle")}</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 max-w-3xl mx-auto">
-            {teachers.slice(0, 2).map((tc) => (
+
+          {/* Founder message moved from About page */}
+          <div className="max-w-4xl mx-auto mb-6 sm:mb-8 lg:mb-10">
+            <div className="bg-white rounded-2xl border border-teal-100/70 shadow-md overflow-hidden">
+              <div className="h-1.5 bg-gradient-to-r from-amber-500 to-yellow-600" />
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 p-4 sm:p-5 lg:p-6 items-center">
+                <div className="md:col-span-1 flex justify-center">
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden border-4 border-amber-100 shadow-lg">
+                    <img src="/founder.jpeg" alt="Founder" className="w-full h-full object-cover" loading="lazy" />
+                  </div>
+                </div>
+                <div className="md:col-span-2 text-center md:text-left">
+                  <h3 className="font-heading text-lg sm:text-xl lg:text-2xl font-bold text-foreground mb-2">{t("about.founder.title")}</h3>
+                  <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed italic">{t("about.founder.text")}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto">
+            {teachers.map((tc) => (
               <div key={tc.nameKey}
                 className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-teal-100/60 text-center">
                 <div className="h-1.5 bg-gradient-to-r from-teal-500 to-emerald-600" />
-                <div className="p-6 sm:p-8">
-                  <div className="w-24 h-24 sm:w-28 sm:h-28 mx-auto rounded-full overflow-hidden border-4 border-teal-100 shadow-lg mb-4 group-hover:border-teal-400 transition-colors duration-300">
+                <div className="p-4 sm:p-6">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto rounded-full overflow-hidden border-4 border-teal-100 shadow-lg mb-3 sm:mb-4 group-hover:border-teal-400 transition-colors duration-300">
                     <img src={tc.img} alt={t(tc.nameKey)} className="w-full h-full object-cover" loading="lazy" />
                   </div>
-                  <h3 className="font-heading text-lg sm:text-xl font-bold text-foreground">{t(tc.nameKey)}</h3>
+                  <h3 className="font-heading text-sm sm:text-base lg:text-lg font-bold text-foreground">{t(tc.nameKey)}</h3>
                   <p className="text-teal-600 text-xs sm:text-sm font-medium mt-1">{t(tc.titleKey)}</p>
                   <p className="text-muted-foreground text-xs mt-1">{t(tc.qualKey)}</p>
                 </div>
