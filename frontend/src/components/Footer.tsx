@@ -13,7 +13,11 @@ const Footer = () => {
           {/* Left: Brand + Follow Us */}
           <div>
             <div className="flex items-center gap-3 mb-3 sm:mb-4">
-              <img src="/schoollogo.png" alt="Logo" className="w-14 h-14 sm:w-16 sm:h-16 object-contain rounded-full bg-white/10 p-1 shrink-0" />
+              <img 
+  src="/schoollogo.png" 
+  alt="Logo" 
+  className="w-20 h-20 sm:w-24 sm:h-24 object-contain rounded-full bg-white/10 p-1 shrink-0" 
+/>
               <h3 className="font-heading text-base sm:text-lg font-bold text-white leading-tight">
                 Darul Uloom Junediya Ajmatia
               </h3>
@@ -98,7 +102,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="text-teal-200 hover:text-white transition-colors"
           >
-            Built by Athenura
+         Designed & Developed By Athenura
           </a>
         </div>
       </div>
