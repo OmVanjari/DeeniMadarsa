@@ -39,7 +39,7 @@ const Donation = () => {
           <div className="absolute inset-0 bg-teal-900/70" />
         </div>
         <div className="relative z-10 container mx-auto px-3 sm:px-4 text-center py-12 sm:py-16 md:py-20 lg:py-24">
-          <span className="inline-block bg-red-600/90 text-white text-xs font-bold uppercase tracking-widest px-3 sm:px-4 py-1 sm:py-1.5 rounded-full mb-3 sm:mb-4 lg:mb-6">
+          <span className="inline-block bg-amber-600/90 text-white text-xs font-bold uppercase tracking-widest px-3 sm:px-4 py-1 sm:py-1.5 rounded-full mb-3 sm:mb-4 lg:mb-6">
             {t("donation.supportus")}
           </span>
           <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 sm:mb-4 lg:mb-5 leading-tight">
@@ -50,9 +50,9 @@ const Donation = () => {
           </p>
                   <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 lg:gap-4 justify-center items-start sm:items-center self-start sm:self-center">
                     <Button asChild size="lg"
-                      className="w-auto bg-red-600 hover:bg-red-500 text-white font-semibold rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base shadow-xl hover:scale-105 transition-all duration-200">
+                      className="w-auto bg-amber-600 hover:bg-amber-500 text-white font-semibold rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base shadow-xl hover:scale-105 transition-all duration-200">
                       <a href="https://wa.me/919876543210?text=I want to donate to DeeniMadarsa" target="_blank" rel="noopener noreferrer">
-                        {t("donation.donate")}
+                        {t("Donate Now")}
                       </a>
                     </Button>
                     <Button asChild size="lg"
@@ -164,7 +164,7 @@ const Donation = () => {
               />
               <Button
                 type="submit"
-                className="sm:col-span-2 w-full bg-red-600 hover:bg-red-500 text-white rounded-2xl font-semibold flex items-center justify-center gap-2 py-3"
+                className="sm:col-span-2 w-full bg-amber-600 hover:bg-amber-500 text-white rounded-2xl font-semibold flex items-center justify-center gap-2 py-3"
               >
                 <Send className="w-4 h-4" /> Donate Now
               </Button>
