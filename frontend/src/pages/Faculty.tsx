@@ -95,7 +95,7 @@ const Faculty = () => {
       <section className="relative h-[60vh] sm:h-[75vh] lg:h-[85vh] min-h-[420px] flex items-center justify-center overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0">
-          <img src="/WhatsApp Image 2026-04-13 at 10.32.41 AM.jpeg" alt="Faculty hero" className="w-full h-full object-cover" />
+          <img src="/WhatsApp Image 2026-04-13 at 10.32.40 AM.jpeg" alt="Faculty hero" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-teal-900/70" />
         </div>
         <div className="relative z-10 container mx-auto px-3 sm:px-4 text-center py-12 sm:py-16 md:py-20 lg:py-24">
@@ -105,13 +105,13 @@ const Faculty = () => {
           <p className="text-white/75 text-sm sm:text-base md:text-lg max-w-xl mx-auto mb-4 sm:mb-6 lg:mb-8">
             {t("faculty.subtitle")}
           </p>
-          <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 lg:gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 lg:gap-4 justify-center items-start sm:items-center self-start sm:self-center">
             <Button asChild size="lg"
-              className="w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-white font-semibold rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base shadow-xl hover:scale-105 transition-all duration-200">
+              className="w-auto bg-amber-500 hover:bg-amber-400 text-white font-semibold rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base shadow-xl hover:scale-105 transition-all duration-200">
               <Link to="/contact">{t("hero.apply")}</Link>
             </Button>
             <Button asChild size="lg"
-              className="w-full sm:w-auto bg-transparent border-2 border-white/60 text-white hover:bg-white/15 rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base hover:scale-105 transition-all duration-200">
+              className="w-auto bg-transparent border-2 border-white/60 text-white hover:bg-white/15 rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base hover:scale-105 transition-all duration-200">
               <Link to="/courses">{t("nav.courses")}</Link>
             </Button>
           </div>
@@ -124,26 +124,26 @@ const Faculty = () => {
       </section>
 
       {/* ── FACULTY GRID ── */}
-      <section className="py-6 sm:py-8 lg:py-10 bg-white -mt-px">
+      <section className="py-6 sm:py-8 lg:py-12 bg-white -mt-px">
         <div className="container mx-auto px-3 sm:px-4">
           <div className="text-center mb-8 sm:mb-10 lg:mb-14">
             <span className="text-xs font-bold uppercase tracking-widest text-teal-600 mb-2 block">{t("faculty.experienced")}</span>
             <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">{t("faculty.title")}</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-7 max-w-6xl mx-auto">
             {teachers.map((teacher) => (
               <div key={teacher.nameKey}
-                className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg border border-teal-100/60 hover:-translate-y-1 transition-all duration-300">
+                className="group bg-white/95 backdrop-blur-sm rounded-3xl overflow-hidden shadow-lg hover:shadow-xl border border-teal-100/70 hover:-translate-y-1.5 transition-all duration-300 w-full max-w-[21rem] sm:max-w-none mx-auto">
                 <div className={`h-1.5 bg-gradient-to-r ${teacher.stripe}`} />
                 <div className="p-4 sm:p-5 lg:p-6 text-center">
-                  <div className={`w-[clamp(6rem,18vw,7rem)] h-[clamp(7rem,20vw,8rem)] mx-auto p-1 rounded-2xl bg-gradient-to-br ${teacher.glow} mb-3 sm:mb-4`}>
+                  <div className={`w-[12.5rem] sm:w-[13.5rem] lg:w-[14.5rem] aspect-[4/5] mx-auto p-1 rounded-2xl bg-gradient-to-br ${teacher.glow} mb-3`}>
                     <div className={`w-full h-full rounded-xl overflow-hidden border-2 ${teacher.ring} shadow-lg`}>
                       <img src={teacher.img} alt={t(teacher.nameKey)} className={`w-full h-full object-cover ${teacher.imgPos} transition-transform duration-500 group-hover:scale-110`} loading="lazy" />
                     </div>
                   </div>
-                  <h3 className="font-heading text-sm sm:text-base font-bold text-foreground">{t(teacher.nameKey)}</h3>
-                  <p className="text-teal-600 text-xs font-medium mt-1">{t(teacher.titleKey)}</p>
-                  <p className="text-muted-foreground text-xs mt-1">{t(teacher.qualKey)}</p>
+                  <h3 className="font-heading text-base sm:text-lg font-bold text-foreground">{t(teacher.nameKey)}</h3>
+                  <p className="text-teal-600 text-sm font-semibold mt-1">{t(teacher.titleKey)}</p>
+                  <p className="text-muted-foreground text-xs sm:text-sm mt-1">{t(teacher.qualKey)}</p>
                 </div>
               </div>
             ))}

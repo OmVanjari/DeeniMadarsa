@@ -26,15 +26,15 @@ const Donation = () => {
           <p className="text-white/75 text-sm sm:text-base md:text-lg max-w-xl mx-auto mb-4 sm:mb-6 lg:mb-8">
             {t("donation.message")}
           </p>
-                  <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 lg:gap-4 justify-center">
+                  <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 lg:gap-4 justify-center items-start sm:items-center self-start sm:self-center">
                     <Button asChild size="lg"
-                      className="w-full sm:w-auto bg-red-600 hover:bg-red-500 text-white font-semibold rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base shadow-xl hover:scale-105 transition-all duration-200">
+                      className="w-auto bg-red-600 hover:bg-red-500 text-white font-semibold rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base shadow-xl hover:scale-105 transition-all duration-200">
                       <a href="https://wa.me/919876543210?text=I want to donate to DeeniMadarsa" target="_blank" rel="noopener noreferrer">
                         {t("donation.donate")}
                       </a>
                     </Button>
                     <Button asChild size="lg"
-                      className="w-full sm:w-auto bg-transparent border-2 border-white/60 text-white hover:bg-white/15 rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base hover:scale-105 transition-all duration-200">
+                      className="w-auto bg-transparent border-2 border-white/60 text-white hover:bg-white/15 rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base hover:scale-105 transition-all duration-200">
                       <Link to="/contact">{t("nav.contact")}</Link>
                     </Button>
                   </div>

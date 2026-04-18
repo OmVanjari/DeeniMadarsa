@@ -9,8 +9,8 @@ import {
 import Layout from "@/components/Layout";
 
 const slides = [
-  { id: 1, img: "/WhatsApp Image 2026-04-13 at 10.32.40 AM (1).jpeg", badge: "20+ سال",        titleKey: "courses.title",     subtitleKey: "courses.subtitle" },
-  { id: 2, img: "/WhatsApp Image 2026-04-13 at 10.32.40 AM.jpeg",    badge: "Est. 2004",      titleKey: "hero.welcome",      subtitleKey: "hero.subtitle" },
+  { id: 1, img: "/WhatsApp Image 2026-04-13 at 10.32.40 AM.jpeg",    badge: "Est. 2004",      titleKey: "hero.welcome",      subtitleKey: "hero.subtitle" },
+  { id: 2, img: "/WhatsApp Image 2026-04-13 at 10.32.40 AM.jpeg",    badge: "20+ سال",        titleKey: "courses.title",     subtitleKey: "courses.subtitle" },
   { id: 3, img: "/WhatsApp Image 2026-04-13 at 10.32.41 AM.jpeg",    badge: "500+ طلباء",     titleKey: "donation.subtitle", subtitleKey: "donation.message" },
 ];
 
@@ -58,9 +58,27 @@ const StatCard = ({ icon: Icon, end, suffix, labelKey, color, active, delay }: {
 const Index = () => {
   const { t } = useLanguage();
   const [current, setCurrent] = useState(0);
+  const [aboutCurrent, setAboutCurrent] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
   const [statsVisible, setStatsVisible] = useState(false);
+
+  const aboutSlides = [
+    {
+      id: 1,
+      img: "/schoollogo.png",
+      alt: "Darul Uloom Jameenia Ajmaliya Logo",
+      imgClass: "w-[78%] h-[78%] object-contain",
+      bgClass: "bg-gradient-to-br from-teal-50 to-teal-100",
+    },
+    {
+      id: 2,
+      img: "/building.jpeg",
+      alt: "Darul Uloom Jameenia Ajmaliya Building",
+      imgClass: "w-full h-full object-cover",
+      bgClass: "bg-teal-100",
+    },
+  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -80,11 +98,22 @@ const Index = () => {
 
   const next = useCallback(() => goTo((current + 1) % slides.length), [current, goTo]);
   const prev = useCallback(() => goTo((current - 1 + slides.length) % slides.length), [current, goTo]);
+  const nextAbout = useCallback(() => {
+    setAboutCurrent((prevIdx) => (prevIdx + 1) % aboutSlides.length);
+  }, [aboutSlides.length]);
+  const prevAbout = useCallback(() => {
+    setAboutCurrent((prevIdx) => (prevIdx - 1 + aboutSlides.length) % aboutSlides.length);
+  }, [aboutSlides.length]);
 
   useEffect(() => {
     const timer = setInterval(next, 5000);
     return () => clearInterval(timer);
   }, [next]);
+
+  useEffect(() => {
+    const timer = setInterval(nextAbout, 4500);
+    return () => clearInterval(timer);
+  }, [nextAbout]);
 
   const courses = [
     { nameKey: "course.hifz.name", descKey: "course.hifz.desc", durationKey: "course.hifz.duration", icon: BookOpen, color: "from-teal-500 to-teal-700" },
@@ -113,9 +142,23 @@ const Index = () => {
       glow: "from-amber-100 to-yellow-100",
       imgPos: "object-[50%_20%]",
     },
+    {
+      nameKey: "faculty.member.jabir",
+      titleKey: "faculty.viceprincipal.title",
+      qualKey: "faculty.jabir.qual",
+      img: "/vice principal.jpeg",
+      ring: "border-cyan-300",
+      stripe: "from-cyan-500 to-sky-600",
+      glow: "from-cyan-100 to-sky-100",
+      imgPos: "object-[50%_18%]",
+    },
   ];
 
   const slide = slides[current];
+  const founderMessage = t("about.founder.text");
+  const founderParts = founderMessage.split("—");
+  const founderQuote = founderParts[0]?.trim() ?? founderMessage;
+  const founderName = founderParts.slice(1).join("—").trim();
 
   const news = [
     {
@@ -168,13 +211,13 @@ const Index = () => {
             style={{ animationDelay: "0.15s" }}>
             {t(slide.subtitleKey)}
           </p>
-          <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 justify-center animate-fade-up w-full" style={{ animationDelay: "0.3s" }}>
+          <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 justify-center items-start sm:items-center self-start sm:self-center animate-fade-up" style={{ animationDelay: "0.3s" }}>
             <Button asChild size="lg"
-              className="bg-yellow-600 hover:bg-yellow-500 text-white font-semibold text-xs sm:text-sm px-5 sm:px-8 py-2 sm:py-3 rounded-full shadow-xl transition-all duration-200 hover:scale-105 w-full sm:w-auto">
+              className="bg-yellow-600 hover:bg-yellow-500 text-white font-semibold text-xs sm:text-sm px-5 sm:px-8 py-2 sm:py-3 rounded-full shadow-xl transition-all duration-200 hover:scale-105 w-auto">
               <Link to="/contact">{t("hero.apply")}</Link>
             </Button>
             <Button asChild size="lg"
-              className="bg-transparent border-2 border-white/60 text-white hover:bg-white/15 font-semibold text-xs sm:text-sm px-5 sm:px-8 py-2 sm:py-3 rounded-full transition-all duration-200 hover:scale-105 w-full sm:w-auto">
+              className="bg-transparent border-2 border-white/60 text-white hover:bg-white/15 font-semibold text-xs sm:text-sm px-5 sm:px-8 py-2 sm:py-3 rounded-full transition-all duration-200 hover:scale-105 w-auto">
               <Link to="/donation">{t("hero.donate")}</Link>
             </Button>
           </div>
@@ -205,8 +248,41 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 sm:gap-14 items-center">
             <div className="relative max-w-xs sm:max-w-sm mx-auto w-full">
-              <div className="w-full aspect-square rounded-2xl overflow-hidden shadow-xl shadow-teal-900/20 bg-gradient-to-br from-teal-50 to-teal-100 flex items-center justify-center p-8">
-                <img src="/schoollogo.png" alt="Darul Uloom Junediya Ajmatia Logo" className="w-48 h-48 sm:w-56 sm:h-56 object-contain" />
+              <div className="relative w-full aspect-square rounded-2xl overflow-hidden shadow-xl shadow-teal-900/20">
+                {aboutSlides.map((item, index) => (
+                  <div key={item.id}
+                    className={`absolute inset-0 transition-opacity duration-500 ${index === aboutCurrent ? "opacity-100" : "opacity-0"}`}>
+                    <div className={`w-full h-full flex items-center justify-center ${item.bgClass}`}>
+                      <img src={item.img} alt={item.alt} className={item.imgClass} />
+                    </div>
+                  </div>
+                ))}
+
+                <button
+                  onClick={prevAbout}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-teal-900/25 hover:bg-teal-900/40 text-white flex items-center justify-center transition-colors"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={nextAbout}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-teal-900/25 hover:bg-teal-900/40 text-white flex items-center justify-center transition-colors"
+                  aria-label="Next image"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex gap-1.5">
+                  {aboutSlides.map((item, index) => (
+                    <button
+                      key={item.id}
+                      onClick={() => setAboutCurrent(index)}
+                      className={`h-2 rounded-full transition-all ${index === aboutCurrent ? "w-6 bg-white" : "w-2 bg-white/60 hover:bg-white/90"}`}
+                      aria-label={`Go to image ${index + 1}`}
+                    />
+                  ))}
+                </div>
               </div>
               <div className="absolute -bottom-3 -right-3 bg-yellow-600 text-white rounded-xl px-4 py-2 shadow-lg">
                 <div className="font-heading text-xl font-bold">2004</div>
@@ -324,7 +400,7 @@ const Index = () => {
       </section>
 
       {/* ── FACULTY SPOTLIGHT ── */}
-      <section className="py-8 sm:py-10 bg-gradient-to-b from-background to-teal-50/30">
+      <section className="py-8 sm:py-10 lg:py-12 bg-gradient-to-b from-background to-teal-50/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-10 sm:mb-14">
             <span className="text-xs font-bold uppercase tracking-widest text-teal-600 mb-2 block">
@@ -335,40 +411,43 @@ const Index = () => {
           </div>
 
           {/* Founder message moved from About page */}
-          <div className="max-w-4xl mx-auto mb-6 sm:mb-8 lg:mb-10">
-            <div className="bg-white rounded-2xl border border-teal-100/70 shadow-md overflow-hidden">
+          <div className="max-w-5xl mx-auto mb-6 sm:mb-8 lg:mb-10">
+            <div className="bg-white/95 backdrop-blur-sm rounded-3xl border border-teal-100/70 shadow-lg overflow-hidden">
               <div className="h-1.5 bg-gradient-to-r from-amber-500 to-yellow-600" />
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 p-4 sm:p-5 lg:p-6 items-center">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 p-4 sm:p-5 lg:p-6 items-center">
                 <div className="md:col-span-1 flex justify-center">
                   <div className="relative group">
-                    <div className="absolute -inset-2 rounded-2xl bg-gradient-to-br from-amber-100 to-yellow-100" />
-                    <div className="relative w-[clamp(7rem,20vw,9rem)] h-[clamp(8rem,24vw,10rem)] rounded-2xl overflow-hidden border-4 border-amber-200 shadow-xl">
+                    <div className="absolute -inset-2 rounded-2xl bg-gradient-to-br from-amber-100 to-yellow-100 opacity-80" />
+                    <div className="relative w-[13rem] sm:w-[14.5rem] lg:w-[16rem] aspect-[4/5] rounded-2xl overflow-hidden border-4 border-amber-200 shadow-xl">
                       <img src="/founder.jpeg" alt="Founder" className="w-full h-full object-cover object-[50%_18%] transition-transform duration-500 group-hover:scale-110" loading="lazy" />
                     </div>
                   </div>
                 </div>
                 <div className="md:col-span-2 text-center md:text-left">
-                  <h3 className="font-heading text-lg sm:text-xl lg:text-2xl font-bold text-foreground mb-2">{t("about.founder.title")}</h3>
-                  <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed italic">{t("about.founder.text")}</p>
+                  <h3 className="font-heading text-xl sm:text-2xl lg:text-3xl font-bold text-foreground mb-2">{t("about.founder.title")}</h3>
+                  <p className="text-muted-foreground text-sm sm:text-base leading-relaxed italic">{founderQuote}</p>
+                  {founderName && (
+                    <p className="text-foreground text-base sm:text-lg font-bold mt-2">{founderName}</p>
+                  )}
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto">
             {teachers.map((tc) => (
               <div key={tc.nameKey}
-                className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-teal-100/60 text-center">
+                className="group bg-white/95 backdrop-blur-sm rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 border border-teal-100/70 text-center w-full max-w-[21rem] md:max-w-none mx-auto">
                 <div className={`h-1.5 bg-gradient-to-r ${tc.stripe}`} />
-                <div className="p-4 sm:p-6">
-                  <div className={`w-[clamp(6rem,18vw,7rem)] h-[clamp(7rem,20vw,8rem)] mx-auto p-1 rounded-2xl bg-gradient-to-br ${tc.glow} mb-3 sm:mb-4`}>
+                <div className="p-4 sm:p-5 lg:p-6">
+                  <div className={`w-[12.5rem] sm:w-[13.5rem] lg:w-[14.5rem] aspect-[4/5] mx-auto p-1 rounded-2xl bg-gradient-to-br ${tc.glow} mb-3`}>
                     <div className={`w-full h-full rounded-xl overflow-hidden border-2 ${tc.ring} shadow-lg`}>
                       <img src={tc.img} alt={t(tc.nameKey)} className={`w-full h-full object-cover ${tc.imgPos} transition-transform duration-500 group-hover:scale-110`} loading="lazy" />
                     </div>
                   </div>
-                  <h3 className="font-heading text-sm sm:text-base lg:text-lg font-bold text-foreground">{t(tc.nameKey)}</h3>
-                  <p className="text-teal-600 text-xs sm:text-sm font-medium mt-1">{t(tc.titleKey)}</p>
-                  <p className="text-muted-foreground text-xs mt-1">{t(tc.qualKey)}</p>
+                  <h3 className="font-heading text-base sm:text-lg lg:text-xl font-bold text-foreground">{t(tc.nameKey)}</h3>
+                  <p className="text-teal-600 text-sm sm:text-base font-semibold mt-1">{t(tc.titleKey)}</p>
+                  <p className="text-muted-foreground text-xs sm:text-sm mt-1">{t(tc.qualKey)}</p>
                 </div>
               </div>
             ))}

@@ -44,7 +44,7 @@ const Courses = () => {
       <section className="relative h-[60vh] sm:h-[75vh] lg:h-[85vh] min-h-[420px] flex items-center justify-center overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0">
-          <img src="/WhatsApp Image 2026-04-13 at 10.32.40 AM (1).jpeg" alt="Courses hero" className="w-full h-full object-cover" />
+          <img src="/WhatsApp Image 2026-04-13 at 10.32.41 AM.jpeg" alt="Courses hero" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-teal-900/70" />
         </div>
 
@@ -58,13 +58,13 @@ const Courses = () => {
           <p className="text-white/75 text-sm sm:text-base md:text-lg max-w-xl mx-auto mb-4 sm:mb-6 lg:mb-8">
             {t("courses.subtitle")}
           </p>
-          <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 lg:gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 lg:gap-4 justify-center items-start sm:items-center self-start sm:self-center">
             <Button asChild size="lg"
-              className="w-full sm:w-auto bg-yellow-600 hover:bg-yellow-500 text-white font-semibold rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base shadow-xl hover:scale-105 transition-all duration-200">
+              className="w-auto bg-yellow-600 hover:bg-yellow-500 text-white font-semibold rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base shadow-xl hover:scale-105 transition-all duration-200">
               <Link to="/contact">{t("hero.apply")}</Link>
             </Button>
             <Button asChild size="lg"
-              className="w-full sm:w-auto bg-transparent border-2 border-white/60 text-white hover:bg-white/15 rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base hover:scale-105 transition-all duration-200">
+              className="w-auto bg-transparent border-2 border-white/60 text-white hover:bg-white/15 rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base hover:scale-105 transition-all duration-200">
               <Link to="/about">{t("about.preview.readmore")}</Link>
             </Button>
           </div>
@@ -129,13 +129,13 @@ const Courses = () => {
             <p className="text-white/80 text-sm sm:text-base mb-4 sm:mb-6 lg:mb-8 max-w-md mx-auto">
               Start your Islamic education journey with us today
             </p>
-            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 lg:gap-4 justify-center flex-wrap">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 lg:gap-4 justify-center items-center self-center flex-wrap">
               <Button asChild size="lg"
-                className="w-full sm:w-auto bg-white text-amber-600 hover:bg-gray-100 rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base font-semibold shadow-lg">
+                className="w-auto bg-white text-amber-600 hover:bg-gray-100 rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base font-semibold shadow-lg">
                 <Link to="/contact">{t("hero.apply")}</Link>
               </Button>
               <Button asChild size="lg"
-                className="w-full sm:w-auto bg-transparent border-2 border-white/60 text-white hover:bg-white/10 rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base hover:scale-105 transition-all duration-200">
+                className="w-auto bg-transparent border-2 border-white/60 text-white hover:bg-white/10 rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base hover:scale-105 transition-all duration-200">
                 <Link to="/contact">{t("nav.contact")}</Link>
               </Button>
             </div>
