@@ -1,12 +1,32 @@
-import express from 'express'
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import connectDB from "./config/db.js";
+import courseRoutes from "./routes/courseRoute.js";
+import adminRoutes from "./routes/adminRoute.js";
 
-const app =  express()
-const PORT =  5000 
+dotenv.config();
 
-app.get('/',(req,res)=>{
-  res.send("Api is running")
-})
+const app = express();
+const PORT = process.env.PORT || 5000;
 
-app.listen(PORT,()=>{
-    console.log(`server is runnig on ${PORT}`)
-})
+// ── MIDDLEWARE ───────────────────────────────────────
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// ── DB CONNECT ───────────────────────────────────────
+connectDB();
+
+// ── ROUTES ───────────────────────────────────────────
+app.get("/", (req, res) => {
+  res.send("Api is running ✅");
+});
+
+app.use("/api/courses", courseRoutes);
+app.use("/api/admin", adminRoutes);
+
+// ── LISTEN ───────────────────────────────────────────
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT} 🚀`);
+}); 
