@@ -1,0 +1,72 @@
+{
+  "courses": [
+    {
+      "id": "69e221a65176d5ee877be6ba",
+      "name": "Hifz ul Quran",
+      "description": "Yeh course Quran hifz ke liye hai",
+      "level": "Beginners",
+      "category": "Hifz",
+      "totalStudents": 50,
+      "isActive": true,
+      "order": 0,
+      "duration": {
+        "value": 3,
+        "unit": "Years"
+      },
+      "image": {
+        "url": "",
+        "public_id": ""
+      },
+      "fees": {
+        "amount": 0,
+        "isFree": true
+      }
+    }
+  ],
+  "news": [
+    {
+      "id": "news-1",
+      "title": "New Admissions Open for 2026-27 Academic Year",
+      "date": "2026-04-18",
+      "status": "Pinned",
+      "summary": "Applications are open for Hifz, Nazra and Class 1-8. Limited seats, apply early."
+    },
+    {
+      "id": "news-2",
+      "title": "Annual Quran Recitation Competition",
+      "date": "2026-04-05",
+      "status": "Event",
+      "summary": "Join our yearly Quran recitation event open to all students and community members."
+    },
+    {
+      "id": "news-3",
+      "title": "Eid Holiday Schedule",
+      "date": "2026-04-18",
+      "status": "Notice",
+      "summary": "Madarsa closed April 18-22 for Eid. Classes resume April 23."
+    }
+  ],
+  "users": [
+    {
+      "id": "user-1",
+      "name": "Admin User",
+      "role": "Administrator",
+      "email": "admin@madarsa.local",
+      "status": "Active"
+    },
+    {
+      "id": "user-2",
+      "name": "Course Manager",
+      "role": "Manager",
+      "email": "manager@madarsa.local",
+      "status": "Active"
+    },
+    {
+      "id": "user-3",
+      "name": "Content Editor",
+      "role": "Editor",
+      "email": "editor@madarsa.local",
+      "status": "Active"
+    }
+  ]
+}

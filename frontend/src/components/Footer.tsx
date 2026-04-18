@@ -19,13 +19,15 @@ const Footer = () => {
   className="w-20 h-20 sm:w-24 sm:h-24 object-contain rounded-full bg-white/10 p-1 shrink-0" 
 />
               <h3 className="font-heading text-base sm:text-lg font-bold text-white leading-tight">
-                Darul Uloom Junediya Ajmatia
+                Darul Uloom Jameenia Ajmaliya
               </h3>
             </div>
             <p className="text-teal-200 text-sm mb-4 sm:mb-5 leading-relaxed max-w-sm">
               Providing quality Islamic and modern education since 2004.
               <br />
               Nurturing knowledge, character, and community values.
+              <br />
+              Free stay, food, and clothing for students.
             </p>
             <h3 className="font-heading text-base font-bold mb-3 sm:mb-4 text-white">{t("footer.followus")}</h3>
             <div className="flex flex-wrap gap-2 sm:gap-2.5">
@@ -100,9 +102,9 @@ const Footer = () => {
             href="https://athenura.in"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-teal-200 hover:text-white transition-colors"
+            className="text-yellow-400 hover:text-yellow-300 transition-colors"
           >
-         Designed & Developed By Athenura
+            Designed & Developed By <span className="underline underline-offset-4 decoration-yellow-300/80">Athenura</span>
           </a>
         </div>
       </div>

@@ -67,14 +67,14 @@ const Index = () => {
     {
       id: 1,
       img: "/schoollogo.png",
-      alt: "Darul Uloom Junediya Ajmatia Logo",
+      alt: "Darul Uloom Jameenia Ajmaliya Logo",
       imgClass: "w-[78%] h-[78%] object-contain",
       bgClass: "bg-gradient-to-br from-teal-50 to-teal-100",
     },
     {
       id: 2,
       img: "/building.jpeg",
-      alt: "Darul Uloom Junediya Ajmatia Building",
+      alt: "Darul Uloom Jameenia Ajmaliya Building",
       imgClass: "w-full h-full object-cover",
       bgClass: "bg-teal-100",
     },

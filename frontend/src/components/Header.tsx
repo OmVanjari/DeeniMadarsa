@@ -28,7 +28,7 @@ const Header = () => {
       <div className="container mx-auto px-4 flex items-center justify-between h-14">
         <Link to="/" className="flex items-center gap-1.5 sm:gap-3 font-heading text-xs sm:text-lg font-bold text-primary-foreground tracking-wide leading-tight min-w-0">
           <img src="/schoollogo.png" alt="Logo" className="w-10 h-10 sm:w-11 sm:h-11 object-contain shrink-0" />
-          <span className="truncate">Darul Uloom Junediya Ajmatia</span>
+          <span className="truncate">Darul Uloom Jameenia Ajmaliya</span>
         </Link>
 
         {/* Desktop Nav */}

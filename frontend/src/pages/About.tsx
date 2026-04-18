@@ -127,13 +127,13 @@ const About = () => {
               <div className="absolute inset-0 rounded-3xl overflow-hidden border-2 border-white/20 -rotate-3 shadow-2xl">
                 <img
                   src="/building.jpeg"
-                  alt="Darul Uloom Junediya Ajmatia Building"
+                  alt="Darul Uloom Jameenia Ajmaliya Building"
                   className="w-full h-full object-cover"
                 />
                 {/* Label overlay at bottom */}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-teal-900/90 to-transparent px-3 sm:px-4 py-3 sm:py-4">
-                  <p className="font-heading text-white text-xs sm:text-sm font-bold text-center break-words">Darul Uloom Junediya Ajmatia</p>
-                  <p className="text-white/70 text-xs text-center">Mehnd, Ghazipur — Est. 2004</p>
+                  <p className="font-heading text-white text-xs sm:text-sm font-bold text-center break-words">Darul Uloom Jameenia Ajmaliya</p>
+                  <p className="text-white/70 text-xs text-center">Mehdur, Ghazipur — Est. 2004</p>
                 </div>
               </div>
             </div>
