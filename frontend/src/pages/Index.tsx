@@ -7,6 +7,7 @@ import {
   Users, Award, Clock, Star, ArrowRight
 } from "lucide-react";
 import Layout from "@/components/Layout";
+import { CourseAPI, AnnouncementAPI } from "@/lib/api";
 
 const slides = [
   { id: 1, img: "/WhatsApp Image 2026-04-13 at 10.32.40 AM.jpeg",    badge: "Est. 2004",      titleKey: "hero.welcome",      subtitleKey: "hero.subtitle" },
@@ -58,6 +59,8 @@ const StatCard = ({ icon: Icon, end, suffix, labelKey, color, active, delay }: {
 const Index = () => {
   const { t } = useLanguage();
   const [current, setCurrent] = useState(0);
+  const [courses, setCourses] = useState<any[]>([]);
+  const [news, setNews] = useState<any[]>([]);
   const [aboutCurrent, setAboutCurrent] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
@@ -115,10 +118,32 @@ const Index = () => {
     return () => clearInterval(timer);
   }, [nextAbout]);
 
-  const courses = [
-    { nameKey: "course.hifz.name", descKey: "course.hifz.desc", durationKey: "course.hifz.duration", icon: BookOpen, color: "from-teal-500 to-teal-700" },
-    { nameKey: "course.nazra.name", descKey: "course.nazra.desc", durationKey: "course.nazra.duration", icon: BookOpen, color: "from-emerald-500 to-emerald-700" },
-    { nameKey: "course.alim.name", descKey: "course.alim.desc", durationKey: "course.alim.duration", icon: GraduationCap, color: "from-amber-500 to-amber-700" },
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [coursesRes, newsRes] = await Promise.all([
+          CourseAPI.getAll(),
+          AnnouncementAPI.getPublic()
+        ]);
+        setCourses(coursesRes.data?.data || []);
+        setNews(newsRes.data?.data || []);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const courseStyles = [
+    { icon: BookOpen, color: "from-teal-500 to-teal-700" },
+    { icon: BookOpen, color: "from-emerald-500 to-emerald-700" },
+    { icon: GraduationCap, color: "from-amber-500 to-amber-700" },
+  ];
+
+  const newsColors = [
+    "from-teal-500 to-emerald-600",
+    "from-emerald-500 to-emerald-700",
+    "from-yellow-500 to-yellow-700",
   ];
 
   const teachers = [
@@ -159,33 +184,6 @@ const Index = () => {
   const founderParts = founderMessage.split("—");
   const founderQuote = founderParts[0]?.trim() ?? founderMessage;
   const founderName = founderParts.slice(1).join("—").trim();
-
-  const news = [
-    {
-      tag: "📌 " + t("home.news.pinned"),
-      date: "10 اپریل 2026",
-      title: t("home.news.admission.title"),
-      desc: t("home.news.admission.desc"),
-      color: "from-teal-500 to-emerald-600",
-      wide: true,
-    },
-    {
-      tag: "🎉 " + t("home.news.event"),
-      date: "5 اپریل 2026",
-      title: t("home.news.quran.title"),
-      desc: t("home.news.quran.desc"),
-      color: "from-emerald-500 to-emerald-700",
-      wide: false,
-    },
-    {
-      tag: "📢 " + t("home.news.notice"),
-      date: "28 مارچ 2026",
-      title: t("home.news.eid.title"),
-      desc: t("home.news.eid.desc"),
-      color: "from-yellow-500 to-yellow-700",
-      wide: false,
-    },
-  ];
 
   return (
     <Layout>
@@ -321,25 +319,34 @@ const Index = () => {
             <p className="text-muted-foreground text-sm sm:text-base">{t("courses.subtitle")}</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
-            {courses.map((c) => (
-              <Link to="/courses" key={c.nameKey}
-                className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-teal-100/60">
-                <div className={`h-1.5 bg-gradient-to-r ${c.color}`} />
-                <div className="p-5 sm:p-7">
-                  <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br ${c.color} flex items-center justify-center mb-4 shadow-md`}>
-                    <c.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            {courses.slice(0, 3).map((c, i) => {
+              const style = courseStyles[i % courseStyles.length];
+              return (
+              <Link to="/courses" key={c._id || i}
+                className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-teal-100/60 flex flex-col h-full">
+                {c.image && c.image.url && (
+                  <div className="w-full h-48 sm:h-56 overflow-hidden">
+                    <img src={c.image.url} alt={c.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   </div>
-                  <h3 className="font-heading text-lg sm:text-xl font-bold text-foreground mb-2">{t(c.nameKey)}</h3>
-                  <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-4">{t(c.descKey)}</p>
-                  <div className="flex items-center justify-between">
+                )}
+                <div className="p-5 sm:p-7 flex flex-col flex-1">
+                  {(!c.image || !c.image.url) && (
+                    <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br ${style.color} flex items-center justify-center mb-4 shadow-md`}>
+                      <style.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                    </div>
+                  )}
+                  <h3 className="font-heading text-lg sm:text-xl font-bold text-foreground mb-2">{c.name}</h3>
+                  <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3">{c.description}</p>
+                  <div className="flex items-center justify-between mt-auto">
                     <span className="text-xs font-semibold text-amber-600 bg-amber-50 px-3 py-1 rounded-full border border-amber-100">
-                      {t(c.durationKey)}
+                      {c.duration?.value} {c.duration?.unit}
                     </span>
                     <ArrowRight className="w-4 h-4 text-teal-400 group-hover:text-teal-600 group-hover:translate-x-1 transition-all" />
                   </div>
                 </div>
+                <div className={`h-2 bg-gradient-to-r ${style.color}`} />
               </Link>
-            ))}
+            )})}
           </div>
           <div className="text-center mt-8 sm:mt-10">
             <Button asChild className="bg-transparent border-2 border-teal-600 text-teal-700 hover:bg-teal-50 rounded-full px-8">
@@ -365,35 +372,39 @@ const Index = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 max-w-5xl mx-auto">
             {/* Pinned wide card */}
-            <div className="md:col-span-2 group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-teal-100/60 hover:-translate-y-1 transition-all duration-300">
-              <div className={`h-1.5 bg-gradient-to-r ${news[0].color}`} />
-              <div className="p-5 sm:p-7">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="bg-teal-600 text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">{news[0].tag}</span>
-                  <span className="text-xs text-muted-foreground">{news[0].date}</span>
+            {news.length > 0 && (
+              <div className="md:col-span-2 group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-teal-100/60 hover:-translate-y-1 transition-all duration-300">
+                <div className={`h-1.5 bg-gradient-to-r ${newsColors[0]}`} />
+                <div className="p-5 sm:p-7">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="bg-teal-600 text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">📌 {t("home.news.latest")}</span>
+                    <span className="text-xs text-muted-foreground">{new Date(news[0].createdAt).toLocaleDateString()}</span>
+                  </div>
+                  <h3 className="font-heading text-lg sm:text-xl font-bold text-foreground mb-3">{news[0].title}</h3>
+                  <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3">{news[0].description}</p>
+                  <Link to="/contact" className="inline-flex items-center gap-2 text-teal-700 font-semibold text-sm hover:gap-3 transition-all duration-200">
+                    {t("hero.apply")} <ArrowRight className="w-4 h-4" />
+                  </Link>
                 </div>
-                <h3 className="font-heading text-lg sm:text-xl font-bold text-foreground mb-3">{news[0].title}</h3>
-                <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-4">{news[0].desc}</p>
-                <Link to="/contact" className="inline-flex items-center gap-2 text-teal-700 font-semibold text-sm hover:gap-3 transition-all duration-200">
-                  {t("hero.apply")} <ArrowRight className="w-4 h-4" />
-                </Link>
               </div>
-            </div>
+            )}
             {/* Side cards */}
             <div className="flex flex-col gap-5 sm:gap-6">
-              {news.slice(1).map((item, i) => (
-                <div key={i} className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-teal-100/60 hover:-translate-y-1 transition-all duration-300">
-                  <div className={`h-1.5 bg-gradient-to-r ${item.color}`} />
+              {news.slice(1, 4).map((item, i) => {
+                const color = newsColors[(i + 1) % newsColors.length];
+                return (
+                <div key={item._id || i} className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-teal-100/60 hover:-translate-y-1 transition-all duration-300">
+                  <div className={`h-1.5 bg-gradient-to-r ${color}`} />
                   <div className="p-4 sm:p-5">
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xs font-bold text-teal-700 bg-teal-50 px-2 py-0.5 rounded-full">{item.tag}</span>
-                      <span className="text-[10px] text-muted-foreground">{item.date}</span>
+                      <span className="text-xs font-bold text-teal-700 bg-teal-50 px-2 py-0.5 rounded-full">📢 {t("home.news.notice")}</span>
+                      <span className="text-[10px] text-muted-foreground">{new Date(item.createdAt).toLocaleDateString()}</span>
                     </div>
                     <h4 className="font-heading text-sm sm:text-base font-bold text-foreground mb-1">{item.title}</h4>
-                    <p className="text-muted-foreground text-xs leading-relaxed">{item.desc}</p>
+                    <p className="text-muted-foreground text-xs leading-relaxed line-clamp-2">{item.description}</p>
                   </div>
                 </div>
-              ))}
+              )})}
             </div>
           </div>
         </div>

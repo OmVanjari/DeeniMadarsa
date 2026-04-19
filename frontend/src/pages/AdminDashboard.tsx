@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AdminLayout from "@/components/AdminLayout";
+import { CourseAPI, AnnouncementAPI, UserAPI } from "@/lib/api";
 
 type CountData = {
   courses: number;
@@ -17,14 +18,12 @@ type CourseItem = {
 };
 
 type NewsItem = {
-  id: string;
+  _id: string;
   title: string;
-  status: string;
-  date: string;
+  description: string;
   isActive?: boolean;
 };
 
-const API = "http://localhost:5000";
 
 const AdminDashboard = () => {
   const minVisibleRows = 3;
@@ -34,26 +33,33 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     const load = async () => {
-      const [cRes, nRes, uRes] = await Promise.all([
-        fetch(`${API}/api/courses`),
-        fetch(`${API}/api/news`),
-        fetch(`${API}/api/users`),
-      ]);
-      const cJson = await cRes.json();
-      const nJson = await nRes.json();
-      const uJson = await uRes.json();
+      try {
+        const [cRes, nRes, uRes] = await Promise.all([
+          CourseAPI.getAllAdmin(),
+          AnnouncementAPI.getAdmin().catch(async (err) => {
+            if (err.response?.status === 401) {
+              return AnnouncementAPI.getPublic();
+            }
+            throw err;
+          }),
+          UserAPI.getAll()
+        ]);
+        
+        const courses: CourseItem[] = Array.isArray(cRes.data?.data) ? cRes.data.data : [];
+        const news: NewsItem[] = Array.isArray(nRes.data?.data) ? nRes.data.data : [];
+        const users = Array.isArray(uRes.data?.data) ? uRes.data.data : [];
 
-      const courses: CourseItem[] = Array.isArray(cJson?.data) ? cJson.data : [];
-      const news: NewsItem[] = Array.isArray(nJson?.data) ? nJson.data : [];
+        setCounts({
+          courses: courses.length,
+          news: news.length,
+          users: users.length,
+        });
 
-      setCounts({
-        courses: courses.length,
-        news: news.length,
-        users: Array.isArray(uJson?.data) ? uJson.data.length : 0,
-      });
-
-      setRecentCourses(courses.slice(0, 5));
-      setActiveNews(news.filter((item) => item.isActive !== false).slice(0, 5));
+        setRecentCourses(courses.slice(0, 5));
+        setActiveNews(news.filter((item) => item.isActive !== false).slice(0, 5));
+      } catch (err) {
+        console.error("Error loading dashboard data:", err);
+      }
     };
     void load();
   }, []);
@@ -117,9 +123,9 @@ const AdminDashboard = () => {
           ) : (
             <div className="space-y-2">
               {activeNews.map((news) => (
-                <Link key={news.id} to="/admin/news" className="block rounded-lg border border-slate-100 bg-slate-50 p-2.5 transition hover:border-amber-200 hover:bg-amber-50">
+                <Link key={news._id} to="/admin/news" className="block rounded-lg border border-slate-100 bg-slate-50 p-2.5 transition hover:border-amber-200 hover:bg-amber-50">
                   <p className="text-sm font-semibold text-slate-800">{news.title}</p>
-                  <p className="text-xs text-slate-500">{news.status} • {news.date}</p>
+                  <p className="text-xs text-slate-500 line-clamp-1">{news.description}</p>
                   <p className="mt-1 text-[11px] font-semibold text-amber-700">Open Announcements page</p>
                 </Link>
               ))}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import AdminLayout from "@/components/AdminLayout";
+import { UserAPI } from "@/lib/api";
 
 type UserItem = {
   id: string;
@@ -9,16 +10,18 @@ type UserItem = {
   status: string;
 };
 
-const API = "http://localhost:5000";
 
 const AdminUsers = () => {
   const [users, setUsers] = useState<UserItem[]>([]);
 
   useEffect(() => {
     const load = async () => {
-      const res = await fetch(`${API}/api/users`);
-      const json = await res.json();
-      setUsers(Array.isArray(json?.data) ? json.data : []);
+      try {
+        const res = await UserAPI.getAll();
+        setUsers(Array.isArray(res.data?.data) ? res.data.data : []);
+      } catch (error) {
+        console.error("Error loading users:", error);
+      }
     };
     void load();
   }, []);

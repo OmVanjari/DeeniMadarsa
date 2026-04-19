@@ -66,7 +66,10 @@ const AdminLayout = ({ title, children }: Props) => {
 
           <Link
             to="/"
-            onClick={() => setSidebarOpen(false)}
+            onClick={() => {
+              setSidebarOpen(false);
+              localStorage.removeItem('adminToken');
+            }}
             className="mt-4 block rounded-xl bg-white px-4 py-3 text-center text-sm font-bold text-teal-800 transition hover:bg-yellow-100"
           >
             Logout
