@@ -11,29 +11,35 @@ import { Link } from "react-router-dom";
 
 const Donation = () => {
   const { t } = useLanguage();
-  const [donationForm, setDonationForm] = useState({ name: "", email: "", phone: "", address: "", reason: "" });
+  const [donationForm, setDonationForm] = useState({ name: "", email: "", phone: "", address: "", donationType: "" });
 
-  const donationReasons = [
-    "General Donation",
-    "Student Scholarships",
-    "Building Maintenance",
-    "Books & Materials",
-    "Teacher Salaries",
-    "Food & Accommodation",
-    "Medical Aid",
-    "Emergency Relief"
+  const donationTypes = [
+    "Zakat",
+    "Sadaqah",
+    "Student Sponsorship",
+    "Education Support",
+    "Food Support",
+    "Building Fund",
+    "General Donation"
+  ];
+
+  const whyDonateReasons = [
+    "Free education for underprivileged students",
+    "Quran memorization programs",
+    "Food & accommodation support",
+    "Books & study material"
   ];
 
   const handleDonationSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    if (!donationForm.name || !donationForm.email || !donationForm.phone || !donationForm.address || !donationForm.reason) {
+    if (!donationForm.name || !donationForm.email || !donationForm.phone || !donationForm.address || !donationForm.donationType) {
       toast.error("Please complete all fields before donating.");
       return;
     }
 
     // Create WhatsApp message with form data
-    const message = `I want to donate to DeeniMadarsa.%0A%0AName: ${donationForm.name}%0AEmail: ${donationForm.email}%0APhone: ${donationForm.phone}%0AAddress: ${donationForm.address}%0AReason: ${donationForm.reason}`;
+    const message = `I want to donate to DeeniMadarsa.%0A%0AName: ${donationForm.name}%0AEmail: ${donationForm.email}%0APhone: ${donationForm.phone}%0AAddress: ${donationForm.address}%0ADonation Type: ${donationForm.donationType}`;
     const whatsappUrl = `https://wa.me/919876543210?text=${message}`;
 
     // Redirect to WhatsApp
@@ -98,9 +104,10 @@ const Donation = () => {
               <span className="text-xs font-bold uppercase tracking-widest text-red-600 mb-2 block">Donation Need Form</span>
               <h3 className="font-heading text-2xl sm:text-3xl font-bold text-foreground">Tell us about your donation need</h3>
               <p className="text-sm text-muted-foreground max-w-2xl mx-auto mt-2">
-                Share your name, email, phone number, address and select a reason for donation, then tap Donate Now to continue on WhatsApp.
+                Share your name, email, phone number, address and select a donation type, then tap Donate Now to continue on WhatsApp.
               </p>
             </div>
+
             <form onSubmit={handleDonationSubmit} className="grid gap-4 sm:grid-cols-2 sm:gap-5">
               <Input
                 placeholder="Name"
@@ -133,21 +140,41 @@ const Donation = () => {
                 className="rounded-2xl border-slate-300 focus:ring-red-500"
               />
 
-              {/* Reason Selection Dropdown */}
+              {/* WHY DONATE Section */}
               <div className="sm:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Reason for donation *</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Why Donate (Trust + Clarity)</label>
+                <Select>
+                  <SelectTrigger className="rounded-2xl border-slate-300 focus:ring-red-500">
+                    <SelectValue placeholder="Click to see why you should donate" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {whyDonateReasons.map((reason, index) => (
+                      <SelectItem key={index} value={reason}>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-slate-500 rounded-full flex-shrink-0"></div>
+                          <span className="text-sm">{reason}</span>
+                        </div>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Donation Type Selection Dropdown */}
+              <div className="sm:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">Donation Type *</label>
                 <Select
-                  value={donationForm.reason}
-                  onValueChange={(value) => setDonationForm({ ...donationForm, reason: value })}
+                  value={donationForm.donationType}
+                  onValueChange={(value) => setDonationForm({ ...donationForm, donationType: value })}
                   required
                 >
                   <SelectTrigger className="rounded-2xl border-slate-300 focus:ring-red-500">
-                    <SelectValue placeholder="Select a reason for donation" />
+                    <SelectValue placeholder="Select donation type" />
                   </SelectTrigger>
                   <SelectContent>
-                    {donationReasons.map((reason) => (
-                      <SelectItem key={reason} value={reason}>
-                        {reason}
+                    {donationTypes.map((type) => (
+                      <SelectItem key={type} value={type}>
+                        {type}
                       </SelectItem>
                     ))}
                   </SelectContent>
