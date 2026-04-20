@@ -5,12 +5,24 @@ import { Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
 
 const Donation = () => {
   const { t } = useLanguage();
   const [donationForm, setDonationForm] = useState({ name: "", email: "", phone: "", address: "", reason: "" });
+
+  const donationReasons = [
+    "General Donation",
+    "Student Scholarships",
+    "Building Maintenance",
+    "Books & Materials",
+    "Teacher Salaries",
+    "Food & Accommodation",
+    "Medical Aid",
+    "Emergency Relief"
+  ];
 
   const handleDonationSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -86,7 +98,7 @@ const Donation = () => {
               <span className="text-xs font-bold uppercase tracking-widest text-red-600 mb-2 block">Donation Need Form</span>
               <h3 className="font-heading text-2xl sm:text-3xl font-bold text-foreground">Tell us about your donation need</h3>
               <p className="text-sm text-muted-foreground max-w-2xl mx-auto mt-2">
-                Share your name, email, phone number, address and reason, then tap Donate Now to continue on WhatsApp.
+                Share your name, email, phone number, address and select a reason for donation, then tap Donate Now to continue on WhatsApp.
               </p>
             </div>
             <form onSubmit={handleDonationSubmit} className="grid gap-4 sm:grid-cols-2 sm:gap-5">
@@ -120,14 +132,27 @@ const Donation = () => {
                 required
                 className="rounded-2xl border-slate-300 focus:ring-red-500"
               />
-              <Textarea
-                placeholder="Reason for donation"
-                value={donationForm.reason}
-                onChange={(e) => setDonationForm({ ...donationForm, reason: e.target.value })}
-                required
-                rows={4}
-                className="rounded-2xl border-slate-300 focus:ring-red-500 resize-none sm:col-span-2"
-              />
+
+              {/* Reason Selection Dropdown */}
+              <div className="sm:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">Reason for donation *</label>
+                <Select
+                  value={donationForm.reason}
+                  onValueChange={(value) => setDonationForm({ ...donationForm, reason: value })}
+                  required
+                >
+                  <SelectTrigger className="rounded-2xl border-slate-300 focus:ring-red-500">
+                    <SelectValue placeholder="Select a reason for donation" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {donationReasons.map((reason) => (
+                      <SelectItem key={reason} value={reason}>
+                        {reason}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
               <Button
                 type="submit"
                 className="sm:col-span-2 w-full bg-amber-600 hover:bg-amber-500 text-white rounded-2xl font-semibold flex items-center justify-center gap-2 py-3"
