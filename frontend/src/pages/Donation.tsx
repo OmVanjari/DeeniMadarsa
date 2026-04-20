@@ -1,59 +1,71 @@
 import { useState, type FormEvent } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Layout from "@/components/Layout";
-import { Send } from "lucide-react";
+import { Send, Heart, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { toast } from "sonner";
 import { Link } from "react-router-dom";
 
 const Donation = () => {
   const { t } = useLanguage();
-  const [donationForm, setDonationForm] = useState({ name: "", email: "", phone: "", address: "", donationType: "" });
+  const [donationForm, setDonationForm] = useState({ name: "", email: "", phone: "", address: "", donationType: "", whyDonate: "", otherReason: "" });
+  const [showPopup, setShowPopup] = useState(false);
+  const [whatsappUrl, setWhatsappUrl] = useState("");
+
+  const handlePopupClose = () => setShowPopup(false);
 
   const donationTypes = [
-    "Zakat",
-    "Sadaqah",
-    "Student Sponsorship",
-    "Education Support",
-    "Food Support",
-    "Building Fund",
-    "General Donation"
+    { key: "donation.type.zakat",       value: "Zakat" },
+    { key: "donation.type.sadaqah",     value: "Sadaqah" },
+    { key: "donation.type.sponsorship", value: "Student Sponsorship" },
+    { key: "donation.type.education",   value: "Education Support" },
+    { key: "donation.type.food",        value: "Food Support" },
+    { key: "donation.type.building",    value: "Building Fund" },
+    { key: "donation.type.general",     value: "General Donation" },
   ];
 
   const whyDonateReasons = [
-    "Free education for underprivileged students",
-    "Quran memorization programs",
-    "Food & accommodation support",
-    "Books & study material"
+    "donation.why.1", "donation.why.2", "donation.why.3", "donation.why.4",
   ];
 
   const handleDonationSubmit = (e: FormEvent) => {
     e.preventDefault();
+    if (!donationForm.name || !donationForm.phone) return;
 
-    if (!donationForm.name || !donationForm.email || !donationForm.phone || !donationForm.address || !donationForm.donationType) {
-      toast.error("Please complete all fields before donating.");
-      return;
-    }
+    const whyDisplay = donationForm.whyDonate === "other"
+      ? donationForm.otherReason
+      : donationForm.whyDonate ? t(donationForm.whyDonate) : "";
 
-    // Create WhatsApp message with form data
-    const message = `I want to donate to DeeniMadarsa.%0A%0AName: ${donationForm.name}%0AEmail: ${donationForm.email}%0APhone: ${donationForm.phone}%0AAddress: ${donationForm.address}%0ADonation Type: ${donationForm.donationType}`;
-    const whatsappUrl = `https://wa.me/919876543210?text=${message}`;
+    const lines = [
+      "*Darul Uloom Junaidia Ajmalia*",
+      "*New Donation Request*",
+      "",
+      "*Name:* " + donationForm.name,
+      "*Phone:* " + donationForm.phone,
+      donationForm.email        ? "*Email:* " + donationForm.email        : "",
+      donationForm.address      ? "*Address:* " + donationForm.address    : "",
+      whyDisplay                ? "*Reason:* " + whyDisplay               : "",
+      donationForm.donationType ? "*Donation Type:* " + donationForm.donationType : "",
+      "",
+      "*JazakAllah Khair for your support!*",
+    ].filter(Boolean).join("\n");
 
-    // Redirect to WhatsApp
-    window.open(whatsappUrl, '_blank');
+    const url = "https://wa.me/919835051934?text=" + encodeURIComponent(lines);
+    setWhatsappUrl(url);
+    setShowPopup(true);
+    setDonationForm({ name: "", email: "", phone: "", address: "", donationType: "", whyDonate: "", otherReason: "" });
   };
 
   return (
     <Layout>
 
-      {/* ── HERO ── */}
+      {/* HERO */}
       <section className="relative h-auto sm:h-[80vh] min-h-0 flex items-start sm:items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img src="/WhatsApp Image 2026-04-13 at 10.32.41 AM.jpeg" alt="Donation" className="w-full h-full object-cover scale-110 transition-transform duration-[8s] ease-out" />
-           <div className="absolute inset-0 bg-gradient-to-br from-teal-950/90 via-emerald-900/82 to-green-950/88" />
+          <div className="absolute inset-0 bg-gradient-to-br from-teal-950/90 via-emerald-900/82 to-green-950/88" />
         </div>
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/3 right-1/4 w-64 h-64 rounded-full bg-amber-400/10 blur-3xl" />
@@ -79,31 +91,18 @@ const Donation = () => {
           <p className="text-white/80 text-base sm:text-lg leading-relaxed mb-8 animate-fade-up" style={{ animationDelay: "0.15s" }}>
             {t("hero.donation.desc")}
           </p>
- main
-                  <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 lg:gap-4 justify-center items-start sm:items-center self-start sm:self-center">
-                    <Button asChild size="lg"
-                      className="w-auto bg-amber-600 hover:bg-amber-500 text-white font-semibold rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base shadow-xl hover:scale-105 transition-all duration-200">
-                      <a href="https://wa.me/919876543210?text=I want to donate to DeeniMadarsa" target="_blank" rel="noopener noreferrer">
-                        {t("Donate Now ")}
-                      </a>
-                    </Button>
-                    <Button asChild size="lg"
-                      className="w-auto bg-transparent border-2 border-white/60 text-white hover:bg-white/15 rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base hover:scale-105 transition-all duration-200">
-                      <Link to="/contact">{t("nav.contact")}</Link>
-                    </Button>
-                  </div>
-
           <div className="flex flex-row flex-wrap gap-3 justify-center animate-fade-up" style={{ animationDelay: "0.3s" }}>
             <Button asChild size="lg"
               className="bg-amber-500 hover:bg-amber-400 text-white font-semibold rounded-full px-8 shadow-2xl shadow-amber-900/40 hover:scale-105 transition-all duration-200">
-              <Link to="/donation">{t("donation.button")}</Link>
+              <a href="https://wa.me/919835051934?text=I want to donate to Darul Uloom Junaidia Ajmalia" target="_blank" rel="noopener noreferrer">
+                {t("donation.button")}
+              </a>
             </Button>
             <Button asChild size="lg"
               className="bg-white/10 backdrop-blur-sm border border-white/30 text-white hover:bg-white/20 rounded-full px-8 hover:scale-105 transition-all duration-200">
               <Link to="/contact">{t("nav.contact")}</Link>
             </Button>
           </div>
- main
         </div>
         <div className="absolute bottom-0 left-0 right-0 z-10 block leading-none translate-y-px" style={{ marginBottom: "-2px" }}>
           <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" className="w-full block" preserveAspectRatio="none" style={{ display: "block", marginBottom: "-1px" }}>
@@ -112,110 +111,154 @@ const Donation = () => {
         </div>
       </section>
 
-      {/* ── DONATION CARDS ── */}
+      {/* DONATION FORM */}
       <section className="py-6 sm:py-8 lg:py-10 bg-white -mt-px">
         <div className="container mx-auto px-3 sm:px-4 max-w-4xl">
           <div className="text-center mb-8 sm:mb-10 lg:mb-14">
-            <div className="inline-flex items-center gap-2 bg-red-50 border border-red-200 rounded-full px-4 py-1.5 mb-4"><span className="w-2 h-2 rounded-full bg-red-500" /><span className="text-red-700 text-xs font-bold uppercase tracking-widest">{t("donation.howtodonate")}</span></div>
+            <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-full px-4 py-1.5 mb-4">
+              <span className="w-2 h-2 rounded-full bg-amber-500" />
+              <span className="text-amber-700 text-xs font-bold uppercase tracking-widest">{t("donation.howtodonate")}</span>
+            </div>
             <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">{t("donation.subtitle")}</h2>
           </div>
 
-          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-10 text-center">
-            <p className="text-base sm:text-lg text-slate-700">
-              Fill the donation form below and click Donate Now to proceed on WhatsApp.
-            </p>
-          </div>
-          <div className="mt-10 bg-slate-50 rounded-3xl border border-slate-200 p-6 sm:p-8 lg:p-10">
-            <div className="mb-6 text-center">
-              <div className="inline-flex items-center gap-2 bg-red-50 border border-red-200 rounded-full px-4 py-1.5 mb-4"><span className="w-2 h-2 rounded-full bg-red-500" /><span className="text-red-700 text-xs font-bold uppercase tracking-widest">Donation Need Form</span></div>
-              <h3 className="font-heading text-2xl sm:text-3xl font-bold text-foreground">Tell us about your donation need</h3>
-              <p className="text-sm text-muted-foreground max-w-2xl mx-auto mt-2">
-                Share your name, email, phone number, address and select a donation type, then tap Donate Now to continue on WhatsApp.
-              </p>
-            </div>
-
+          <div className="bg-amber-50/60 rounded-3xl border border-amber-100 p-6 sm:p-8 lg:p-10">
             <form onSubmit={handleDonationSubmit} className="grid gap-4 sm:grid-cols-2 sm:gap-5">
               <Input
-                placeholder="Name"
+                placeholder={t("donation.form.name")}
                 value={donationForm.name}
                 onChange={(e) => setDonationForm({ ...donationForm, name: e.target.value })}
                 required
-                className="rounded-2xl border-slate-300 focus:ring-red-500"
-              />
-              <Input
-                type="email"
-                placeholder="Email ID"
-                value={donationForm.email}
-                onChange={(e) => setDonationForm({ ...donationForm, email: e.target.value })}
-                required
-                className="rounded-2xl border-slate-300 focus:ring-red-500"
+                className="rounded-2xl border-amber-200 focus:ring-amber-500"
               />
               <Input
                 type="tel"
-                placeholder="Phone Number"
+                placeholder={t("donation.form.phone")}
                 value={donationForm.phone}
                 onChange={(e) => setDonationForm({ ...donationForm, phone: e.target.value })}
                 required
-                className="rounded-2xl border-slate-300 focus:ring-red-500"
+                className="rounded-2xl border-amber-200 focus:ring-amber-500"
               />
               <Input
-                placeholder="Address"
+                type="email"
+                placeholder={t("donation.form.email")}
+                value={donationForm.email}
+                onChange={(e) => setDonationForm({ ...donationForm, email: e.target.value })}
+                className="rounded-2xl border-amber-200 focus:ring-amber-500"
+              />
+              <Input
+                placeholder={t("donation.form.address")}
                 value={donationForm.address}
                 onChange={(e) => setDonationForm({ ...donationForm, address: e.target.value })}
-                required
-                className="rounded-2xl border-slate-300 focus:ring-red-500"
+                className="rounded-2xl border-amber-200 focus:ring-amber-500"
               />
 
-              {/* WHY DONATE Section */}
               <div className="sm:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Why Donate (Trust + Clarity)</label>
-                <Select>
-                  <SelectTrigger className="rounded-2xl border-slate-300 focus:ring-red-500">
-                    <SelectValue placeholder="Click to see why you should donate" />
+                <label className="block text-sm font-medium text-amber-700 mb-2">{t("donation.form.whydonate.label")}</label>
+                <Select
+                  value={donationForm.whyDonate}
+                  onValueChange={(value) => setDonationForm({ ...donationForm, whyDonate: value, otherReason: "" })}
+                >
+                  <SelectTrigger className="rounded-2xl border-amber-200 focus:ring-amber-500">
+                    <SelectValue placeholder={t("donation.form.whydonate.placeholder")} />
                   </SelectTrigger>
                   <SelectContent>
-                    {whyDonateReasons.map((reason, index) => (
-                      <SelectItem key={index} value={reason}>
+                    {whyDonateReasons.map((key, index) => (
+                      <SelectItem key={index} value={key}>
                         <div className="flex items-center gap-2">
-                          <div className="w-2 h-2 bg-slate-500 rounded-full flex-shrink-0"></div>
-                          <span className="text-sm">{reason}</span>
+                          <div className="w-2 h-2 bg-amber-400 rounded-full flex-shrink-0" />
+                          <span className="text-sm">{t(key)}</span>
                         </div>
                       </SelectItem>
                     ))}
+                    <SelectItem value="other">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-amber-400 rounded-full flex-shrink-0" />
+                        <span className="text-sm">{t("donation.type.other")}</span>
+                      </div>
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
-              {/* Donation Type Selection Dropdown */}
+              {donationForm.whyDonate === "other" && (
+                <div className="sm:col-span-2">
+                  <Textarea
+                    placeholder={t("donation.form.other.placeholder")}
+                    value={donationForm.otherReason}
+                    onChange={(e) => setDonationForm({ ...donationForm, otherReason: e.target.value })}
+                    rows={3}
+                    className="rounded-2xl border-amber-200 focus:ring-amber-500 resize-none"
+                  />
+                </div>
+              )}
+
               <div className="sm:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Donation Type *</label>
+                <label className="block text-sm font-medium text-amber-700 mb-2">{t("donation.form.type.label")}</label>
                 <Select
                   value={donationForm.donationType}
                   onValueChange={(value) => setDonationForm({ ...donationForm, donationType: value })}
-                  required
                 >
-                  <SelectTrigger className="rounded-2xl border-slate-300 focus:ring-red-500">
-                    <SelectValue placeholder="Select donation type" />
+                  <SelectTrigger className="rounded-2xl border-amber-200 focus:ring-amber-500">
+                    <SelectValue placeholder={t("donation.form.type.placeholder")} />
                   </SelectTrigger>
                   <SelectContent>
                     {donationTypes.map((type) => (
-                      <SelectItem key={type} value={type}>
-                        {type}
+                      <SelectItem key={type.value} value={type.value}>
+                        {t(type.key)}
                       </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
               </div>
+
               <Button
                 type="submit"
                 className="sm:col-span-2 w-full bg-amber-600 hover:bg-amber-500 text-white rounded-2xl font-semibold flex items-center justify-center gap-2 py-3"
               >
-                <Send className="w-4 h-4" /> Donate Now
+                <Send className="w-4 h-4" /> {t("donation.form.submit")}
               </Button>
             </form>
           </div>
         </div>
       </section>
+
+      {/* POPUP */}
+      {showPopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+          <div className="relative bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 text-center">
+            <button onClick={handlePopupClose}
+              className="absolute top-4 right-4 w-8 h-8 rounded-full bg-amber-50 hover:bg-amber-100 flex items-center justify-center transition-colors">
+              <X className="w-4 h-4 text-amber-600" />
+            </button>
+            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center mx-auto mb-5 shadow-lg shadow-green-200">
+              <Heart className="w-8 h-8 text-white" />
+            </div>
+            <h3 className="font-heading text-2xl font-bold text-foreground mb-3">{t("donation.popup.title")}</h3>
+            <p className="text-muted-foreground text-sm leading-relaxed mb-3">
+              {t("donation.popup.msg1")}
+            </p>
+            <p className="text-amber-700 font-semibold text-sm mb-6">
+              {t("donation.popup.msg2")}
+            </p>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={handlePopupClose}
+              className="flex items-center justify-center gap-2 w-full bg-green-500 hover:bg-green-400 text-white font-bold rounded-2xl py-3 shadow-lg shadow-green-200 hover:scale-[1.02] transition-all duration-200 mb-3"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              {t("donation.popup.btn")}
+            </a>
+            <button onClick={handlePopupClose} className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+              {t("donation.popup.close")}
+            </button>
+          </div>
+        </div>
+      )}
 
     </Layout>
   );
