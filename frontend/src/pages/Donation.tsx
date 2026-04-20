@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Layout from "@/components/Layout";
-import { Heart, CreditCard, Smartphone, Send } from "lucide-react";
+import { Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,19 +10,22 @@ import { Link } from "react-router-dom";
 
 const Donation = () => {
   const { t } = useLanguage();
-  const [donationForm, setDonationForm] = useState({ name: "", email: "", phone: "", reason: "" });
-  const [showPaymentDetails, setShowPaymentDetails] = useState(false);
+  const [donationForm, setDonationForm] = useState({ name: "", email: "", phone: "", address: "", reason: "" });
 
   const handleDonationSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    if (!donationForm.name || !donationForm.email || !donationForm.phone || !donationForm.reason) {
+    if (!donationForm.name || !donationForm.email || !donationForm.phone || !donationForm.address || !donationForm.reason) {
       toast.error("Please complete all fields before donating.");
       return;
     }
 
-    setShowPaymentDetails(true);
-    toast.success("Payment details are now visible below.");
+    // Create WhatsApp message with form data
+    const message = `I want to donate to DeeniMadarsa.%0A%0AName: ${donationForm.name}%0AEmail: ${donationForm.email}%0APhone: ${donationForm.phone}%0AAddress: ${donationForm.address}%0AReason: ${donationForm.reason}`;
+    const whatsappUrl = `https://wa.me/919876543210?text=${message}`;
+
+    // Redirect to WhatsApp
+    window.open(whatsappUrl, '_blank');
   };
 
   return (
@@ -48,7 +51,7 @@ const Donation = () => {
                     <Button asChild size="lg"
                       className="w-auto bg-amber-600 hover:bg-amber-500 text-white font-semibold rounded-full px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base shadow-xl hover:scale-105 transition-all duration-200">
                       <a href="https://wa.me/919876543210?text=I want to donate to DeeniMadarsa" target="_blank" rel="noopener noreferrer">
-                        {t("Donate Now")}
+                        {t("Donate Now ")}
                       </a>
                     </Button>
                     <Button asChild size="lg"
@@ -73,67 +76,17 @@ const Donation = () => {
             <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">{t("donation.subtitle")}</h2>
           </div>
 
-          {showPaymentDetails ? (
-            <>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
-
-                {/* UPI */}
-                <div className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg border border-red-100/60 hover:-translate-y-2 transition-all duration-300">
-                  <div className="h-1.5 bg-gradient-to-r from-amber-500 to-amber-700" />
-                  <div className="p-4 sm:p-5 lg:p-6 text-center">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center mx-auto mb-3 sm:mb-4 lg:mb-5 shadow-md">
-                      <Smartphone className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 text-white" />
-                    </div>
-                    <h3 className="font-heading text-sm sm:text-base lg:text-lg font-bold text-foreground mb-2 sm:mb-3">{t("donation.upi")}</h3>
-                    <p className="font-mono text-xs sm:text-sm lg:text-base text-amber-700 bg-amber-50 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg lg:rounded-xl border border-amber-100 inline-block break-all">
-                      madarsa@upi
-                    </p>
-                    <p className="text-muted-foreground text-xs mt-2 sm:mt-3">{t("donation.scantext")}</p>
-                  </div>
-                </div>
-
-                {/* Bank */}
-                <div className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg border border-amber-100/60 hover:-translate-y-2 transition-all duration-300">
-                  <div className="h-1.5 bg-gradient-to-r from-amber-500 to-amber-700" />
-                  <div className="p-4 sm:p-5 lg:p-6">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center mx-auto mb-3 sm:mb-4 lg:mb-5 shadow-md">
-                      <CreditCard className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 text-white" />
-                    </div>
-                    <h3 className="font-heading text-sm sm:text-base lg:text-lg font-bold text-foreground mb-3 sm:mb-4 lg:mb-5 text-center">{t("donation.bank")}</h3>
-                    <div className="space-y-2 sm:space-y-2.5 lg:space-y-3">
-                      {[t("donation.bank.name"), t("donation.bank.account"), t("donation.bank.ifsc")].map((item, i) => (
-                        <div key={i} className="flex items-center gap-2 sm:gap-3 bg-gray-50 rounded-lg lg:rounded-xl px-2.5 sm:px-3 lg:px-4 py-2 sm:py-2.5 text-xs sm:text-sm text-foreground">
-                          <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-amber-500 shrink-0" />
-                          <span className="break-all">{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-              {/* Note */}
-              <div className="mt-6 sm:mt-8 lg:mt-10 bg-amber-50 border border-amber-100 rounded-2xl p-4 sm:p-5 lg:p-6 text-center">
-                <Heart className="w-5 h-5 sm:w-6 sm:h-6 text-amber-600 mx-auto mb-2" />
-                <p className="text-amber-800 text-xs sm:text-sm leading-relaxed">
-                  {t("donation.jazakallah")}
-                </p>
-              </div>
-            </>
-          ) : (
-            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-10 text-center">
-              <p className="text-base sm:text-lg text-slate-700">
-                Fill the donation form below and click Donate Now to reveal the UPI and bank details.
-              </p>
-            </div>
-          )}
+          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-10 text-center">
+            <p className="text-base sm:text-lg text-slate-700">
+              Fill the donation form below and click Donate Now to proceed on WhatsApp.
+            </p>
+          </div>
           <div className="mt-10 bg-slate-50 rounded-3xl border border-slate-200 p-6 sm:p-8 lg:p-10">
             <div className="mb-6 text-center">
               <span className="text-xs font-bold uppercase tracking-widest text-red-600 mb-2 block">Donation Need Form</span>
               <h3 className="font-heading text-2xl sm:text-3xl font-bold text-foreground">Tell us about your donation need</h3>
               <p className="text-sm text-muted-foreground max-w-2xl mx-auto mt-2">
-                Share your name, email, phone number and reason, then tap Donate Now to continue on WhatsApp.
+                Share your name, email, phone number, address and reason, then tap Donate Now to continue on WhatsApp.
               </p>
             </div>
             <form onSubmit={handleDonationSubmit} className="grid gap-4 sm:grid-cols-2 sm:gap-5">
@@ -157,6 +110,13 @@ const Donation = () => {
                 placeholder="Phone Number"
                 value={donationForm.phone}
                 onChange={(e) => setDonationForm({ ...donationForm, phone: e.target.value })}
+                required
+                className="rounded-2xl border-slate-300 focus:ring-red-500"
+              />
+              <Input
+                placeholder="Address"
+                value={donationForm.address}
+                onChange={(e) => setDonationForm({ ...donationForm, address: e.target.value })}
                 required
                 className="rounded-2xl border-slate-300 focus:ring-red-500"
               />
