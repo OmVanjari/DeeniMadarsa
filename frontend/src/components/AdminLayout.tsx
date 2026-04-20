@@ -21,7 +21,7 @@ const AdminLayout = ({ title, children }: Props) => {
         <div className="fixed inset-x-0 top-0 z-30 flex items-center justify-between border-b border-teal-100 bg-white/95 px-2.5 py-2 backdrop-blur md:hidden">
           <div className="flex items-center gap-2">
             <img src="/schoollogo.png" alt="School Logo" className="h-9 w-9 rounded-md border border-teal-100 bg-teal-50 p-1 object-contain" />
-            <p className="text-sm font-bold text-teal-900">Darul Uloom Jameenia Ajmaliya</p>
+            <p className="text-sm font-bold text-teal-900">Darul Uloom Junaidia Ajmalia</p>
           </div>
           <button
             onClick={() => setSidebarOpen((prev) => !prev)}
@@ -45,7 +45,7 @@ const AdminLayout = ({ title, children }: Props) => {
             <img src="/schoollogo.png" alt="School Logo" className="h-12 w-12 rounded-lg bg-white/10 p-1.5 object-contain" />
             <div>
               <p className="text-xs text-teal-100">Admin Panel</p>
-              <h1 className="text-sm font-bold leading-tight">Darul Uloom Jameenia Ajmaliya</h1>
+              <h1 className="text-sm font-bold leading-tight">Darul Uloom Junaidia Ajmalia</h1>
             </div>
           </div>
 

@@ -19,7 +19,7 @@ const Footer = () => {
   className="w-20 h-20 sm:w-24 sm:h-24 object-contain rounded-full bg-white/10 p-1 shrink-0" 
 />
               <h3 className="font-heading text-base sm:text-lg font-bold text-white leading-tight">
-                Darul Uloom Jameenia Ajmaliya
+                Darul Uloom Junaidia Ajmalia
               </h3>
             </div>
             <p className="text-teal-200 text-sm mb-4 sm:mb-5 leading-relaxed max-w-sm">

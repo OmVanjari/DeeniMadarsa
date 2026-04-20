@@ -52,12 +52,13 @@ const Contact = () => {
       <section className="relative h-auto sm:h-[70vh] min-h-0 flex items-start sm:items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img src="/WhatsApp Image 2026-04-13 at 10.32.40 AM (1).jpeg" alt="Contact" className="w-full h-full object-cover scale-110 transition-transform duration-[8s] ease-out" />
-          <div className="absolute inset-0 bg-gradient-to-br from-teal-950/90 via-teal-900/80 to-emerald-950/90" />
+          <div className="absolute inset-0 bg-gradient-to-br from-teal-950/90 via-emerald-900/82 to-green-950/88" />
         </div>
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -bottom-16 -left-16 w-80 h-80 rounded-full border border-white/5" />
-          <div className="absolute top-1/3 right-1/4 w-56 h-56 rounded-full bg-yellow-400/10 blur-3xl" />
-          <div className="absolute bottom-1/4 left-1/3 w-44 h-44 rounded-full bg-teal-400/10 blur-3xl" />
+          <div className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full bg-amber-400/10 blur-3xl" />
+          <div className="absolute bottom-1/4 left-1/4 w-48 h-48 rounded-full bg-teal-400/10 blur-3xl" />
+          <div className="absolute top-0 left-0 w-96 h-96 rounded-full bg-emerald-500/15 blur-3xl -translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-green-600/15 blur-3xl translate-x-1/3 translate-y-1/3" />
           <div className="absolute inset-0 opacity-[0.04]"
             style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
         </div>

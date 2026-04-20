@@ -10,9 +10,9 @@ import Layout from "@/components/Layout";
 import { CourseAPI, AnnouncementAPI } from "@/lib/api";
 
 const slides = [
-  { id: 1, img: "/WhatsApp Image 2026-04-13 at 10.32.40 AM (1).jpeg",  badge: "Est. 2004",  titleKey: "hero.welcome",      subtitleKey: "hero.subtitle" },
-  { id: 2, img: "/WhatsApp Image 2026-04-13 at 10.32.40 AM.jpeg",    badge: "20+ سال",        titleKey: "courses.title",     subtitleKey: "courses.subtitle" },
-  { id: 3, img: "/WhatsApp Image 2026-04-13 at 10.32.41 AM.jpeg",    badge: "500+ طلباء",     titleKey: "donation.subtitle", subtitleKey: "donation.message" },
+  { id: 1, img: "/WhatsApp Image 2026-04-13 at 10.32.40 AM (1).jpeg",  badge: "Est. 2004",  titleKey: "hero.welcome",      subtitleKey: "hero.subtitle",       descKey: "hero.slide1.desc" },
+  { id: 2, img: "/WhatsApp Image 2026-04-13 at 10.32.40 AM.jpeg",    badge: "20+ سال",        titleKey: "courses.title",     subtitleKey: "courses.subtitle",    descKey: "hero.slide2.desc" },
+  { id: 3, img: "/WhatsApp Image 2026-04-13 at 10.32.41 AM.jpeg",    badge: "500+ طلباء",     titleKey: "donation.subtitle", subtitleKey: "donation.message",    descKey: "hero.slide3.desc" },
 ];
 
 const stats = [
@@ -70,14 +70,14 @@ const Index = () => {
     {
       id: 1,
       img: "/schoollogo.png",
-      alt: "Darul Uloom Jameenia Ajmaliya Logo",
+      alt: "Darul Uloom Junaidia Ajmalia Logo",
       imgClass: "w-[78%] h-[78%] object-contain",
       bgClass: "bg-gradient-to-br from-teal-50 to-teal-100",
     },
     {
       id: 2,
       img: "/building.jpeg",
-      alt: "Darul Uloom Jameenia Ajmaliya Building",
+      alt: "Darul Uloom Junaidia Ajmalia Building",
       imgClass: "w-full h-full object-cover",
       bgClass: "bg-teal-100",
     },
@@ -167,16 +167,6 @@ const Index = () => {
       glow: "from-amber-100 to-yellow-100",
       imgPos: "object-[50%_20%]",
     },
-    {
-      nameKey: "faculty.member.jabir",
-      titleKey: "faculty.viceprincipal.title",
-      qualKey: "faculty.jabir.qual",
-      img: "/vice principal.jpeg",
-      ring: "border-cyan-300",
-      stripe: "from-cyan-500 to-sky-600",
-      glow: "from-cyan-100 to-sky-100",
-      imgPos: "object-[50%_18%]",
-    },
   ];
 
   const slide = slides[current];
@@ -188,12 +178,17 @@ const Index = () => {
         {slides.map((s, i) => (
           <div key={s.id} className={`absolute inset-0 transition-opacity duration-700 ${i === current ? "opacity-100" : "opacity-0"}`}>
             <img src={s.img} alt={`slide-${s.id}`} className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/65" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(245,158,11,0.16),transparent_45%),radial-gradient(circle_at_80%_75%,rgba(20,184,166,0.2),transparent_45%)]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-teal-950/90 via-emerald-900/82 to-green-950/88" />
           </div>
         ))}
-        <div className="absolute inset-0 z-[1] opacity-[0.08]"
-          style={{ backgroundImage: "repeating-linear-gradient(45deg, white 0, white 1px, transparent 1px, transparent 22px)" }} />
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-[1]">
+          <div className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full bg-amber-400/10 blur-3xl" />
+          <div className="absolute bottom-1/4 left-1/4 w-48 h-48 rounded-full bg-teal-400/10 blur-3xl" />
+          <div className="absolute top-0 left-0 w-96 h-96 rounded-full bg-emerald-500/15 blur-3xl -translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-green-600/15 blur-3xl translate-x-1/3 translate-y-1/3" />
+          <div className="absolute inset-0 opacity-[0.04]"
+            style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
+        </div>
         <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4 sm:px-6 md:px-8 w-full overflow-hidden">
           <span key={`badge-${current}`}
             className="inline-block bg-yellow-500/95 text-white text-[11px] sm:text-xs font-bold uppercase tracking-widest px-3.5 sm:px-4 py-1.5 sm:py-1.5 rounded-full mb-4 sm:mb-4 lg:mb-6 animate-fade-in shadow-lg shadow-yellow-900/40">
@@ -204,9 +199,14 @@ const Index = () => {
             {t(slide.titleKey)}
           </h1>
           <p key={`sub-${current}`}
-            className="text-white/85 text-[15px] sm:text-base md:text-lg max-w-2xl mb-5 sm:mb-6 lg:mb-8 animate-fade-up px-2 leading-relaxed"
+            className="text-white text-[15px] sm:text-base md:text-lg max-w-2xl mb-2 sm:mb-3 animate-fade-up px-2 leading-relaxed"
             style={{ animationDelay: "0.15s" }}>
             {t(slide.subtitleKey)}
+          </p>
+          <p key={`desc-${current}`}
+            className="text-white text-base sm:text-lg md:text-xl max-w-2xl mb-5 sm:mb-6 lg:mb-8 animate-fade-up px-2 leading-relaxed"
+            style={{ animationDelay: "0.25s" }}>
+            {t(slide.descKey)}
           </p>
           <div className="flex flex-row flex-wrap gap-3 sm:gap-4 justify-center items-center animate-fade-up" style={{ animationDelay: "0.3s" }}>
             <Button asChild size="lg"
@@ -480,10 +480,10 @@ const Index = () => {
             <p className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto">{t("home.leadership.subheading")}</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 max-w-6xl mx-auto">
             {teachers.map((tc) => (
               <div key={tc.nameKey}
-                className="group bg-white/95 backdrop-blur-sm rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 border border-teal-100/70 text-center w-full max-w-[21rem] md:max-w-none mx-auto">
+                className="group bg-white/95 backdrop-blur-sm rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 border border-teal-100/70 text-center w-full max-w-[21rem]">
                 <div className={`h-1.5 bg-gradient-to-r ${tc.stripe}`} />
                 <div className="p-4 sm:p-5 lg:p-6">
                   <div className={`w-[12.5rem] sm:w-[13.5rem] lg:w-[14.5rem] aspect-[4/5] mx-auto p-1 rounded-2xl bg-gradient-to-br ${tc.glow} mb-3`}>

@@ -83,12 +83,13 @@ const About = () => {
       <section className="relative h-auto sm:h-[80vh] min-h-0 flex items-start sm:items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img src="/WhatsApp Image 2026-04-13 at 10.32.40 AM (1).jpeg" alt="About" className="w-full h-full object-cover scale-110 transition-transform duration-[8s] ease-out" />
-          <div className="absolute inset-0 bg-gradient-to-br from-teal-950/90 via-teal-900/84 to-emerald-950/92" />
+          <div className="absolute inset-0 bg-gradient-to-br from-teal-950/90 via-emerald-900/82 to-green-950/88" />
         </div>
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full border border-white/5" />
           <div className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full bg-amber-400/10 blur-3xl" />
           <div className="absolute bottom-1/4 left-1/4 w-48 h-48 rounded-full bg-teal-400/10 blur-3xl" />
+          <div className="absolute top-0 left-0 w-96 h-96 rounded-full bg-emerald-500/15 blur-3xl -translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-green-600/15 blur-3xl translate-x-1/3 translate-y-1/3" />
           <div className="absolute inset-0 opacity-[0.04]"
             style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
         </div>
@@ -135,7 +136,7 @@ const About = () => {
                       <span className="w-2 h-2 rounded-full bg-amber-400" />
                       <span className="text-amber-300 text-xs font-bold uppercase tracking-wider">Est. 2004</span>
                     </div>
-                    <p className="font-heading text-white text-sm font-bold">Darul Uloom Jameenia Ajmaliya</p>
+                    <p className="font-heading text-white text-sm font-bold">Darul Uloom Junaidia Ajmalia</p>
                     <p className="text-white/60 text-xs mt-0.5">Mehdur, Ghazipur, U.P.</p>
                   </div>
                 </div>
@@ -178,7 +179,7 @@ const About = () => {
             <span className="text-teal-700 text-xs font-bold uppercase tracking-widest">Our Campus</span>
           </div>
           <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">Photo Gallery</h2>
-          <p className="text-muted-foreground text-sm mt-2">A glimpse into life at Darul Uloom Jameenia Ajmaliya</p>
+          <p className="text-muted-foreground text-sm mt-2">A glimpse into life at Darul Uloom Junaidia Ajmalia</p>
         </div>
 
         {/* Single auto-scroll row */}

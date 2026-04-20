@@ -84,13 +84,14 @@ const Faculty = () => {
       {/* ── HERO ── */}
       <section className="relative h-auto sm:h-[80vh] min-h-0 flex items-start sm:items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src="/WhatsApp Image 2026-04-13 at 10.32.41 AM.jpeg" alt="Faculty" className="w-full h-full object-cover scale-110 transition-transform duration-[8s] ease-out" />
-          <div className="absolute inset-0 bg-gradient-to-br from-teal-950/90 via-teal-900/80 to-emerald-950/90" />
+          <img src="/faculty.jpeg" alt="Faculty" className="w-full h-full object-cover transition-transform duration-[8s] ease-out" />
+          <div className="absolute inset-0 bg-gradient-to-br from-teal-950/90 via-emerald-900/82 to-green-950/88" />
         </div>
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-16 -right-16 w-80 h-80 rounded-full border border-white/5" />
-          <div className="absolute top-1/4 left-1/4 w-56 h-56 rounded-full bg-amber-400/10 blur-3xl" />
-          <div className="absolute bottom-1/3 right-1/3 w-48 h-48 rounded-full bg-teal-400/10 blur-3xl" />
+          <div className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full bg-amber-400/10 blur-3xl" />
+          <div className="absolute bottom-1/4 left-1/4 w-48 h-48 rounded-full bg-teal-400/10 blur-3xl" />
+          <div className="absolute top-0 left-0 w-96 h-96 rounded-full bg-emerald-500/15 blur-3xl -translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-green-600/15 blur-3xl translate-x-1/3 translate-y-1/3" />
           <div className="absolute inset-0 opacity-[0.04]"
             style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
         </div>
@@ -135,10 +136,10 @@ const Faculty = () => {
             <div className="inline-flex items-center gap-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-1.5 mb-4"><span className="w-2 h-2 rounded-full bg-teal-500" /><span className="text-teal-700 text-xs font-bold uppercase tracking-widest">{t("faculty.experienced")}</span></div>
             <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">{t("faculty.title")}</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-7 max-w-6xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-7 max-w-6xl mx-auto">
             {teachers.map((teacher) => (
               <div key={teacher.nameKey}
-                className="group bg-white/95 backdrop-blur-sm rounded-3xl overflow-hidden shadow-lg hover:shadow-xl border border-teal-100/70 hover:-translate-y-1.5 transition-all duration-300 w-full max-w-[21rem] sm:max-w-none mx-auto">
+                className="group bg-white/95 backdrop-blur-sm rounded-3xl overflow-hidden shadow-lg hover:shadow-xl border border-teal-100/70 hover:-translate-y-1.5 transition-all duration-300 w-full max-w-[21rem]">
                 <div className={`h-1.5 bg-gradient-to-r ${teacher.stripe}`} />
                 <div className="p-4 sm:p-5 lg:p-6 text-center">
                   <div className={`w-[12.5rem] sm:w-[13.5rem] lg:w-[14.5rem] aspect-[4/5] mx-auto p-1 rounded-2xl bg-gradient-to-br ${teacher.glow} mb-3`}>
