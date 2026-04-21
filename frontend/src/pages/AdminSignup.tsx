@@ -4,9 +4,9 @@ import { Mail, Lock, Key, Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from 'sonner';
 import { AdminAPI } from '@/lib/api';
+import logo from '../../public/schoollogo.png';
 
 const AdminSignup = () => {
   const [email, setEmail] = useState('');
@@ -22,7 +22,6 @@ const AdminSignup = () => {
     setLoading(true);
     try {
       const response = await AdminAPI.signup({ email, password, adminSecretKey });
-      
       if (response.data.success) {
         localStorage.setItem('adminToken', response.data.data.token);
         toast.success("Admin account created successfully");
@@ -31,100 +30,167 @@ const AdminSignup = () => {
         toast.error(response.data.message || "Failed to create account");
       }
     } catch (error: any) {
-      toast.error(error.response?.data?.message || "An error occurred during signup");
+      toast.error(error.response?.data?.message || "An error occurred");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50/50 p-4">
-      <Card className="w-full max-w-md shadow-xl border-t-4 border-t-primary">
-        <CardHeader className="space-y-2 text-center pb-6">
-          <CardTitle className="text-3xl font-bold tracking-tight text-gray-900">Admin Signup</CardTitle>
-          <CardDescription className="text-gray-500">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0a2618] via-[#1a5c38] to-[#0a2618] p-4">
+      
+      <div className="w-full max-w-3xl rounded-2xl overflow-hidden shadow-2xl border border-yellow-700/20 flex flex-col md:flex-row">
+
+        {/* ── LEFT PANEL — Logo + Info ── */}
+        <div className="bg-gradient-to-b from-[#0d3320] to-[#1a5c38] flex flex-col items-center justify-center px-8 py-10 md:w-2/5 relative">
+          
+          {/* decorative pattern */}
+          <div className="absolute inset-0 opacity-5"
+            style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '20px 20px' }}
+          />
+
+          {/* Gold top strip */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-700 via-yellow-400 to-yellow-700" />
+
+          {/* Logo */}
+          <div className="w-36 h-36 rounded-full border-4 border-yellow-500/70 p-1 shadow-xl mb-5 relative z-10">
+            <img
+              src={logo}
+              alt="School Logo"
+              className="w-full h-full rounded-full object-cover"
+            />
+          </div>
+
+          {/* Org name */}
+          <p className="text-yellow-300 font-bold text-base text-center leading-snug relative z-10">
+            Darul Uloom Junaidia Ajmalia
+          </p>
+          <p className="text-white/50 text-xs text-center mt-1 relative z-10">
+            Mahend, Dist–Ghazipur U.P.
+          </p>
+
+          {/* Decorative divider */}
+          <div className="mt-6 w-16 h-px bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent relative z-10" />
+
+          <p className="text-white/30 text-[10px] text-center mt-4 relative z-10 tracking-widest uppercase">
+            Admin Portal
+          </p>
+
+          {/* Gold bottom strip */}
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-700 via-yellow-400 to-yellow-700" />
+        </div>
+
+        {/* ── RIGHT PANEL — Form ── */}
+        <div className="bg-[#fdf8f0] flex flex-col justify-center px-8 py-8 md:w-3/5">
+          
+          <h1 className="text-[#0d3320] text-2xl font-bold tracking-wide mb-1">
+            Admin Signup
+          </h1>
+          <p className="text-gray-400 text-xs mb-6">
             Create a new administrator account
-          </CardDescription>
-        </CardHeader>
-        <form onSubmit={handleSignup}>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+          </p>
+
+          <form onSubmit={handleSignup} className="space-y-4">
+
+            {/* Email */}
+            <div className="space-y-1">
+              <Label className="text-[11px] uppercase tracking-widest text-gray-500 font-bold">
+                Email
+              </Label>
               <div className="relative">
-                <Mail className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-                <Input 
-                  id="email" 
-                  type="email" 
+                <Mail className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+                <Input
+                  type="email"
                   placeholder="admin@example.com"
-                  className="pl-10"
+                  className="pl-9 h-9 text-sm bg-white border-gray-200 focus-visible:ring-[#1a5c38]/30 focus-visible:border-[#1a5c38]"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+
+            {/* Password */}
+            <div className="space-y-1">
+              <Label className="text-[11px] uppercase tracking-widest text-gray-500 font-bold">
+                Password
+              </Label>
               <div className="relative">
-                <Lock className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-                <Input 
-                  id="password" 
-                  type={showPassword ? "text" : "password"} 
-                  className="pl-10 pr-10"
+                <Lock className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+                <Input
+                  type={showPassword ? 'text' : 'password'}
                   placeholder="••••••••"
+                  className="pl-9 pr-9 h-9 text-sm bg-white border-gray-200 focus-visible:ring-[#1a5c38]/30 focus-visible:border-[#1a5c38]"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
-                <button 
+                <button
                   type="button"
-                  className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600 focus:outline-none"
                   onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
                 >
-                  {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
               </div>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="adminSecret">Admin Secret Key</Label>
+
+            {/* Admin Secret Key */}
+            <div className="space-y-1">
+              <Label className="text-[11px] uppercase tracking-widest text-gray-500 font-bold">
+                Admin Secret Key
+              </Label>
               <div className="relative">
-                <Key className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-                <Input 
-                  id="adminSecret" 
-                  type={showSecret ? "text" : "password"} 
-                  className="pl-10 pr-10"
+                <Key className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+                <Input
+                  type={showSecret ? 'text' : 'password'}
                   placeholder="••••••••"
+                  className="pl-9 pr-9 h-9 text-sm bg-white border-gray-200 focus-visible:ring-[#1a5c38]/30 focus-visible:border-[#1a5c38]"
                   value={adminSecretKey}
                   onChange={(e) => setAdminSecret(e.target.value)}
                   required
                 />
-                <button 
+                <button
                   type="button"
-                  className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600 focus:outline-none"
                   onClick={() => setShowSecret(!showSecret)}
+                  className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
                 >
-                  {showSecret ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                  {showSecret ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
               </div>
             </div>
-          </CardContent>
-          <CardFooter className="flex flex-col space-y-4 pt-4">
-            <Button type="submit" className="w-full text-base font-semibold py-6" disabled={loading}>
-              {loading ? "Creating Account..." : "Sign Up"}
+
+            {/* Submit */}
+            <Button
+              type="submit"
+              disabled={loading}
+              className="w-full h-10 text-sm font-bold tracking-widest uppercase bg-[#0d3320] hover:bg-[#1a5c38] text-white transition-all duration-200 mt-2"
+            >
+              {loading ? (
+                <span className="flex items-center gap-2">
+                  <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
+                  </svg>
+                  Creating...
+                </span>
+              ) : 'Sign Up'}
             </Button>
-            <div className="text-sm text-center text-gray-500">
-              Already have an admin account?{' '}
-              <button 
-                type="button" 
+
+            <p className="text-center text-xs text-gray-400 pt-1">
+              Already have an account?{' '}
+              <button
+                type="button"
                 onClick={() => navigate('/admin/login')}
-                className="text-primary font-medium hover:underline focus:outline-none"
+                className="text-[#1a5c38] font-bold hover:underline"
               >
                 Sign in
               </button>
-            </div>
-          </CardFooter>
-        </form>
-      </Card>
+            </p>
+          </form>
+        </div>
+
+      </div>
     </div>
   );
 };
