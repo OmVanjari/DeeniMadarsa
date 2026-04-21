@@ -52,7 +52,7 @@ const Donation = () => {
       "*JazakAllah Khair for your support!*",
     ].filter(Boolean).join("\n");
 
-    const url = "https://wa.me/919835051934?text=" + encodeURIComponent(lines);
+    const url = "https://wa.me/+916394569711?text=" + encodeURIComponent(lines);
     setWhatsappUrl(url);
     setShowPopup(true);
     setDonationForm({ name: "", email: "", phone: "", address: "", donationType: "", whyDonate: "", otherReason: "" });

@@ -223,7 +223,7 @@ const About = () => {
       <section className="py-6 sm:py-8 lg:py-10 bg-background">
         <div className="container mx-auto px-3 sm:px-4 max-w-5xl">
           <div className="text-center mb-8 sm:mb-10 lg:mb-14">
-            <div className="inline-flex items-center gap-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-1.5 mb-4"><span className="w-2 h-2 rounded-full bg-teal-500" /><span className="text-teal-700 text-xs font-bold uppercase tracking-widest">{t("about.purpose")}</span></div>
+            {/* <div className="inline-flex items-center gap-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-1.5 mb-4"><span className="w-2 h-2 rounded-full bg-teal-500" /><span className="text-teal-700 text-xs font-bold uppercase tracking-widest">{t("about.purpose")}</span></div> */}
             <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">{t("about.missionvision")}</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">

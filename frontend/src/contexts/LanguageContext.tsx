@@ -69,7 +69,7 @@ const translations: Record<Language, Record<string, string>> = {
     "footer.contact": "Contact Us",
     "footer.phone": "Phone: +91 9876543210",
     "footer.email": "Email: darululoomjunaidiaajmalia@gmail.com",
-    "footer.address": "Mehdur, Ghazipur, Uttar Pradesh",
+    "footer.address": "Mahend, Ghazipur, Uttar Pradesh",
     "footer.quicklinks": "Quick Links",
     "footer.copyright": "© 2026 Darul Uloom Junaidia Ajmalia. All rights reserved.",
     "footer.followus": "Follow Us",

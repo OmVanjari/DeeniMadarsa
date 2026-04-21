@@ -28,7 +28,7 @@ const Contact = () => {
     }
 
     // WhatsApp phone number (with country code)
-    const whatsappNumber = "919876543210";
+    const whatsappNumber = "+91 6394569711";
 
     // Construct the WhatsApp message
     const whatsappMessage = `*New Inquiry from ${form.name}*\n\n📧 Email: ${form.email}\n📋 Inquiry Type: ${form.enquiryType}\n\n💬 Message:\n${form.message}`;
